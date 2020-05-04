@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "608437740721",
+    "firebase_url": "https://enfermeraya-20ced.firebaseio.com",
+    "project_id": "enfermeraya-20ced",
+    "storage_bucket": "enfermeraya-20ced.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608437740721:android:d9c3deac3e946c84ffae90",
+        "android_client_info": {
+          "package_name": "com.enfermeraya.enfermeraya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608437740721-qeamnh8ko2e4g67h6p2dndn6k8s6onge.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enfermeraya.enfermeraya",
+            "certificate_hash": "bf5ecdd42c56214215a8d8aabbd6b59e6b006176"
+          }
+        },
+        {
+          "client_id": "608437740721-5219eitm8one5ltn2vt4ks6e3j0ccj5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608437740721-5219eitm8one5ltn2vt4ks6e3j0ccj5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

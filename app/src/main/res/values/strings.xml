@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Emfermeraya</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="olvidastespasswor">¿Olvidaste tu Contraseña?</string>
+    <string name="notienecuenta">¿No tienes una cuenta? <b>Regístrate aquí</b></string>
+    <string name="recuperarpasswortitle"><b>e-mail Inválido</b></string>
+    <string name="recuperarpassworddescripcion">El e-mail no es válido o no existe en nuestros registros,
+     escríbelo correctamente para que puedas actualizar tu contraseña.</string>
+    <string name="ingresoFallido"><b>Ingreso fallido</b></string>
+    <string name="ingresoFallidoDescrip">Tus datos no parecen estar correctos. Revisa tus datos y/o
+        tu acceso a Internet</string>
+    <string name="omitir">Omitir</string>
+    <string name="registrate">Regístrate aquí</string>
+    <string name="iniciarsesiion">Iniciar sesión</string>
+    <string name="registrar">Registrarse</string>
+    <string name="registrarUsuario">Registrar Usuario</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity">Login</string>
+
+    <string name="facebook_app_id">2482660775167299</string>
+    <string name="fb_login_protocol_scheme">fb2482660775167299</string>
+
+
+    <!---
+     Client ID google gmail
+     https://developers.google.com/identity/sign-in/android/sign-in
+608437740721-0ippg12kdpi6m20v6a3pdlsjlfkkaogb.apps.googleusercontent.com
+
+Client Secret
+4IYbDZa5gDYC0bXomgcm6mxF
+    -->
+
+
+</resources>
