@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
 
+
     //service
     //implementation 'com.google.android.gms:play-services-ads:19.1.0' // Mandatory
     implementation 'com.google.android.gms:play-services-location:17.0.0' // Mandatory
@@ -75,6 +76,8 @@ dependencies {
     //alert
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 
+    //fecha
+    implementation 'joda-time:joda-time:2.10'
 
     // disain register y login
     //noinspection GradleCompatible

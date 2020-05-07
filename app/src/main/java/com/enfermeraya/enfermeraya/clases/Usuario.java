@@ -3,18 +3,34 @@ package com.enfermeraya.enfermeraya.clases;
 public class Usuario {
 
     private  String key;
-    private  String tipo;
-    private  String estado;
-    private  String empresa;
     private  String nombre;
     private  String apellido;
     private  String celular;
     private  String correo;
-    private  String codigoproveedor;
-    private  String dni;
+    private  String pasString;
+    private  String foto;
+    private  String token;
 
     public Usuario(){}
 
+    public Usuario(String key, String nombre, String apellido, String celular, String correo, String pasString, String foto, String token) {
+        this.key = key;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.celular = celular;
+        this.correo = correo;
+        this.pasString = pasString;
+        this.foto = foto;
+        this.token = token;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getNombre() {
         return nombre;
@@ -48,54 +64,27 @@ public class Usuario {
         this.correo = correo;
     }
 
-
-    public String getKey() {
-        return key;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getToken() {
+        return token;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getPasString() {
+        return pasString;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
-
-    public String getCodigoproveedor() {
-        return codigoproveedor;
-    }
-
-    public void setCodigoproveedor(String codigoproveedor) {
-        this.codigoproveedor = codigoproveedor;
-    }
-
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setPasString(String pasString) {
+        this.pasString = pasString;
     }
 }

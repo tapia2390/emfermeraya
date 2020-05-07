@@ -15,6 +15,7 @@
     <string name="iniciarsesiion">Iniciar sesión</string>
     <string name="registrar">Registrarse</string>
     <string name="registrarUsuario">Registrar Usuario</string>
+    <string name="cerrarSesion">Cerrar la sesión</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="title_activity">Login</string>
@@ -22,6 +23,8 @@
     <string name="facebook_app_id">2482660775167299</string>
     <string name="fb_login_protocol_scheme">fb2482660775167299</string>
 
+    <string name="title_titulo_terminos">Terminos y condiciones</string>
+    <string name="title_desc_terminos">Sin descripción</string>
 
     <!---
      Client ID google gmail
@@ -31,6 +34,17 @@
 Client Secret
 4IYbDZa5gDYC0bXomgcm6mxF
     -->
+
+
+    <!---Registro Usuario-->
+    <string name="nombreU">Nombre</string>
+    <string name="apellidoU">Apellido</string>
+    <string name="celularU">Celular</string>
+    <string name="correoU">Correo</string>
+    <string name="passwordU">Contraseña</string>
+    <string name="fotoU">Tomar foto</string>
+    <string name="registrarse">Registarse</string>
+    <string name="authorities">com.enfermeraya.enfermeraya.android.fileprovider</string>
 
 
 </resources>

@@ -1,114 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorFondo"
-    android:padding="@dimen/appbar_padding"
+    android:paddingTop="@dimen/espacio"
     android:id="@+id/mRlView">
-
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scrollbars="vertical">
+        android:layout_height="wrap_content">
+
 
         <LinearLayout
-
-            android:padding="@dimen/loginViewsMargin"
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15sp">
 
 
             <TextView
-                style="@style/headerTextPrimary"
-                android:text="@string/registrarUsuario"
-                android:layout_marginTop="@dimen/loginViewsMargin"
-                android:paddingBottom="5sp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=""
+                android:textSize="15sp" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp" />
 
 
             <ImageView
                 android:id="@+id/camara1"
-                android:layout_width="80sp"
-                android:layout_height="80sp"
+                android:layout_width="60sp"
+                android:layout_height="60sp"
+                android:layout_below="@+id/textView5"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:background="@drawable/perfilfoto"
-                 />
+                android:onClick="camara1" />
 
             <TextView
                 android:id="@+id/txt_camara1"
-                style="@style/headerTextPrimary"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cargar foto"
-                android:clickable="true"
-                android:textColor="@color/colorBlanco" />
+                android:layout_below="@+id/imageView3"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="@string/fotoU"
+                android:textColor="@color/colorBlanco"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/imageView"
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="25sp"
-                android:layout_marginRight="25sp"
-                android:id="@+id/linearLayout">
+                android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/txt_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/email"
-                    android:hint="@string/correo"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:layout_weight="1"
+                    android:background="@drawable/trans_border_style"
+                    android:alpha="0.6"
+                    android:hint="@string/nombreU"
+                    android:inputType="textAutoCorrect"
+                    android:padding="5sp"
+                    android:text=""
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></EditText>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
+
+                <EditText
+                    android:id="@+id/txt_apellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/trans_border_style"
+                    android:alpha="0.6"
+                    android:hint="@string/apellidoU"
+                    android:inputType="textAutoCorrect"
+                    android:padding="5sp"
+                    android:text=""
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></EditText>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
+
+                <EditText
+                    android:id="@+id/txt_celular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:layout_weight="1"
+                    android:background="@drawable/trans_border_style"
+                    android:alpha="0.6"
+                    android:hint="@string/celularU"
+                    android:inputType="phone"
+                    android:padding="5sp"
+                    android:text=""
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></EditText>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
+
+                <EditText
+                    android:id="@+id/txt_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:layout_weight="1"
+                    android:background="@drawable/trans_border_style"
+                    android:alpha="0.6"
+                    android:hint="@string/correoU"
                     android:inputType="textEmailAddress"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/trans_border_style"
                     android:padding="5sp"
-                    android:textStyle="normal"
-                    android:layout_marginBottom="5sp"
-                    android:alpha="0.6"
-                    android:textColorHint="@color/colorNegro"
-                    android:focusableInTouchMode="true"
-                    android:fontFamily="sans-serif"/>
+                    android:text=""
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></EditText>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
 
                 <EditText
+                    android:id="@+id/txt_passwor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/password"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:layout_weight="1"
                     android:background="@drawable/trans_border_style"
-                    android:padding="5sp"
-                    android:textStyle="normal"
                     android:alpha="0.6"
-                    android:textColorHint="@color/colorNegro"
-                    android:focusableInTouchMode="true"
-                    android:fontFamily="sans-serif"/>
+                    android:hint="@string/passwordU"
+                    android:inputType="textPassword"
+                    android:padding="5sp"
+                    android:text=""
+                    android:textColor="@color/colorNegro"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></EditText>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp" />
 
                 <Button
-                    android:id="@+id/iniciarsession"
                     android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginTop="9dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:background="@drawable/blanco_post_border_style"
-                    android:inputType="textCapCharacters"
-                    android:text="Registrar"
+                    android:onClick="validar"
+                    android:text="@string/registrarse"
                     android:textColor="@color/colorFondo"
                     android:textStyle="bold" />
 
-
             </LinearLayout>
 
-
         </LinearLayout>
-
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorBlanco"
+        android:background="@color/colorTransparente"
+        android:text="@string/notienecuenta"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:inputType="textCapCharacters"
+        android:onClick="terminos"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

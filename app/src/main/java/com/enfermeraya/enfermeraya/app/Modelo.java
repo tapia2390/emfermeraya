@@ -1,6 +1,7 @@
 package com.enfermeraya.enfermeraya.app;
 
 
+import com.enfermeraya.enfermeraya.clases.ClassTerminosYCondiciones;
 import com.enfermeraya.enfermeraya.clases.Usuario;
 
 import java.text.DateFormat;
@@ -11,6 +12,7 @@ public class Modelo {
     public static final Modelo ourInstance = new Modelo();
     public String uid = "";
     public String tipo ="";
+    public String terminosycondiciones = "";
 
     public static Modelo getInstance() {
         return ourInstance;
@@ -19,8 +21,11 @@ public class Modelo {
     public Modelo() {
     }
 
+    public ClassTerminosYCondiciones classTerminosYCondiciones = new ClassTerminosYCondiciones();
+
 
     public Usuario usuario = new Usuario();
+    public String tipoLogin = "";
 
 
     //version app

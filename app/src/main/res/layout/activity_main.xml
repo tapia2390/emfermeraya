@@ -79,6 +79,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp" />
 
+
+
         <com.google.android.gms.common.SignInButton
             android:id="@+id/login_gmail"
             android:layout_width="match_parent"
@@ -98,6 +100,7 @@
             android:textColor="@color/colorBlanco"
             android:background="@color/colorTransparente"
             android:inputType="textCapCharacters"
+            android:onClick="olvidoPassword"
             />
     </LinearLayout>
 

@@ -31,6 +31,7 @@ public class Splash extends Activity {
             public void run() {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
                 finish();
             }
         },splashTimeOut);
