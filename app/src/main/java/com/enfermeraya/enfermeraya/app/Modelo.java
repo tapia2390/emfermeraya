@@ -13,6 +13,8 @@ public class Modelo {
     public String uid = "";
     public String tipo ="";
     public String terminosycondiciones = "";
+    public double latitud;
+    public double longitud;
 
     public static Modelo getInstance() {
         return ourInstance;

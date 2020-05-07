@@ -12,16 +12,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.Splash;
+import com.enfermeraya.enfermeraya.app.Modelo;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -42,21 +48,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback ,ActivityCompat.OnRequestPermissionsResultCallback{
 
-    private GoogleMap mMap;
-    private boolean mLocationPermissionGranted = false;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2;
-    final static int REQUEST_LOCATION = 199;
-    private FusedLocationProviderClient fClient;
+    Modelo modelo = Modelo.getInstance();
 
-    //gps
-    private LocationManager locManager;
-    private Location loc;
-    double latitud = 0.0;
-    double longitud = 0.0;
+    private GoogleMap mMap;
+
 
 
     @Override
@@ -78,8 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
-        fClient = LocationServices.getFusedLocationProviderClient(this);
-
+        mapa();
         //permisos
 
 
@@ -102,23 +103,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap = googleMap;
 
-        getLocationPermission();
-
-        permisogps();
         // Add a marker in Sydney and move the camera
+        goolemapa(mMap);
 
-        //5.059288, -75.497652
-        LatLng ctg = new LatLng(latitud, longitud);// colombia
-        CameraPosition possiCameraPosition = new CameraPosition.Builder().target(ctg).zoom(15).bearing(0).tilt(0).build();
-        CameraUpdate cam3 =
-                CameraUpdateFactory.newCameraPosition(possiCameraPosition);
-        mMap.animateCamera(cam3);
-        mMap.addMarker(new MarkerOptions().position(ctg).title("Mi ubicación"));
 
-        float verde = BitmapDescriptorFactory.HUE_GREEN;
-        marcadorColor(latitud, longitud,"Pais Colombia", verde);
     }
 
+     public void goolemapa(GoogleMap mMap){
+         //5.059288, -75.497652
+         LatLng ctg = new LatLng(modelo.latitud, modelo.longitud);// colombia
+         CameraPosition possiCameraPosition = new CameraPosition.Builder().target(ctg).zoom(15).bearing(0).tilt(0).build();
+         CameraUpdate cam3 =
+                 CameraUpdateFactory.newCameraPosition(possiCameraPosition);
+         mMap.animateCamera(cam3);
+         mMap.addMarker(new MarkerOptions().position(ctg).title("Mi ubicación"));
+
+         float verde = BitmapDescriptorFactory.HUE_GREEN;
+         marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde);
+     }
 
     private void marcadorColor(double lat, double lng, String  pais, float color){
         mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(pais).icon(BitmapDescriptorFactory.defaultMarker(color)));
@@ -131,161 +133,122 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    //permiso gps
-    public void permisogps(){
-
-        //permisos
-        ActivityCompat.requestPermissions(MapsActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-
-            Toast.makeText(getApplicationContext(), "No se han definido los permisos necesarios.", Toast.LENGTH_SHORT).show();
-            return;
-        }else
-        {
-            locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            try {
-
-                if(loc != null){
-                    latitud = loc.getLatitude();
-                    longitud = loc.getLongitude();
-                }else{
-                    showAlertGPs();
-                }
-            }catch (Exception e){}
 
 
-        }
+    //GPS
 
-
-    }
-
-    private void showAlertGPs() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Enable Location")
-                .setMessage("Su ubicación esta desactivada.\npor favor active su ubicación " +
-                        "usa esta app")
-                .setPositiveButton("Configuración de ubicación", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(myIntent);
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    }
-                });
-        dialog.show();
-    }
-
-
-    /**
-     * Prompts the user for permission to use the device location.
-     */
-    private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-        if (ContextCompat.checkSelfPermission(MapsActivity.this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-
-            mLocationPermissionGranted = true;
-            startLocationUpdates();
-            //getUltimaUbicacion();
-
-
+    //GPS
+    public void mapa(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            locationStart();
         }
-
-
     }
 
+    private void locationStart() {
+        LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        MapsActivity.Localizacion Local = new MapsActivity.Localizacion();
+        Local.setMainActivity(this);
+        final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!gpsEnabled) {
+            Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(settingsIntent);
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+            return;
+        }
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
+        Toast.makeText(getApplicationContext(),"Localización agregada", Toast.LENGTH_SHORT).show();
 
-    // Trigger new location updates at interval
-    protected void startLocationUpdates() {
-
-        // Create the location request to start receiving updates
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5 * 1000);
-        mLocationRequest.setSmallestDisplacement(3);
-        mLocationRequest.setFastestInterval(4 * 1000);
-
-
-        // Create LocationSettingsRequest object using location request
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(mLocationRequest);
-
-        builder.setAlwaysShow(true);
-
-
-        SettingsClient settingsClient = LocationServices.getSettingsClient(MapsActivity.this);
-        Task resul = settingsClient.checkLocationSettings(builder.build());
-
-
-        final LocationRequest finalMLocationRequest = mLocationRequest;
-        resul.addOnSuccessListener(this, new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-
-                //fClient.requestLocationUpdates(finalMLocationRequest, mLocationCallback, null );
-
-
+    }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 1000) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                locationStart();
+                return;
             }
-        });
+        }
+    }
+    public void setLocation(Location loc) {
+        //Obtener la direccion de la calle a partir de la latitud y la longitud
+        if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
+            try {
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> list = geocoder.getFromLocation(
+                        loc.getLatitude(), loc.getLongitude(), 1);
+                if (!list.isEmpty()) {
+                    Address DirCalle = list.get(0);
 
-        resul.addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if (e instanceof ResolvableApiException) {
-                    // Location settings are not satisfied, but this can be fixed
-                    // by showing the user a dialog.
-                    try {
-                        // Show the dialog by calling startResolutionForResult(),
-                        // and check the result in onActivityResult().
-                        ResolvableApiException resolvable = (ResolvableApiException) e;
-                        resolvable.startResolutionForResult(MapsActivity.this,
-                                REQUEST_LOCATION);
-                    } catch (IntentSender.SendIntentException sendEx) {
-                        // Ignore the error.
-                    }
+
+                    String dir =  DirCalle.getAddressLine(0);
+
+                    // Toast.makeText(getApplicationContext(),"Mi direccion es "+ dir, Toast.LENGTH_SHORT).show();
                 }
-
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_LOCATION) {
-            if (resultCode == RESULT_OK) {
-                mLocationPermissionGranted = true;
-
-            } else {
-                mLocationPermissionGranted = false;
-            }
-
-            startLocationUpdates();
         }
+    }
+    /* Aqui empieza la Clase Localizacion */
+    public class Localizacion implements LocationListener {
+        MapsActivity mainActivity;
+        public MapsActivity getMainActivity() {
+            return mainActivity;
+        }
+        public void setMainActivity(MapsActivity mainActivity) {
+            this.mainActivity = mainActivity;
+        }
+        @Override
+        public void onLocationChanged(Location loc) {
+            // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas
+            // debido a la deteccion de un cambio de ubicacion
+            loc.getLatitude();
+            loc.getLongitude();
 
+
+            modelo.latitud = loc.getLatitude();
+            modelo.longitud = loc.getLongitude();
+
+            this.mainActivity.setLocation(loc);
+        }
+        @Override
+        public void onProviderDisabled(String provider) {
+            // Este metodo se ejecuta cuando el GPS es desactivado
+
+            Toast.makeText(getApplicationContext(),"GPS Desactivado", Toast.LENGTH_SHORT).show();
+        }
+        @Override
+        public void onProviderEnabled(String provider) {
+            // Este metodo se ejecuta cuando el GPS es activado
+
+            Toast.makeText(getApplicationContext(),"GPS Activado", Toast.LENGTH_SHORT).show();
+            goolemapa(mMap);
+        }
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            switch (status) {
+                case LocationProvider.AVAILABLE:
+                    Log.d("debug", "LocationProvider.AVAILABLE");
+                    break;
+                case LocationProvider.OUT_OF_SERVICE:
+                    Log.d("debug", "LocationProvider.OUT_OF_SERVICE");
+                    break;
+                case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                    Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE");
+                    break;
+            }
+        }
     }
 
 
-    /////////////////////////////
+
+    //fin gps
+
 
 }
+
+
+
