@@ -386,6 +386,8 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
             }
             else{
                 //cloadswet("Validando la información...");
+                modelo.tipoLogin = "normal";
+                setPreference(modelo.tipoLogin);
                 registro(correo,password2);
 
             }

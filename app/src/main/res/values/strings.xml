@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Emfermeraya</string>
+    <string name="app_name">Emfermera</string>
     <string name="correo">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="olvidastespasswor">¿Olvidaste tu Contraseña?</string>
