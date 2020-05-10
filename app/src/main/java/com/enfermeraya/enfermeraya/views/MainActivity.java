@@ -31,6 +31,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import com.enfermeraya.enfermeraya.R;
+import com.enfermeraya.enfermeraya.Splash;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.comandos.ComandoValidarUsuario;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
@@ -106,7 +107,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
         AppEventsLogger.activateApp(this);
 
         if (savedInstanceState != null) {
-            Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+            Intent i = new Intent(getApplicationContext(), Splash.class);
             startActivity(i);
             finish();
             return;
@@ -330,6 +331,8 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
 
                 }
             };
+        }else {
+            alerta("Sin Internet","Valide la conexión a internet");
         }
 
     }
@@ -386,9 +389,15 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
             }
             else{
                 //cloadswet("Validando la información...");
-                modelo.tipoLogin = "normal";
-                setPreference(modelo.tipoLogin);
-                registro(correo,password2);
+
+                if (utility.estado(getApplicationContext())) {
+                    modelo.tipoLogin = "normal";
+                    setPreference(modelo.tipoLogin);
+                    registro(correo,password2);
+
+                }else{
+                    alerta("Sin Internet","Valide la conexión a internet");
+                }
 
             }
 

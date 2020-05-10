@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Emfermera</string>
+    <string name="app_name">Enfermera</string>
     <string name="correo">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="olvidastespasswor">¿Olvidaste tu Contraseña?</string>
@@ -15,6 +15,8 @@
     <string name="iniciarsesiion">Iniciar sesión</string>
     <string name="registrar">Registrarse</string>
     <string name="registrarUsuario">Registrar Usuario</string>
+    <string name="terminosycondidiones"> términos y condiciones</string>
+
     <string name="cerrarSesion">Cerrar la sesión</string>
 
     <string name="title_activity_maps">Map</string>
@@ -42,8 +44,10 @@ Client Secret
     <string name="celularU">Celular</string>
     <string name="correoU">Correo</string>
     <string name="passwordU">Contraseña</string>
+    <string name="comfPasswordU">Comfirma contraseña</string>
     <string name="fotoU">Tomar foto</string>
     <string name="registrarse">Registarse</string>
+    <string name="actualizar">Actualizar Datos</string>
     <string name="authorities">com.enfermeraya.enfermeraya.android.fileprovider</string>
 
 

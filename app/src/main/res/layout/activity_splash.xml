@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@drawable/logo"
+        android:src="@drawable/whiteblue"
         android:layout_width="120sp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

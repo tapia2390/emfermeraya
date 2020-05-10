@@ -26,36 +26,71 @@
         android:layout_marginRight="25sp"
         android:id="@+id/linearLayout">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email"
-            android:hint="@string/correo"
-            android:inputType="textEmailAddress"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/trans_border_style"
-            android:padding="5sp"
-            android:textStyle="normal"
-            android:layout_marginBottom="5sp"
-            android:alpha="0.6"
-            android:textColorHint="@color/colorNegro"
-            android:focusableInTouchMode="true"
-            android:fontFamily="sans-serif"/>
+            android:layout_height="35sp"
+            android:orientation="horizontal"
+            android:background="@drawable/blanco_post_border_style">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="40sp"
+                android:layout_height="match_parent"
+                android:src="@drawable/email"
+                android:background="@drawable/fondoicono_post_border_style"/>
+
+            <EditText
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/email"
+                android:hint="@string/correoU"
+                android:inputType="textEmailAddress"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/blanco_post_border_style"
+                android:paddingLeft="5sp"
+                android:textStyle="normal"
+                android:textColorHint="@color/colorAzulClaro"
+                android:focusableInTouchMode="true"
+                android:fontFamily="sans-serif"/>
+
+        </LinearLayout>
+
+        
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:orientation="horizontal"
+        android:background="@drawable/blanco_post_border_style">
+
+        <ImageView
+
+            android:layout_gravity="center"
+            android:layout_width="40sp"
+            android:layout_height="match_parent"
+            android:src="@drawable/candado"
+            android:background="@drawable/fondoicono_post_border_style"/>
 
         <EditText
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/password"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/trans_border_style"
-            android:padding="5sp"
+            android:background="@drawable/blanco_post_border_style"
+            android:paddingLeft="5sp"
             android:textStyle="normal"
-            android:alpha="0.6"
-            android:textColorHint="@color/colorNegro"
+            android:textColorHint="@color/colorAzulClaro"
             android:focusableInTouchMode="true"
             android:fontFamily="sans-serif"/>
+
+    </LinearLayout>
 
         <Button
             android:id="@+id/iniciarsession"
@@ -70,16 +105,19 @@
             android:textStyle="bold" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20sp"/>
+
+
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="40sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
-
-
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/login_gmail"
@@ -88,7 +126,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="10dp"/>
 
 
         <Button

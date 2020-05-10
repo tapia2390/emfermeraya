@@ -65,7 +65,7 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
 
     Usuario usuario;
 
-    EditText txt_nombre, txt_apellido, txt_celular, txt_correo, txt_passwor;
+    EditText txt_nombre, txt_apellido, txt_celular, txt_correo, txt_passwor,txt_passwor1;
     Modelo modelo = Modelo.getInstance();
     String token = "";
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -125,6 +125,7 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
         txt_celular = (EditText)findViewById(R.id.txt_celular);
         txt_correo = (EditText)findViewById(R.id.txt_correo);
         txt_passwor = (EditText)findViewById(R.id.txt_passwor);
+        txt_passwor1 = (EditText)findViewById(R.id.txt_passwor1);
 
         camara1 = (ImageView)findViewById(R.id.camara1);
         txt_camara1 = (TextView) findViewById(R.id.txt_camara1);
@@ -160,6 +161,13 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
         }
         else if(txt_passwor.getText().toString().length() < 8){
             txt_passwor.setError("Contraseña muy corta");
+        }
+        else if(txt_passwor1.getText().toString().length() < 8){
+            txt_passwor1.setError("Contraseña muy corta");
+        }
+
+        else if(!txt_passwor.getText().toString().equals(txt_passwor.getText().toString())){
+            txt_passwor.setError("Las contraseña no coinciden.");
         }
         else{
 

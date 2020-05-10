@@ -121,4 +121,20 @@ public class Menu extends Activity {
         editor.apply();
     }
 
+
+
+    public void didTapTerminos(View v){
+        Intent i = new Intent(getApplicationContext(), Teminos.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+
+    }
+
+    public void didTapPerfil(View v){
+        Intent i = new Intent(getApplicationContext(), Perfil.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+
+    }
+
 }

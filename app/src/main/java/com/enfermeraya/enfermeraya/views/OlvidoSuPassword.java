@@ -40,7 +40,7 @@ public class OlvidoSuPassword extends Activity {
             return;
         }
 
-        corrreo =(EditText)findViewById(R.id.corrreo);
+        corrreo =(EditText)findViewById(R.id.corrreo1);
         progressBar4 =(ProgressBar)findViewById(R.id.progressBar4);
 
     }
