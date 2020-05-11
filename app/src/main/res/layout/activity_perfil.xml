@@ -116,6 +116,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layut1"
                     android:layout_width="match_parent"
                     android:layout_height="35sp"
                     android:orientation="horizontal"
@@ -155,7 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="35sp"
                     android:orientation="horizontal"
-                    android:background="@drawable/blanco_post_border_style">
+                    android:background="@drawable/blanco_post_border_style"
+                    android:id="@+id/layut2">
 
                     <ImageView
 
@@ -183,6 +185,7 @@
                 </LinearLayout>
 
                 <Space
+                    android:id="@+id/space1"
                     android:layout_width="match_parent"
                     android:layout_height="10sp" />
 
@@ -232,8 +235,9 @@
 
 
                 <Button
+                    android:id="@+id/btnupdate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35sp"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/blanco_post_border_style"
                     android:onClick="validar"

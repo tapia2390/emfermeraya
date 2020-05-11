@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -89,7 +90,6 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
     DateFormat hourFormat;
     int setHora = 0;
 
-
     private static String APP_DIRECTORY = "MyPictureApp/";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY + "PictureApp";
     private final int MY_PERMISSIONS = 123;
@@ -101,6 +101,9 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
     String ruta1 = null;
     static final int REQUEST_TAKE_PHOTO = 3;
     String mCurrentPhotoPath = "";
+
+    Utility utility;
+    SweetAlertDialog pDialog;
 
 
     @Override
@@ -117,6 +120,7 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
             return;
         }
 
+        utility = new Utility();
         usuario =  null;
         boolean result = Utility.checkPermission(Registrarse.this);
 
@@ -172,10 +176,39 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
         else{
 
 
-            comandoValidarCorreoFirebase.checkAccountEmailExistInFirebase(txt_correo.getText().toString());
+            if (utility.estado(getApplicationContext())) {
+                loadswet("Validando la información...");
+                comandoValidarCorreoFirebase.checkAccountEmailExistInFirebase(txt_correo.getText().toString());
+
+            }else{
+                alerta("Sin Internet","Valide la conexión a internet");
+            }
+        }
+    }
+
+
+    //posgres dialos sweetalert
+
+    public void loadswet(String text){
+
+        try {
+            pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText(text);
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }catch (Exception e){
+
         }
 
+    }
 
+
+    //oculatomos el dialog
+    private void hideDialog() {
+        if (pDialog != null)
+            pDialog.dismiss();
     }
 
 
@@ -484,21 +517,26 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
     @Override
     public void cargoValidarCorreoFirebaseEroor() {
         txt_correo.setError("Email ya registrado");
+        hideDialog();
 
     }
 
     @Override
     public void setUsuarioListener() {
+
+        hideDialog();
         alertaOK("Registro exitoso", "Inicie sesion");
     }
 
     @Override
     public void errorSetUsuario() {
+        hideDialog();
         alerta("Error Resgisto","Algo salió malcon el registro verifique su conexión.");
     }
 
     @Override
     public void errorCreacionUsuario() {
+        hideDialog();
 
         alerta("Error Resgisto","Algo salió malcon el registro verifique su conexión");
     }

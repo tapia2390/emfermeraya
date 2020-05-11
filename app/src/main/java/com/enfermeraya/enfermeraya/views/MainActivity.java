@@ -532,11 +532,18 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
     //posgres dialos sweetalert
 
     public void loadswet(String text){
-        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText(text);
-        pDialog.setCancelable(false);
-        pDialog.show();
+
+        try {
+            pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText(text);
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }catch (Exception e){
+
+        }
+
     }
 
 

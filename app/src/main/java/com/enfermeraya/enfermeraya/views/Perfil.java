@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -27,16 +28,20 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.Splash;
 import com.enfermeraya.enfermeraya.app.Modelo;
@@ -53,6 +58,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,7 +68,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.Manifest.permission_group.CAMERA;
-
+import static android.Manifest.permission_group.STORAGE;
 
 
 import com.enfermeraya.enfermeraya.R;
@@ -107,8 +113,10 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
     static final int REQUEST_TAKE_PHOTO = 3;
     String mCurrentPhotoPath = "";
     Utility utility;
-
-
+    SweetAlertDialog pDialog;
+    LinearLayout layut1,layut2;
+    Button btnupdate;
+    Space space1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,15 +147,89 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
         camara1 = (ImageView)findViewById(R.id.camara1);
         txt_camara1 = (TextView) findViewById(R.id.txt_camara1);
         mRlView = (LinearLayout) findViewById(R.id.mRlView);
+        layut1 = (LinearLayout) findViewById(R.id.layut1);
+        layut2 = (LinearLayout) findViewById(R.id.layut2);
+        btnupdate =(Button) findViewById(R.id.btnupdate);
+        space1 =(Space) findViewById(R.id.space1);
 
 
         comandoPerfil =  new ComandoPerfil(this);
 
             if (utility.estado(getApplicationContext())) {
-                comandoPerfil.getUsuario();
+
+
+                Log.v("User" ,  ""+user.getDisplayName());
+
+                if(modelo.tipoLogin.equals("normal")){
+                    loadswet("Cargando la información...");
+                    comandoPerfil.getUsuario();
+                }else{
+                    layut1.setVisibility(View.GONE);
+                    btnupdate.setVisibility(View.GONE);
+                    layut2.setVisibility(View.GONE);
+                    space1.setVisibility(View.GONE);
+                    txt_nombre.setFocusable(false);
+                    txt_correo.setFocusable(false);
+                    txt_nombre.setText(user.getDisplayName());
+                    txt_correo.setText(user.getEmail());
+                    camara1.setClickable(false);
+                    txt_camara1.setClickable(false);
+
+                    //Bitmap bitmap = BitmapFactory.decodeFile(user.getPhotoUrl());
+
+                    try {
+                       // Uri url = user.getPhotoUrl();
+
+                        /*Glide.with(getApplicationContext())
+                                .load(user.getPhotoUrl())
+                                .centerCrop()
+                                .into(camara1);*/
+
+                        Glide.with(getApplicationContext())
+                                .load(user.getPhotoUrl())
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(camara1);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //camara1.setImageBitmap(getCircularBitmap(bitmap));
+
+                    //camara1.setBackgroundResource();
+                }
+
+            }else {
+                alerta("Sin Internet","Valide la conexión a internet");
             }
 
         }
+
+
+    //posgres dialos sweetalert
+
+    public void loadswet(String text){
+
+        try {
+            pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText(text);
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+
+    //oculatomos el dialog
+    private void hideDialog() {
+        if (pDialog != null)
+            pDialog.dismiss();
+    }
+
 
 
     public void validar(View v){
@@ -179,7 +261,14 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
             usuario.setFoto(foto);
 
 
-            comandoPerfil.actualizarUsuario(usuario);
+
+            if (utility.estado(getApplicationContext())) {
+                loadswet("Validando la información...");
+                comandoPerfil.actualizarUsuario(usuario);
+            }else{
+                alerta("Sin Internet","Valide la conexión a internet");
+            }
+
         }
 
 
@@ -500,6 +589,7 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
     @Override
     public void cargoUSuario() {
 
+        hideDialog();
         txt_nombre.setText("" + modelo.usuario.getNombre());
         txt_apellido.setText("" + modelo.usuario.getApellido());
         txt_celular.setText("" + modelo.usuario.getCelular());
@@ -513,12 +603,14 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
 
     @Override
     public void setUsuarioListener() {
+        hideDialog();
 
         alerta("Actualización","Datos Actualizados");
     }
 
     @Override
     public void errorSetUsuario() {
+        hideDialog();
 
         alerta("Eror","Error con el regitro");
     }
