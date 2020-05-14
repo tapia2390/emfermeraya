@@ -475,7 +475,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
 
                                 modelo.tipoLogin = "normal";
                                 setPreference(modelo.tipoLogin);
-                                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                                Intent i = new Intent(MainActivity.this, MenuLateral.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -601,7 +601,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
             hideDialog();
         } catch (Exception e){}
 
-        Intent i = new Intent(MainActivity.this, MapsActivity.class);
+        Intent i = new Intent(MainActivity.this, MenuLateral.class);
         i.putExtra("vistaPosicion", "dos");
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

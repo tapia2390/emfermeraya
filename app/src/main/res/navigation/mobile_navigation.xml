@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.enfermeraya.enfermeraya.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:name="com.enfermeraya.enfermeraya.ui.MiCuenta.MiCuentaFragment"
+            android:id="@+id/action_nav_home_to_nav_mi_cuenta"
+            app:destination="@id/nav_mi_cuenta" />
+
+        <action
+            android:name="com.enfermeraya.enfermeraya.ui.MisServicios.MisServiciosFragment"
+            android:id="@+id/action_nav_home_to_nav_mis_servicios"
+            app:destination="@id/nav_mis_servicios" />
+
+        <action
+            android:name="com.enfermeraya.enfermeraya.ui.Pagos.PagosFragment"
+            android:id="@+id/action_nav_home_to_nav_pagos"
+            app:destination="@id/nav_pagos" />
+
+        <action
+            android:name="com.enfermeraya.enfermeraya.ui.Recomienda.RecomiendaFragment"
+            android:id="@+id/action_nav_home_to_nav_recomienda"
+            app:destination="@id/nav_recomienda" />
+
+
+        <action
+            android:name="com.enfermeraya.enfermeraya.ui.Ayuda.AyudaFragment"
+            android:id="@+id/action_nav_home_to_nav_ayuda"
+            app:destination="@id/nav_ayuda" />
+
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_mi_cuenta"
+        android:name="com.enfermeraya.enfermeraya.ui.MiCuenta.MiCuentaFragment"
+        android:label="@string/menu_m_cuenta"
+        tools:layout="@layout/fragment_mi_cuenta" />
+
+    <fragment
+        android:id="@+id/nav_mis_servicios"
+        android:name="com.enfermeraya.enfermeraya.ui.MisServicios.MisServiciosFragment"
+        android:label="@string/menu_mis_servicios"
+        tools:layout="@layout/fragment_mis_servicios" />
+
+
+    <fragment
+        android:id="@+id/nav_pagos"
+        android:name="com.enfermeraya.enfermeraya.ui.Pagos.PagosFragment"
+        android:label="@string/menu_pagos"
+        tools:layout="@layout/fragment_pagos" />
+
+    <fragment
+        android:id="@+id/nav_recomienda"
+        android:name="com.enfermeraya.enfermeraya.ui.Recomienda.RecomiendaFragment"
+        android:label="@string/menu_recomienda"
+        tools:layout="@layout/fragment_recomienda" />
+
+
+    <fragment
+        android:id="@+id/nav_ayuda"
+        android:name="com.enfermeraya.enfermeraya.ui.Ayuda.AyudaFragment"
+        android:label="@string/menu_ayuda"
+        tools:layout="@layout/fragment_ayuda" />
+
+</navigation>

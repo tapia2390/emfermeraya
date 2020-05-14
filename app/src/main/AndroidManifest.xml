@@ -37,33 +37,36 @@
         android:required="true" />
 
     <application
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".views.Perfil"
+        <activity
+            android:name=".views.MenuLateral"
+            android:label="@string/title_activity_menu_lateral"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".views.Perfil"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".views.Teminos"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".views.Teminos"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".views.OlvidoSuPassword"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".views.OlvidoSuPassword"
             android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".views.Menu"
-
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".views.Menu"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -110,28 +113,25 @@
         <activity
             android:name=".views.MainActivity"
             android:label="@string/title_activity"
-
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".views.MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".views.Registrarse"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".views.Registrarse"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden"/>
-
-        <activity android:name=".Splash"
-
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".Splash"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
