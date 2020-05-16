@@ -405,7 +405,7 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
         mPath = savedInstanceState.getString("file_path");

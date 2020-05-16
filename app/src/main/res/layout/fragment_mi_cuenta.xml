@@ -7,8 +7,6 @@
     tools:context=".ui.MiCuenta.AyudaFragment">
 
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -257,6 +255,18 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="10sp" />
+
+
+                    <Button
+                        android:id="@+id/btncerrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/blanco_post_border_style"
+                        android:text="@string/cerrarSesion"
+                        android:textColor="@color/colorFondo"
+                        android:textStyle="bold"
+                        />
 
 
                 </LinearLayout>

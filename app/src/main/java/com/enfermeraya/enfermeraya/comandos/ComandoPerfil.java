@@ -95,29 +95,29 @@ public class ComandoPerfil {
         //metodo que me trae la razon social
         //se guarda en clase modelo
 
-            DatabaseReference ref = database.getReference("usuario/" + modelo.uid);//ruta path
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snap) {
+        DatabaseReference ref = database.getReference("usuario/" + modelo.uid);//ruta path
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snap) {
 
-                    modelo.usuario.setNombre(snap.child("nombre").getValue().toString());
-                    modelo.usuario.setApellido(snap.child("apellido").getValue().toString());
-                    modelo.usuario.setCelular(snap.child("celular").getValue().toString());
-                    modelo.usuario.setCorreo(snap.child("correo").getValue().toString());
-                    modelo.usuario.setFoto(snap.child("foto").getValue().toString());
-                    modelo.usuario.setToken(snap.child("tokem").getValue().toString());
+                modelo.usuario.setNombre(snap.child("nombre").getValue().toString());
+                modelo.usuario.setApellido(snap.child("apellido").getValue().toString());
+                modelo.usuario.setCelular(snap.child("celular").getValue().toString());
+                modelo.usuario.setCorreo(snap.child("correo").getValue().toString());
+                modelo.usuario.setFoto(snap.child("foto").getValue().toString());
+                modelo.usuario.setToken(snap.child("tokem").getValue().toString());
 
 
-                    mListener.cargoUSuario();
-                }
+                mListener.cargoUSuario();
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.v("Error :X",""+databaseError.getMessage());
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("Error :X",""+databaseError.getMessage());
 
-                    mListener.setUsuarioListener();
-                }
-            });
+                mListener.setUsuarioListener();
+            }
+        });
 
 
     }
@@ -147,4 +147,3 @@ public class ComandoPerfil {
 
     };
 }
-

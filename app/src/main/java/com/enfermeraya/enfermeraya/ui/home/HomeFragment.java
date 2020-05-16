@@ -38,6 +38,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
@@ -82,14 +83,31 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
         CameraUpdate cam3 =
                 CameraUpdateFactory.newCameraPosition(possiCameraPosition);
         mMap.animateCamera(cam3);
-        mMap.addMarker(new MarkerOptions().position(ctg).title("Mi ubicación"));
+       // mMap.addMarker(new MarkerOptions().position(ctg).title("Mi ubicación"));
 
-        float verde = BitmapDescriptorFactory.HUE_GREEN;
-        marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde,mMap);
+       // float verde = BitmapDescriptorFactory.HUE_GREEN;
+        //marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde,mMap);
+        marcadorImg(modelo.latitud, modelo.longitud,"Pais Colombia",mMap);
     }
 
     private void marcadorColor(double lat, double lng, String  pais, float color, GoogleMap mMap){
         mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(pais).icon(BitmapDescriptorFactory.defaultMarker(color)));
+    }
+
+    private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
+
+        /*mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, lng))
+                .title(pais)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pingmapa)));*/
+
+        Marker m = mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, lng))
+                .title(pais)
+                .snippet("")
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.pingmapa)));
+        m.setDraggable(true);
     }
 
     //GPS

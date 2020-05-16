@@ -79,6 +79,8 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
             }
         });*/
 
+
+
         if (savedInstanceState != null){
             Intent i = new Intent(getApplicationContext(), Splash.class);
             startActivity(i);
@@ -103,22 +105,11 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        // Instancia del servicio LayoutInflater
-
-
-        LinearLayout contenedor = (LinearLayout) findViewById(R.id.contetheader);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View view = inflater.inflate(R.layout.nav_header_menu_lateral, contenedor, true);
-
-        //inearLayout view = (LinearLayout)getLayoutInflater().inflate(R.layout.nav_header_menu_lateral, null);
-
-
-        // other.xml layout cargado (inflado) como View.
 
         // Obtiene una referencia al TextView del otro layout, other.xml
-        camara1 = (ImageView)view.findViewById(R.id.imageView);
-        txtnombre =  (TextView)view.findViewById(R.id.txtnombreperfil);
-        txt_calificacion = (TextView)view.findViewById(R.id.txt_calificacion);
+        camara1 = (ImageView)findViewById(R.id.imageView);
+        txtnombre =  (TextView)findViewById(R.id.txtnombreperfil);
+        txt_calificacion = (TextView)findViewById(R.id.txt_calificacion);
 
         comandoPerfil =  new ComandoPerfil(this);
 
@@ -220,6 +211,11 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
                 .show();
     }
 
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+    }
 
     @Override
     public void cargoUSuario() {

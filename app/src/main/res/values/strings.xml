@@ -41,6 +41,17 @@ Client Secret
 4IYbDZa5gDYC0bXomgcm6mxF
     -->
 
+    <!--git comandos-->
+    <!--
+        git init
+        git add .
+        git commit -m "first commit"
+
+        si no esta logueado git remote add origin  //url de git proyecto https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git
+
+            git push -u origin master
+
+    -->
 
     <!---Registro Usuario-->
     <string name="nombreU">Nombre</string>

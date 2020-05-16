@@ -11,5 +11,6 @@
     <color name="colorTransparente">#00FFFFFF</color>
     <color name="colorAzulOscuro">#D22936</color>
     <color name="colorAzulClaro">#6BC0DC</color>
+    <color name="colorGrisClaro">#e4dbd9</color>
 
 </resources>
