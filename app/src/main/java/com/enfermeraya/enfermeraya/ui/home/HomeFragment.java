@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,14 @@ import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.views.MapsActivity;
 import com.enfermeraya.enfermeraya.views.Menu;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.internal.IGoogleMapDelegate;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -45,13 +49,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeFragment extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
+public class HomeFragment extends Fragment implements
+        OnMapReadyCallback {
 
     private HomeViewModel homeViewModel;
     Modelo modelo = Modelo.getInstance();
     Geocoder geocoder = null;
-
     private GoogleMap mMap;
+    EditText search;
+    MarkerOptions markerOptions;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,22 +67,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
 
         //SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-
+        markerOptions = new MarkerOptions();
         mapFragment.getMapAsync(this::goolemapa);
 
+        search = (EditText)root.findViewById(R.id.search);
         mapa();
+
         return root;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
         goolemapa(mMap);
+
+
     }
 
 
     public void goolemapa(GoogleMap mMap){
+
+
         //5.059288, -75.497652
         LatLng ctg = new LatLng(modelo.latitud, modelo.longitud);// colombia
         CameraPosition possiCameraPosition = new CameraPosition.Builder().target(ctg).zoom(15).bearing(0).tilt(0).build();
@@ -88,6 +99,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
        // float verde = BitmapDescriptorFactory.HUE_GREEN;
         //marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde,mMap);
         marcadorImg(modelo.latitud, modelo.longitud,"Pais Colombia",mMap);
+        //setLocation();
+
     }
 
     private void marcadorColor(double lat, double lng, String  pais, float color, GoogleMap mMap){
@@ -96,19 +109,48 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
 
     private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
 
-        /*mMap.addMarker(new MarkerOptions()
+        LatLng  latLng = new LatLng(lat,lng);
+        mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
-                .title(pais)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pingmapa)));*/
+                .title("Enfermeraya")
+                .snippet(getCity(latLng))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pingmapa))
+                .draggable(true)
+        );
 
-        Marker m = mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(lat, lng))
-                .title(pais)
-                .snippet("")
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.pingmapa)));
-        m.setDraggable(true);
+
+        if (mMap != null) {
+            mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+                @Override
+                public void onMarkerDragStart(Marker marker) {
+                    Log.v("1","1");
+                }
+
+                @Override
+                public void onMarkerDrag(Marker marker) {
+                    Log.v("2","2");
+                }
+
+                @Override
+                public void onMarkerDragEnd(Marker marker) {
+                    Log.v("3","3");
+                    getCity(marker.getPosition());
+                }
+            });
+
+
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    Toast.makeText(getContext(),"click", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            });
+        }
+
     }
+
+
 
     //GPS
     public void mapa(){
@@ -169,12 +211,49 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
                     String dir =  DirCalle.getAddressLine(0);
 
                     // Toast.makeText(getApplicationContext(),"Mi direccion es "+ dir, Toast.LENGTH_SHORT).show();
+                    String[] parts = dir.split(",");
+                    String direc = parts[0];
+                    search.setText("" + direc);
+                    search.setSelection(search.getText().length());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+
+    public  String getCity(LatLng posicion){
+
+        Geocoder geocoder;
+        List<Address> addresses;
+        String dir  = "";
+
+        geocoder = new Geocoder(getActivity(), Locale.getDefault());
+
+        try {
+            List<Address> list = geocoder.getFromLocation(
+            posicion.latitude, posicion.longitude, 1);
+            if (!list.isEmpty()) {
+                Address DirCalle = list.get(0);
+
+
+                 dir = DirCalle.getAddressLine(0);
+
+                // Toast.makeText(getApplicationContext(),"Mi direccion es "+ dir, Toast.LENGTH_SHORT).show();
+                String[] parts = dir.split(",");
+                String direc = parts[0];
+                search.setText("" + direc);
+
+            }
+        }catch (Exception e){
+            String ex = e.getMessage();
+            e.printStackTrace();
+        }
+        return dir;
+    }
+
+
     /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
         HomeFragment mainActivity;
@@ -195,7 +274,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
             modelo.latitud = loc.getLatitude();
             modelo.longitud = loc.getLongitude();
 
-            this.mainActivity.setLocation(loc);
+           // this.mainActivity.setLocation(loc);
         }
         @Override
         public void onProviderDisabled(String provider) {
@@ -229,4 +308,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Activi
 
 
     //fin gps
+
+
+
 }

@@ -48,7 +48,10 @@
         <activity
             android:name=".views.MenuLateral"
             android:label="@string/title_activity_menu_lateral"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
             android:name=".views.Perfil"
             android:screenOrientation="portrait"
