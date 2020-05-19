@@ -3,6 +3,7 @@ package com.enfermeraya.enfermeraya.app;
 
 import com.enfermeraya.enfermeraya.clases.ClassTerminosYCondiciones;
 import com.enfermeraya.enfermeraya.clases.Usuario;
+import com.google.android.gms.maps.GoogleMap;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -15,6 +16,7 @@ public class Modelo {
     public String terminosycondiciones = "";
     public double latitud;
     public double longitud;
+    public GoogleMap mMap;
 
     public static Modelo getInstance() {
         return ourInstance;

@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,9 @@ public class HomeFragment extends Fragment implements
     Geocoder geocoder = null;
     private GoogleMap mMap;
     EditText search;
+    ImageView imgsearc;
     MarkerOptions markerOptions;
+    LatLng startingPoint;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +74,18 @@ public class HomeFragment extends Fragment implements
         mapFragment.getMapAsync(this::goolemapa);
 
         search = (EditText)root.findViewById(R.id.search);
+        imgsearc = (ImageView) root.findViewById(R.id.imgsearc);
         mapa();
+
+
+        imgsearc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onMapSearch();
+
+            }
+        });
 
         return root;
     }
@@ -79,15 +93,15 @@ public class HomeFragment extends Fragment implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        goolemapa(mMap);
+        modelo.mMap = googleMap;
+        goolemapa(modelo.mMap );
 
 
     }
 
 
     public void goolemapa(GoogleMap mMap){
-
-
+        modelo.mMap = mMap;
         //5.059288, -75.497652
         LatLng ctg = new LatLng(modelo.latitud, modelo.longitud);// colombia
         CameraPosition possiCameraPosition = new CameraPosition.Builder().target(ctg).zoom(15).bearing(0).tilt(0).build();
@@ -109,6 +123,7 @@ public class HomeFragment extends Fragment implements
 
     private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
 
+        modelo.mMap = mMap;
         LatLng  latLng = new LatLng(lat,lng);
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
@@ -150,6 +165,56 @@ public class HomeFragment extends Fragment implements
 
     }
 
+    public void onMapSearch() {
+
+        String str = search.getText().toString();
+        List<Address> list = null;
+        Geocoder geocoder = new Geocoder(getActivity());
+        try {
+            list = geocoder.getFromLocationName(
+                    str,10);
+        }catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        if(list.size() > 0){
+
+
+            String total_str = list.get(0).toString();
+            System.out.println(":"+total_str);
+            Toast.makeText(getActivity().getApplicationContext(),total_str, Toast.LENGTH_LONG);
+            int position=total_str.indexOf("latitude");
+            String str1 = total_str.substring(position+9); //위치 받아옴(latitude)
+            //  System.out.println(">>"+str1);
+            int position_comma = str1.indexOf(",");
+            String latitude = str1.substring(0,position_comma);
+            System.out.println("latitude>>"+latitude);
+            int position2=total_str.indexOf("longitude");
+            String str2 = total_str.substring(position2+10); //위치 받아옴(latitude)
+
+            int position_comma2 = str2.indexOf(",");
+            String longitude = str2.substring(0,position_comma2);
+            System.out.println("longitude>>"+longitude);
+
+            startingPoint = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
+            getCity(startingPoint);
+
+            if(modelo.mMap != null){
+                modelo.latitud = startingPoint.latitude;
+                modelo.longitud = startingPoint.longitude;
+                modelo.mMap.
+                //getCity(startingPoint);
+              //  marcadorImg(startingPoint.latitude,startingPoint.longitude, "",modelo.mMap);
+
+                goolemapa(modelo.mMap);
+            }
+
+        }else{
+            Toast.makeText(getActivity(),"Dirección no encontrda", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 
 
     //GPS
@@ -287,7 +352,7 @@ public class HomeFragment extends Fragment implements
             // Este metodo se ejecuta cuando el GPS es activado
 
             Toast.makeText(getActivity().getApplicationContext(),"GPS Activado", Toast.LENGTH_SHORT).show();
-            goolemapa(mMap);
+            goolemapa(modelo.mMap);
         }
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {

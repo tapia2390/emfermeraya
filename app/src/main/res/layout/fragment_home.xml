@@ -45,7 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/gris_post_border_style">
+                android:background="@drawable/gris_post_border_style"
+                android:padding="3sp">
 
 
                 <EditText
@@ -63,6 +64,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/imgsearc"
                     android:layout_width="25sp"
                     android:layout_height="25sp"
                     android:background="@drawable/btn_search"/>
