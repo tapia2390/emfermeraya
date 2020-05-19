@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment implements
     MarkerOptions markerOptions;
     LatLng startingPoint;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -122,9 +123,12 @@ public class HomeFragment extends Fragment implements
     }
 
     private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
-
         modelo.mMap = mMap;
+     //   MarkerOptions marker = new MarkerOptions().position(new LatLng(lat, lng)).title("Enfermera");
+
         LatLng  latLng = new LatLng(lat,lng);
+
+        mMap.clear();
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
                 .title("Enfermeraya")
@@ -203,7 +207,7 @@ public class HomeFragment extends Fragment implements
             if(modelo.mMap != null){
                 modelo.latitud = startingPoint.latitude;
                 modelo.longitud = startingPoint.longitude;
-                modelo.mMap.
+
                 //getCity(startingPoint);
               //  marcadorImg(startingPoint.latitude,startingPoint.longitude, "",modelo.mMap);
 
