@@ -1,6 +1,7 @@
 package com.enfermeraya.enfermeraya.ui.home;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +32,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
+import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
+import com.enfermeraya.enfermeraya.models.utility.Utility;
+import com.enfermeraya.enfermeraya.views.ListaFavoritos;
+import com.enfermeraya.enfermeraya.views.MainActivity;
 import com.enfermeraya.enfermeraya.views.MapsActivity;
 import com.enfermeraya.enfermeraya.views.Menu;
 import com.google.android.gms.common.ConnectionResult;
@@ -50,8 +56,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class HomeFragment extends Fragment implements
-        OnMapReadyCallback {
+        OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener {
 
     private HomeViewModel homeViewModel;
     Modelo modelo = Modelo.getInstance();
@@ -61,6 +69,8 @@ public class HomeFragment extends Fragment implements
     ImageView imgsearc;
     MarkerOptions markerOptions;
     LatLng startingPoint;
+    ComandoFavoritos ComandoFavoritos;
+    Utility utility;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -74,8 +84,12 @@ public class HomeFragment extends Fragment implements
         markerOptions = new MarkerOptions();
         mapFragment.getMapAsync(this::goolemapa);
 
+        ComandoFavoritos = new ComandoFavoritos(this);
+        utility = new Utility();
         search = (EditText)root.findViewById(R.id.search);
         imgsearc = (ImageView) root.findViewById(R.id.imgsearc);
+
+
         mapa();
 
 
@@ -83,10 +97,11 @@ public class HomeFragment extends Fragment implements
             @Override
             public void onClick(View v) {
 
-                onMapSearch();
+                dialogmap(search.getText().toString());
 
             }
         });
+
 
         return root;
     }
@@ -163,6 +178,18 @@ public class HomeFragment extends Fragment implements
                 public boolean onMarkerClick(Marker marker) {
                     Toast.makeText(getContext(),"click", Toast.LENGTH_SHORT).show();
                     return false;
+                }
+            });
+
+
+
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+                   // Toast.makeText(getActivity(), "datos"+latLng, Toast.LENGTH_SHORT).show();
+                    modelo.latitud = latLng.latitude;
+                    modelo.longitud = latLng.longitude;
+                    goolemapa(modelo.mMap);
                 }
             });
         }
@@ -322,6 +349,17 @@ public class HomeFragment extends Fragment implements
         return dir;
     }
 
+    @Override
+    public void cargoFavorito() {
+
+        alerta("Registro","Direción registrada con exito");
+    }
+
+    @Override
+    public void errorFavorito() {
+        alerta("Error","No se pudo guardar la direción");
+    }
+
 
     /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
@@ -377,6 +415,107 @@ public class HomeFragment extends Fragment implements
 
 
     //fin gps
+
+
+    public void alerta(String titulo, String descripcion){
+        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(titulo)
+                .setContentText(descripcion)
+                .setConfirmText("Aceptar")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // reuse previous dialog instance
+
+                        sDialog.hide();
+                    }
+                })
+                .show();
+    }
+
+    public void favoritos(){
+        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Advertencia")
+                .setContentText("Desea agregar esta hubicación!")
+                .setConfirmText("Aceptar")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        // reuse previous dialog instance
+
+                        if (utility.estado(getActivity())) {
+                            ComandoFavoritos.registarFavotito(search.getText().toString(),modelo.latitud, modelo.longitud);
+                        }else{
+                            alerta("Sin Internet","Valide la conexión a internet");
+                        }
+                        sDialog.hide();
+                    }
+                })
+                .setCancelText("Cancelar")
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sDialog) {
+                sDialog.hide();
+            }
+        })
+                .show();
+    }
+
+
+    public  void listaFavoritos(){
+        Intent i = new Intent(getActivity(), ListaFavoritos.class);
+        startActivity(i);
+
+    }
+
+    public void dialogmap(String direccion){
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_map, null);
+        final EditText search2 = (EditText) mView.findViewById(R.id.search2);
+        Button btnservicios = (Button) mView.findViewById(R.id.btnservicios);
+        Button btnfavoritos = (Button) mView.findViewById(R.id.btnfavoritos);
+        Button cerrar = (Button) mView.findViewById(R.id.cerrar);
+
+        search2.setText(direccion);
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
+        btnservicios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!search2.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+                    onMapSearch();
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
+        btnfavoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!search2.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+                    onMapSearch();
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
 
 
 

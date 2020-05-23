@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlanco"
+    tools:ignore="MissingDefaultResource"
+    android:padding="10sp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">´
+
+        <Button
+            android:id="@+id/cerrar"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:background="@drawable/cerrar"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginBottom="10sp"/>
+
+        <EditText
+            android:id="@+id/search2"
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:hint="Dirección"
+            android:background="@drawable/gris_post_border_style"
+            android:alpha="0.5"
+            android:textColorHint="@color/colorNegro"
+            android:padding="5sp"
+            android:layout_gravity="center"/>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnservicios"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:text="Servicios"
+                android:background="@drawable/fondo_post_border_style"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlanco"/>
+
+            <Space
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/btnfavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:text="Favoritos"
+                android:background="@drawable/fondo_post_border_style"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlanco"/>
+
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listservicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <ListView
+                android:id="@+id/listfavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

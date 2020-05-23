@@ -97,8 +97,6 @@ dependencies {
     //menu lateral
     implementation 'com.android.support:support-v4:29.0.0'
 
-    //alert
-    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
 
     //menu bar
     implementation 'com.roughike:bottom-bar:2.0'
