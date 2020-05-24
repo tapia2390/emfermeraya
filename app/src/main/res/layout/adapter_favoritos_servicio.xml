@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40sp"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_gravity="center"
+    android:layout_marginBottom="15sp"
+    android:background="@drawable/fondo_post_border_style">
+
+    <ImageView
+        android:id="@+id/image_fav"
+        android:layout_width="20sp"
+        android:layout_height="15dp"
+        android:background="@drawable/start"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/text_dir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:textSize="16sp"
+        android:textColor="@color/colorBlanco"
+        android:text="Holas...."
+        android:textStyle="bold"
+        android:gravity="center|left"
+        android:layout_marginLeft="2sp"
+        />
+
+</LinearLayout>

@@ -3,14 +3,18 @@ package com.enfermeraya.enfermeraya.comandos;
 import android.util.Log;
 
 import com.enfermeraya.enfermeraya.app.Modelo;
+import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +38,7 @@ public class ComandoFavoritos {
     public interface OnFavoritosChangeListener {
 
 
+        void getFavorito();
         void cargoFavorito();
         void errorFavorito();
 
@@ -58,9 +63,12 @@ public class ComandoFavoritos {
 
         Map<String, Object> favorito = new HashMap<String, Object>();
 
+
         favorito.put("direccion", direccion);
         favorito.put("latitud", lat);
         favorito.put("longitud", longi);
+        favorito.put("timestamp", ServerValue.TIMESTAMP);
+        favorito.put("estado", "true");
 
 
 
@@ -84,9 +92,60 @@ public class ComandoFavoritos {
 
 
 
-    public void getFavoritos(){
+    public void  getListFavorito(){
+        //preguntasFrecuentes
+        modelo.listFavoritos.clear();
+        DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/");//ruta path
+
+        ChildEventListener listener = new ChildEventListener(){
+            @Override
+            public void onChildAdded(DataSnapshot snFav, String s) {
+
+
+
+                if(snFav.child("estado").getValue().toString().equals("true")){
+                    Favoritos fav = new Favoritos();
+                    Long timestamp =  (Long) snFav.child("timestamp").getValue();
+                    fav.setKey(snFav.getKey());
+
+                    fav.setTimestamp(timestamp);
+                    fav.setEstado(snFav.child("estado").getValue().toString());
+                    fav.setDireccion(snFav.child("direccion").getValue().toString());
+                    modelo.listFavoritos.add(fav);
+
+                }
+
+                mListener.getFavorito();
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        ref.addChildEventListener(listener);
+
 
     }
+
+
 
 
 
@@ -107,6 +166,9 @@ public class ComandoFavoritos {
         public void errorFavorito()
         {}
 
+        @Override
+        public void getFavorito()
+        {}
 
     };
 }

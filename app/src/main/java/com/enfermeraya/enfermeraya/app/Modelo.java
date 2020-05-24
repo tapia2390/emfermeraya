@@ -2,12 +2,16 @@ package com.enfermeraya.enfermeraya.app;
 
 
 import com.enfermeraya.enfermeraya.clases.ClassTerminosYCondiciones;
+import com.enfermeraya.enfermeraya.clases.Favoritos;
+import com.enfermeraya.enfermeraya.clases.Servicios;
 import com.enfermeraya.enfermeraya.clases.Usuario;
+import com.enfermeraya.enfermeraya.views.ListaFavoritos;
 import com.google.android.gms.maps.GoogleMap;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Modelo {
     public static final Modelo ourInstance = new Modelo();
@@ -27,9 +31,16 @@ public class Modelo {
 
     public ClassTerminosYCondiciones classTerminosYCondiciones = new ClassTerminosYCondiciones();
 
+    public ArrayList<Favoritos> listFavoritos = new ArrayList<Favoritos>();
+    public ArrayList<Servicios> listServicios = new ArrayList<Servicios>();
+
+    public  Favoritos favoritos = new Favoritos();
+    public Servicios servicios =  new Servicios();
 
     public Usuario usuario = new Usuario();
     public String tipoLogin = "";
+    public String modal = "servicios";
+
 
 
     //version app

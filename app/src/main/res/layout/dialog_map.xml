@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlanco"
     tools:ignore="MissingDefaultResource"
+    android:orientation="vertical"
     android:padding="10sp">
 
 
@@ -24,16 +25,23 @@
             android:gravity="right"
             android:layout_marginBottom="10sp"/>
 
-        <EditText
-            android:id="@+id/search2"
+        <SearchView
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:hint="Dirección"
+            android:layout_height="wrap_content"
+            app:queryHint="Enter animal name"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/gris_post_border_style"
-            android:alpha="0.5"
-            android:textColorHint="@color/colorNegro"
-            android:padding="5sp"
-            android:layout_gravity="center"/>
+            android:alpha="0.8"
+            android:queryHint="Dirección"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </SearchView>
+
 
 
         <Space
@@ -64,9 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:text="Favoritos"
-                android:background="@drawable/fondo_post_border_style"
+                android:background="@drawable/fondo_post_border_style2"
                 android:layout_weight="1"
-                android:textColor="@color/colorBlanco"/>
+                android:textColor="@color/colorGrisClaro"/>
 
         </LinearLayout>
 
@@ -76,22 +84,37 @@
             android:layout_height="10sp"/>
 
         <LinearLayout
+            android:id="@+id/layaut1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/listservicios"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+               />
 
-            <ListView
-                android:id="@+id/listfavoritos"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layaut2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-
-
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                />
         </LinearLayout>
 
 
@@ -99,4 +122,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

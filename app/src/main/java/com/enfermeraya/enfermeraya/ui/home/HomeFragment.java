@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +31,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
+import com.enfermeraya.enfermeraya.clases.Favoritos;
+import com.enfermeraya.enfermeraya.clases.Servicios;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
+import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
+import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
+import com.enfermeraya.enfermeraya.dapter.ServicioAdapter;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
 import com.enfermeraya.enfermeraya.views.MainActivity;
@@ -53,13 +62,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class HomeFragment extends Fragment implements
-        OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener {
+        OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener {
 
     private HomeViewModel homeViewModel;
     Modelo modelo = Modelo.getInstance();
@@ -69,8 +79,16 @@ public class HomeFragment extends Fragment implements
     ImageView imgsearc;
     MarkerOptions markerOptions;
     LatLng startingPoint;
-    ComandoFavoritos ComandoFavoritos;
+    ComandoFavoritos comandoFavoritos;
+    ComandoSercicio comandoSercicio;
     Utility utility;
+    private FavoritoAdapter favortoAdapter;
+    private ServicioAdapter servicioAdapter;
+    Button btn_servicio;
+
+    //adapter
+    private List<Favoritos> favList = new ArrayList<>();
+    private List<Servicios> serList = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -84,10 +102,12 @@ public class HomeFragment extends Fragment implements
         markerOptions = new MarkerOptions();
         mapFragment.getMapAsync(this::goolemapa);
 
-        ComandoFavoritos = new ComandoFavoritos(this);
+        comandoFavoritos = new ComandoFavoritos(this);
+        comandoSercicio = new ComandoSercicio(this);
         utility = new Utility();
         search = (EditText)root.findViewById(R.id.search);
         imgsearc = (ImageView) root.findViewById(R.id.imgsearc);
+        btn_servicio = (Button) root.findViewById(R.id.btn_servicio);
 
 
         mapa();
@@ -101,6 +121,31 @@ public class HomeFragment extends Fragment implements
 
             }
         });
+
+
+        btn_servicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (utility.estado(getActivity())) {
+                    if(search.getText().toString().equals("")){
+                        Toast.makeText(getActivity(), "Ingrese una dirección", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    comandoSercicio.registarServicio(search.getText().toString(), modelo.latitud, modelo.longitud);
+                }else{
+                    alerta("Sin Internet","Valide la conexión a internet");
+                }
+            }
+        });
+
+
+        if (utility.estado(getActivity())) {
+            comandoFavoritos.getListFavorito();
+            comandoSercicio.getListServicio();
+        }else{
+            alerta("Sin Internet","Valide la conexión a internet");
+        }
 
 
         return root;
@@ -350,14 +395,56 @@ public class HomeFragment extends Fragment implements
     }
 
     @Override
+    public void getFavorito() {
+
+        //Toast.makeText(getActivity(), ""+modelo.listFavoritos.size(), Toast.LENGTH_SHORT).show();
+        favList = modelo.listFavoritos;
+
+    }
+
+
+
+    @Override
     public void cargoFavorito() {
 
-        alerta("Registro","Direción registrada con exito");
+        //alerta("Registro","Favorito registrada con exito");
+        if (utility.estado(getActivity())) {
+            comandoFavoritos.getListFavorito();
+        }else{
+            alerta("Sin Internet","Valide la conexión a internet");
+        }
     }
 
     @Override
     public void errorFavorito() {
         alerta("Error","No se pudo guardar la direción");
+    }
+
+    @Override
+    public void getServicio() {
+        serList = modelo.listServicios;
+    }
+
+    @Override
+    public void cargoServicio() {
+       /// alerta("Registro","Servicio registrada con exito");
+        if (utility.estado(getActivity())) {
+            comandoSercicio.getListServicio();
+            comandoFavoritos.getListFavorito();
+        }else{
+            alerta("Sin Internet","Valide la conexión a internet");
+        }
+
+    }
+
+    @Override
+    public void errorServicio() {
+
+    }
+
+    @Override
+    public void actualizarFavorito() {
+
     }
 
 
@@ -444,7 +531,7 @@ public class HomeFragment extends Fragment implements
                         // reuse previous dialog instance
 
                         if (utility.estado(getActivity())) {
-                            ComandoFavoritos.registarFavotito(search.getText().toString(),modelo.latitud, modelo.longitud);
+                            comandoFavoritos.registarFavotito(search.getText().toString(),modelo.latitud, modelo.longitud);
                         }else{
                             alerta("Sin Internet","Valide la conexión a internet");
                         }
@@ -472,25 +559,63 @@ public class HomeFragment extends Fragment implements
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.dialog_map, null);
-        final EditText search2 = (EditText) mView.findViewById(R.id.search2);
+
+        final SearchView search2 = (SearchView) mView.findViewById(R.id.search_view);
         Button btnservicios = (Button) mView.findViewById(R.id.btnservicios);
         Button btnfavoritos = (Button) mView.findViewById(R.id.btnfavoritos);
         Button cerrar = (Button) mView.findViewById(R.id.cerrar);
+        RecyclerView recyclerView = mView.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView2 = mView.findViewById(R.id.recycler_view2);
+        LinearLayout layaut1 = mView.findViewById(R.id.layaut1);
+        LinearLayout layaut2 = mView.findViewById(R.id.layaut2);
 
-        search2.setText(direccion);
+
+        servicioAdapter = new ServicioAdapter(getActivity(), serList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(servicioAdapter);
+
+
+        favortoAdapter = new FavoritoAdapter(getActivity(), favList);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView2.setLayoutManager(layoutManager2);
+        recyclerView2.setAdapter(favortoAdapter);
+
+       // search2.setQuery(direccion, false);
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
         dialog.show();
         btnservicios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!search2.getText().toString().isEmpty()){
-                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-                    onMapSearch();
-                    dialog.dismiss();
-                }else{
-                    Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-                }
+                    //onMapSearch();
+                servicioAdapter.notifyDataSetChanged();
+                    modelo.modal= "servicios";
+
+                layaut1.setVisibility(View.VISIBLE);
+                layaut2.setVisibility(View.GONE);
+                btnservicios.setBackgroundColor(R.drawable.fondo_post_border_style2);
+                btnfavoritos.setBackgroundResource(R.drawable.fondo_post_border_style);
+
+                    //dialog.dismiss();
+            }
+        });
+
+
+
+        btnfavoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                  // onMapSearch();
+
+                favortoAdapter.notifyDataSetChanged();
+                    modelo.modal= "favoritos";
+                    comandoFavoritos.getListFavorito();
+                layaut1.setVisibility(View.GONE);
+                layaut2.setVisibility(View.VISIBLE);
+                btnfavoritos.setBackgroundColor(R.drawable.fondo_post_border_style2);
+                btnservicios.setBackgroundResource(R.drawable.fondo_post_border_style);
+
             }
         });
 
@@ -502,18 +627,32 @@ public class HomeFragment extends Fragment implements
         });
 
 
-        btnfavoritos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!search2.getText().toString().isEmpty()){
-                    Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-                    onMapSearch();
-                    dialog.dismiss();
-                }else{
-                    Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
+
+           search2.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+               @Override
+               public boolean onQueryTextSubmit(String queryString) {
+
+                   if(modelo.modal.equals("servicios")){
+                       servicioAdapter.getFilter().filter(queryString);
+                   }else{
+                       favortoAdapter.getFilter().filter(queryString);
+                   }
+
+                   return false;
+               }
+
+               @Override
+               public boolean onQueryTextChange(String queryString) {
+                   if(modelo.modal.equals("servicios")){
+                       servicioAdapter.getFilter().filter(queryString);
+                   }else{
+                       favortoAdapter.getFilter().filter(queryString);
+                   }
+                   return false;
+               }
+           });
+
 
     }
 
