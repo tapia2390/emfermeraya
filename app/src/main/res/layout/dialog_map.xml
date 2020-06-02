@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">´
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/cerrar"
@@ -48,10 +48,94 @@
             android:layout_width="match_parent"
             android:layout_height="10sp"/>
 
+        <TabHost android:id="@android:id/tabhost"
+            android:layout_width="match_parent"
+            android:layout_height="600sp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TabWidget android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@android:id/tabs" />
+
+                <FrameLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@android:id/tabcontent" >
+
+                    <LinearLayout android:id="@+id/tab1"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/tab2"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <LinearLayout
+                            android:id="@+id/layaut1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout android:id="@+id/tab3"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+
+
+                        <LinearLayout
+                            android:id="@+id/layaut2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            >
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler_view2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10sp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <Button
                 android:id="@+id/btnservicios"
@@ -72,50 +156,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="30sp"
                 android:text="Favoritos"
-                android:background="@drawable/fondo_post_border_style2"
+                android:background="@drawable/fondo_post_border_style"
                 android:layout_weight="1"
                 android:textColor="@color/colorGrisClaro"/>
 
         </LinearLayout>
 
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10sp"/>
-
-        <LinearLayout
-            android:id="@+id/layaut1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-               />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layaut2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                />
-        </LinearLayout>
 
 
     </LinearLayout>

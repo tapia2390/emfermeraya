@@ -11,15 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ea8fbd-cb58-490d-aa94-8ed5a49b6279" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Favoritos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Servicios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/FavoritoAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/fondo_post_border_style2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edittext_style.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_favoritos_servicio.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v13_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_wdullaer_materialdatetimepicker_3_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/TipoServicio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gpsimg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_service.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -36,10 +32,27 @@
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/app/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/app/Modelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/FavoritoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/FavoritoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/fondo_post_border_style2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/edittext_style.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edittext_style.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_favoritos_servicio.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_favoritos_servicio.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/appcompat/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/legacy/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/lifecycle/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/navigation/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/espresso/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/ext/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/android/support/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/gms/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/firebase/group-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/sdk-registry.xml/sdk-registry.xml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +60,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="B8E7N17A18004007" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_27" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -123,7 +136,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/datepiker" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -134,11 +147,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
-      <recent name="C:\Users\Yhonatan Tapias\Documents\and\Enfermeraya\app\src\main\res\drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/datepiker" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="C:\Users\Yhonatan Tapias\Documents\and\Enfermeraya\app\src\main\res\layout" />
-      <recent name="C:\Users\Yhonatan Tapias\Documents\and\Enfermeraya\app\src\main\res" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.enfermeraya.enfermeraya.ui.home" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.enfermeraya.enfermeraya.views" />
@@ -148,6 +164,7 @@
       <recent name="com.enfermeraya.enfermeraya.comandos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
   </component>
@@ -463,7 +480,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>342</line>
+          <line>366</line>
           <option name="timeStamp" value="144" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -493,32 +510,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>368</line>
+          <line>392</line>
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>155</line>
+          <line>179</line>
           <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>256</line>
+          <line>280</line>
           <option name="timeStamp" value="219" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>285</line>
+          <line>309</line>
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>279</line>
+          <line>303</line>
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>280</line>
+          <line>304</line>
           <option name="timeStamp" value="227" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -528,13 +545,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java</url>
-          <line>150</line>
+          <line>196</line>
           <option name="timeStamp" value="242" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>594</line>
-          <option name="timeStamp" value="250" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/FavoritoAdapter.java</url>
@@ -545,6 +557,61 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/FavoritoAdapter.java</url>
           <line>67</line>
           <option name="timeStamp" value="258" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>611</line>
+          <option name="timeStamp" value="260" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>662</line>
+          <option name="timeStamp" value="265" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>672</line>
+          <option name="timeStamp" value="266" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>673</line>
+          <option name="timeStamp" value="267" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>884</line>
+          <option name="timeStamp" value="268" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>887</line>
+          <option name="timeStamp" value="269" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>892</line>
+          <option name="timeStamp" value="270" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>904</line>
+          <option name="timeStamp" value="271" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>913</line>
+          <option name="timeStamp" value="272" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>907</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
+          <line>908</line>
+          <option name="timeStamp" value="274" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

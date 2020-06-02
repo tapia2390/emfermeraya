@@ -121,6 +121,11 @@ public class FavoritoAdapter extends RecyclerView.Adapter<FavoritoAdapter.Favori
     }
 
     @Override
+    public void getTipoServicio() {
+
+    }
+
+    @Override
     public void getServicio() {
 
     }

@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.clases.TipoServicio;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ public class ComandoSercicio {
     public interface OnSercicioChangeListener {
 
 
+        void getTipoServicio();
         void getServicio();
         void cargoServicio();
         void errorServicio();
@@ -143,6 +145,50 @@ public class ComandoSercicio {
     }
 
 
+    public void  getTipoServicio(){
+        //preguntasFrecuentes
+        modelo.listServicios.clear();
+        DatabaseReference ref = database.getReference("Servicios/");//ruta path
+
+        ChildEventListener listener = new ChildEventListener(){
+            @Override
+            public void onChildAdded(DataSnapshot snFav, String s) {
+
+                TipoServicio ser = new TipoServicio();
+                ser.setKey(snFav.getKey());
+                ser.setNombre(snFav.child("Nombre").getValue().toString());
+                modelo.listTipoServicios.add(ser);
+                mListener.getTipoServicio();
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        ref.addChildEventListener(listener);
+
+
+    }
+
+
 
 
     public void updateFavorito(String estado, String key){
@@ -176,21 +222,19 @@ public class ComandoSercicio {
     {
 
         @Override
-        public void cargoServicio()
-        {}
-
+        public void cargoServicio() {}
 
         @Override
-        public void errorServicio()
-        {}
+        public void errorServicio() {}
 
         @Override
-        public void getServicio()
-        {}
+        public void actualizarFavorito() {}
 
-    @Override
-    public void actualizarFavorito()
-        {}
+        @Override
+        public void getServicio() {}
+
+        @Override
+        public void getTipoServicio() {}
 
     };
 }

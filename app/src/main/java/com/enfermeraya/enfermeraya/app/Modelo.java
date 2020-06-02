@@ -4,6 +4,7 @@ package com.enfermeraya.enfermeraya.app;
 import com.enfermeraya.enfermeraya.clases.ClassTerminosYCondiciones;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.clases.TipoServicio;
 import com.enfermeraya.enfermeraya.clases.Usuario;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,7 +34,7 @@ public class Modelo {
 
     public ArrayList<Favoritos> listFavoritos = new ArrayList<Favoritos>();
     public ArrayList<Servicios> listServicios = new ArrayList<Servicios>();
-
+    public ArrayList<TipoServicio> listTipoServicios = new ArrayList<TipoServicio>();
     public  Favoritos favoritos = new Favoritos();
     public Servicios servicios =  new Servicios();
 

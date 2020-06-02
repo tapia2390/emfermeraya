@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBlanco"
+    tools:ignore="MissingDefaultResource"
+    android:orientation="vertical"
+    android:padding="20sp">
+
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Servicio"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario"/>
+
+    <EditText
+        android:id="@+id/nombre_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:hint="Nombre"
+        android:padding="2sp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <Button
+        android:id="@+id/btntiposervicio"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:textSize="14sp"
+        android:text="Seleccione el servicio"
+        android:background="@drawable/edittext_style"
+        android:textColor="@color/colorFondo"
+        />
+
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha:"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+
+    <EditText
+        android:id="@+id/txtfecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha Inicio"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:editable="false"
+        android:focusable="false"
+        android:padding="2sp"
+        android:background="@drawable/edittext_style"
+        android:textColor="@color/colorFondo"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtfechainicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hora Inicio"
+            android:background="@drawable/edittext_style"
+            android:layout_weight="1"
+            android:editable="false"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="2sp"
+            android:textColor="@color/colorFondo"/>
+
+        <Space
+            android:layout_width="10sp"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/txtfechafin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:editable="false"
+            android:focusable="false"
+            android:background="@drawable/edittext_style"
+            android:gravity="center"
+            android:padding="2sp"
+            android:text="Hora Fin"
+            android:textColor="@color/colorFondo"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Información"/>
+
+
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="10sp"/>
+
+
+
+    <EditText
+        android:id="@+id/infodireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="2sp"
+        android:hint="Información adicional de la direecón"/>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"/>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+
+
+    <EditText
+        android:id="@+id/infoobservacione"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="2sp"
+        android:hint="Observaciones para el servicio"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAcetar"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:text="Aceptar"
+                android:background="@drawable/fondo_post_border_style"
+                android:layout_weight="1"
+                android:textColor="@color/colorBlanco"/>
+
+            <Space
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"/>
+
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:layout_weight="1"
+                android:background="@drawable/fondo_post_border_style"
+                android:text="Cancelar"
+                android:textColor="@color/colorBlanco" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+</LinearLayout>

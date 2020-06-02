@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,22 +20,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.TabHost;
+import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
@@ -44,32 +44,38 @@ import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
 import com.enfermeraya.enfermeraya.dapter.ServicioAdapter;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
-import com.enfermeraya.enfermeraya.views.MainActivity;
-import com.enfermeraya.enfermeraya.views.MapsActivity;
-import com.enfermeraya.enfermeraya.views.Menu;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.internal.IGoogleMapDelegate;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+
 
 public class HomeFragment extends Fragment implements
-        OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener {
+        OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener
+        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
+
+
+
 
     private HomeViewModel homeViewModel;
     Modelo modelo = Modelo.getInstance();
@@ -86,10 +92,20 @@ public class HomeFragment extends Fragment implements
     private ServicioAdapter servicioAdapter;
     Button btn_servicio;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     //adapter
     private List<Favoritos> favList = new ArrayList<>();
     private List<Servicios> serList = new ArrayList<>();
 
+    //datepiker
+    DatePickerDialog datePickerDialog;
+    Date date;
+    DateFormat hourFormat;
+    EditText txtfecha;
+    EditText txtfechainicio;
+    EditText txtfechafin;
+    int setHora = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -132,7 +148,7 @@ public class HomeFragment extends Fragment implements
                         Toast.makeText(getActivity(), "Ingrese una dirección", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    comandoSercicio.registarServicio(search.getText().toString(), modelo.latitud, modelo.longitud);
+                    generarServicio();
                 }else{
                     alerta("Sin Internet","Valide la conexión a internet");
                 }
@@ -143,9 +159,17 @@ public class HomeFragment extends Fragment implements
         if (utility.estado(getActivity())) {
             comandoFavoritos.getListFavorito();
             comandoSercicio.getListServicio();
+            comandoSercicio.getTipoServicio();
         }else{
             alerta("Sin Internet","Valide la conexión a internet");
         }
+
+
+        date = new Date();
+        hourFormat = new SimpleDateFormat("hh:mm aa");
+        System.out.println("Hora: " + hourFormat.format(date));
+
+
 
 
         return root;
@@ -421,6 +445,11 @@ public class HomeFragment extends Fragment implements
     }
 
     @Override
+    public void getTipoServicio() {
+        Log.v("size",""+ modelo.listTipoServicios.size());
+    }
+
+    @Override
     public void getServicio() {
         serList = modelo.listServicios;
     }
@@ -444,6 +473,28 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void actualizarFavorito() {
+
+    }
+
+
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+
+        int month= monthOfYear+1;
+        String fm=""+month;
+        String fd=""+dayOfMonth;
+        if(month<10){
+            fm ="0"+month;
+        }
+        if (dayOfMonth<10){
+            fd="0"+dayOfMonth;
+        }
+
+        //String date = dayOfMonth + "/" + (++monthOfYear) + "/" + year;
+        String date= ""+fd+"/"+fm+"/"+year;
+        txtfecha .setText(""+date);
 
     }
 
@@ -560,8 +611,39 @@ public class HomeFragment extends Fragment implements
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.dialog_map, null);
 
+
+        //tabhost
+
+        Resources res = getResources();
+
+        TabHost tabs=(TabHost)mView.findViewById(android.R.id.tabhost);
+        tabs.setup();
+
+        TabHost.TabSpec spec=tabs.newTabSpec("mitab1");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("",
+                res.getDrawable(R.drawable.gpsimg));
+        tabs.addTab(spec);
+
+        spec=tabs.newTabSpec("mitab2");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("",
+                res.getDrawable(android.R.drawable.btn_star_big_off));
+        tabs.addTab(spec);
+
+        spec=tabs.newTabSpec("mitab3");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("",
+                res.getDrawable(android.R.drawable.btn_star_big_off));
+        tabs.addTab(spec);
+
+        tabs.setCurrentTab(0);
+
+
+
+        //atributos modal - popup
         final SearchView search2 = (SearchView) mView.findViewById(R.id.search_view);
-        Button btnservicios = (Button) mView.findViewById(R.id.btnservicios);
+
         Button btnfavoritos = (Button) mView.findViewById(R.id.btnfavoritos);
         Button cerrar = (Button) mView.findViewById(R.id.cerrar);
         RecyclerView recyclerView = mView.findViewById(R.id.recycler_view);
@@ -581,20 +663,34 @@ public class HomeFragment extends Fragment implements
         recyclerView2.setLayoutManager(layoutManager2);
         recyclerView2.setAdapter(favortoAdapter);
 
-       // search2.setQuery(direccion, false);
+        //click tap
+        tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                Log.i("AndroidTabsDemo", "Pulsada pestaña: " + tabId);
+                Toast.makeText(getActivity(),"Pulsada pestaña: " + tabId, Toast.LENGTH_SHORT).show();
+
+                if(tabId.equals("mitab3")){
+                    favortoAdapter.notifyDataSetChanged();
+                    modelo.modal= "favoritos";
+                    comandoFavoritos.getListFavorito();
+                }
+            }
+        });
+
+
+        // search2.setQuery(direccion, false);
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
         dialog.show();
-        btnservicios.setOnClickListener(new View.OnClickListener() {
+        /*btnservicios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     //onMapSearch();
                 servicioAdapter.notifyDataSetChanged();
                     modelo.modal= "servicios";
 
-                layaut1.setVisibility(View.VISIBLE);
-                layaut2.setVisibility(View.GONE);
-                btnservicios.setBackgroundColor(R.drawable.fondo_post_border_style2);
+                btnservicios.setBackgroundColor(R.drawable.fondo_post_border_style);
                 btnfavoritos.setBackgroundResource(R.drawable.fondo_post_border_style);
 
                     //dialog.dismiss();
@@ -611,13 +707,11 @@ public class HomeFragment extends Fragment implements
                 favortoAdapter.notifyDataSetChanged();
                     modelo.modal= "favoritos";
                     comandoFavoritos.getListFavorito();
-                layaut1.setVisibility(View.GONE);
-                layaut2.setVisibility(View.VISIBLE);
-                btnfavoritos.setBackgroundColor(R.drawable.fondo_post_border_style2);
+                btnfavoritos.setBackgroundColor(R.drawable.fondo_post_border_style);
                 btnservicios.setBackgroundResource(R.drawable.fondo_post_border_style);
 
             }
-        });
+        });*/
 
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -655,6 +749,191 @@ public class HomeFragment extends Fragment implements
 
 
     }
+
+
+    public void generarServicio(){
+
+        //alert
+        AlertDialog.Builder mBuilder2 = new AlertDialog.Builder(getActivity());
+        View mView2 = getLayoutInflater().inflate(R.layout.dialog_service, null);
+
+        Button btnAcetar = (Button) mView2.findViewById(R.id.btnAcetar);
+        Button btnCancelar = (Button) mView2.findViewById(R.id.btnCancelar);
+        Button btntiposervicio = (Button) mView2.findViewById(R.id.btntiposervicio);
+        EditText nombre_usuario = (EditText) mView2.findViewById(R.id.nombre_usuario);
+        txtfecha = (EditText) mView2.findViewById(R.id.txtfecha);
+        txtfechainicio = (EditText) mView2.findViewById(R.id.txtfechainicio);
+        txtfechafin = (EditText) mView2.findViewById(R.id.txtfechafin);
+        EditText infodireccion = (EditText) mView2.findViewById(R.id.infodireccion);
+        EditText infoobservacione = (EditText) mView2.findViewById(R.id.infoobservacione);
+
+
+        //
+        if(modelo.tipoLogin.equals("normal")){
+            nombre_usuario.setText(modelo.usuario.getNombre() + " " + modelo.usuario.getApellido());
+        }else{
+            nombre_usuario.setText(user.getDisplayName());
+            }
+
+
+        //show
+        mBuilder2.setView(mView2);
+        final AlertDialog dialog2 = mBuilder2.create();
+
+
+
+        //eventos
+
+        //piker
+        txtfecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog datepickerdialog = DatePickerDialog.newInstance(
+                        (DatePickerDialog.OnDateSetListener) HomeFragment.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                datepickerdialog.setMinDate(now);
+                datepickerdialog.setThemeDark(true); //set dark them for dialog?
+                datepickerdialog.vibrate(true); //vibrate on choosing date?
+                datepickerdialog.dismissOnPause(true); //dismiss dialog when onPause() called?
+                datepickerdialog.showYearPickerFirst(false); //choose year first?
+                datepickerdialog.setAccentColor(Color.parseColor("#6BC0DC")); // custom accent color
+                datepickerdialog.setTitle("Selecione una fecha"); //dialog title
+                datepickerdialog.show(getActivity().getFragmentManager(), "Datepickerdialog"); //show dialog
+            }
+        });
+
+
+        txtfechainicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hora(view);
+            }
+        });
+
+
+        txtfechafin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hora(view);
+            }
+        });
+
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("cerrar","cerrar");
+                dialog2.dismiss();
+            }
+        });
+
+        btnAcetar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comandoSercicio.registarServicio(search.getText().toString(), modelo.latitud, modelo.longitud);
+                infodireccion.setText("");
+                infoobservacione.setText("");
+                dialog2.dismiss();
+            }
+        });
+
+        btntiposervicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "1", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        dialog2.show();
+
+    }
+
+
+    //__methode will be call when we click on "Custom Date Picker Dialog" and will be show the custom date selection dilog.
+    public void customTimePickerDialog() {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog dpd = TimePickerDialog.newInstance(this, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), false);
+        dpd.setAccentColor(getResources().getColor(R.color.colorVerdeOscuro));
+        dpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
+    }
+
+    //___this is the listener callback method will be call on time selection by default date picker.
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+        //Toast.makeText(this, "Selected by default time picker : " + hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
+
+        Calendar datetime = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        datetime.set(Calendar.MINUTE, minute);
+        date=datetime.getTime();
+        //Toast.makeText(this, "Selected by custom time picker : " + hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),""+hourFormat.format(date), Toast.LENGTH_LONG).show();
+
+        //txtfecha.setText(""+hourFormat.format(date));
+
+    }
+
+
+
+
+
+    public void hora(View view) {
+
+        switch (view.getId()) {
+            case R.id.txtfechainicio:
+                setHora = 1;
+                customTimePickerDialog();
+                break;
+
+            case R.id.txtfechafin:
+                setHora = 2;
+                customTimePickerDialog();
+                break;
+        }
+    }
+
+
+
+
+    //___this is the listener callback method will be call on time selection by custom date picker.
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+
+        Calendar datetime = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        datetime.set(Calendar.MINUTE, minute);
+        date = datetime.getTime();
+         Log.v("hourOfDay", "hourOfDay" + hourOfDay + "hra ..." + hourFormat.format(date));
+        //Toast.makeText(this, "Selected by custom time picker : " + hourOfDay + ":" + minute, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),""+hourFormat.format(date), Toast.LENGTH_LONG).show();
+
+
+        String string = "" + hourFormat.format(date);
+        String[] parts = string.split(" ");
+        String part1 = parts[0];
+        String part2 = parts[1];
+
+        if (part2.equals("a.") || part2.equals("a.m.") || part2.equals("a. m.") || part2.equals("A.")) {
+            part2 = "AM";
+        }
+        if (part2.equals("p.") || part2.equals("p.m.") || part2.equals("p. m.") || part2.equals("P.")) {
+            part2 = "PM";
+        }
+
+        if (setHora == 1) {
+            txtfechainicio.setText("" + part1 + " " + part2);
+
+        }
+        if (setHora == 2) {
+            txtfechafin.setText("" + "" + part1 + " " + part2);
+
+        }
+
+    }
+
 
 
 

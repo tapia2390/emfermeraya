@@ -118,6 +118,11 @@ public class ServicioAdapter extends RecyclerView.Adapter<ServicioAdapter.Servic
     }
 
     @Override
+    public void getTipoServicio() {
+
+    }
+
+    @Override
     public void getServicio() {
 
     }
