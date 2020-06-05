@@ -41,6 +41,19 @@
         android:hint="Nombre"
         android:padding="2sp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dirección"/>
+
+    <EditText
+        android:id="@+id/txt_direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:hint="Dirección"
+        android:padding="2sp"/>
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="10sp"/>
@@ -51,6 +64,7 @@
         android:layout_height="30sp"
         android:textSize="14sp"
         android:text="Seleccione el servicio"
+        android:inputType="textCapCharacters"
         android:background="@drawable/edittext_style"
         android:textColor="@color/colorFondo"
         />

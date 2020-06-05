@@ -108,9 +108,23 @@ public class ComandoFavoritos {
                     Long timestamp =  (Long) snFav.child("timestamp").getValue();
                     fav.setKey(snFav.getKey());
 
-                    fav.setTimestamp(timestamp);
-                    fav.setEstado(snFav.child("estado").getValue().toString());
+                    double lattitud = (double)snFav.child("latitud").getValue();
+                    double longitud = (double)snFav.child("longitud").getValue();
+
+                    fav.setLatitud(lattitud);
+                    fav.setLongitud(longitud);
+                    fav.setTipoServicio(snFav.child("tipoServicio").getValue().toString());
+                    fav.setFecha(snFav.child("fecha").getValue().toString());
+                    fav.setHoraInicio(snFav.child("horaInicio").getValue().toString());
+                    fav.setHoraFin(snFav.child("horaFin").getValue().toString());
                     fav.setDireccion(snFav.child("direccion").getValue().toString());
+                    fav.setInformacion(snFav.child("informacion").getValue().toString());
+                    fav.setObsciones(snFav.child("obsciones").getValue().toString());
+                    fav.setTitulo(snFav.child("titulo").getValue().toString());
+                    fav.setEstado(snFav.child("estado").getValue().toString());
+                    fav.setTimestamp(timestamp);
+
+
                     modelo.listFavoritos.add(fav);
 
                 }

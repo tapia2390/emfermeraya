@@ -54,7 +54,8 @@ public class ComandoSercicio {
 
     }
 
-    public  void registarServicio(String direccion, double lat , double longi){
+    public  void registarServicio(String tipoServicio,String fecha,String horaInicio,String horaFin,
+                                  String direccion, String informacion, String obsciones, double lat , double longi, String titulo){
         //creating a new user
         //creating a new user
 
@@ -67,12 +68,18 @@ public class ComandoSercicio {
 
         Map<String, Object> favorito = new HashMap<String, Object>();
 
-
+        favorito.put("tipoServicio", tipoServicio);
+        favorito.put("fecha", fecha);
+        favorito.put("horaInicio", horaInicio);
+        favorito.put("horaFin", horaFin);
         favorito.put("direccion", direccion);
+        favorito.put("informacion", informacion);
+        favorito.put("obsciones", obsciones);
         favorito.put("latitud", lat);
         favorito.put("longitud", longi);
-        favorito.put("timestamp", ServerValue.TIMESTAMP);
+        favorito.put("titulo", titulo);
         favorito.put("estado", "false");
+        favorito.put("timestamp", ServerValue.TIMESTAMP);
 
 
 
@@ -110,7 +117,23 @@ public class ComandoSercicio {
                 ser.setKey(snFav.getKey());
 
                 ser.setTimestamp(timestamp);
+
+                double lattitud = (double)snFav.child("latitud").getValue();
+                double longitud = (double)snFav.child("longitud").getValue();
+
+                ser.setLatitud(lattitud);
+                ser.setLongitud(longitud);
+
+                ser.setTipoServicio(snFav.child("tipoServicio").getValue().toString());
+                ser.setFecha(snFav.child("fecha").getValue().toString());
+                ser.setHoraInicio(snFav.child("horaInicio").getValue().toString());
+                ser.setHoraFin(snFav.child("horaFin").getValue().toString());
                 ser.setDireccion(snFav.child("direccion").getValue().toString());
+                ser.setInformacion(snFav.child("informacion").getValue().toString());
+                ser.setObsciones(snFav.child("obsciones").getValue().toString());
+
+
+                ser.setTitulo(snFav.child("titulo").getValue().toString());
                 ser.setEstado(snFav.child("estado").getValue().toString());
                 modelo.listServicios.add(ser);
 
@@ -147,7 +170,7 @@ public class ComandoSercicio {
 
     public void  getTipoServicio(){
         //preguntasFrecuentes
-        modelo.listServicios.clear();
+        modelo.listTipoServicios.clear();
         DatabaseReference ref = database.getReference("Servicios/");//ruta path
 
         ChildEventListener listener = new ChildEventListener(){
@@ -191,22 +214,16 @@ public class ComandoSercicio {
 
 
 
-    public void updateFavorito(String estado, String key){
+    public void updateFavorito(String estado, String key,String titulo){
 
         final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/"+key+ "/estado/");//ruta path
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {//addListenerForSingleValueEvent no queda escuchando peticiones
-            @Override
-            public void onDataChange(DataSnapshot snap) {
+        ref.setValue(estado);
 
-                ref.setValue(estado);
-                mListener.actualizarFavorito();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        final DatabaseReference ref2 = database.getReference("usuario/"+modelo.uid+"/servicios/"+key+ "/titulo/");//ruta path
+        ref2.setValue(titulo);
 
-            }
-        });
+        mListener.actualizarFavorito();
 
 
     }

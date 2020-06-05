@@ -2,22 +2,39 @@ package com.enfermeraya.enfermeraya.clases;
 
 public class Favoritos {
     String key;
+    String nombre;
+    String tipoServicio;
+    String fecha;
+    String horaInicio;
+    String horaFin;
+    String informacion;
+    String obsciones;
     String direccion;
     double latitud;
     double longitud;
+    String titulo;
     String estado;
     long timestamp;
 
     public Favoritos(){}
-    public Favoritos(String key, String direccion, double latitud, double longitud, String estado, long timestamp) {
+
+
+    public Favoritos(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp) {
         this.key = key;
+        this.nombre = nombre;
+        this.tipoServicio = tipoServicio;
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.informacion = informacion;
+        this.obsciones = obsciones;
         this.direccion = direccion;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.titulo = titulo;
         this.estado = estado;
         this.timestamp = timestamp;
     }
-
 
     public String getKey() {
         return key;
@@ -65,5 +82,69 @@ public class Favoritos {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTipoServicio() {
+        return tipoServicio;
+    }
+
+    public void setTipoServicio(String tipoServicio) {
+        this.tipoServicio = tipoServicio;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
+    }
+
+    public String getObsciones() {
+        return obsciones;
+    }
+
+    public void setObsciones(String obsciones) {
+        this.obsciones = obsciones;
     }
 }

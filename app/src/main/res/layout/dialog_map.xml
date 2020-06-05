@@ -28,11 +28,11 @@
         <SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             app:queryHint="Enter animal name"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
             android:background="@drawable/gris_post_border_style"
             android:alpha="0.8"
             android:queryHint="Dirección"
@@ -50,7 +50,7 @@
 
         <TabHost android:id="@android:id/tabhost"
             android:layout_width="match_parent"
-            android:layout_height="600sp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -70,6 +70,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Buscar dirección"/>
 
                     </LinearLayout>
 

@@ -1,18 +1,25 @@
 package com.enfermeraya.enfermeraya.dapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.enfermeraya.enfermeraya.R;
+import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Servicios;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
@@ -26,6 +33,7 @@ public class ServicioAdapter extends RecyclerView.Adapter<ServicioAdapter.Servic
     private List<Servicios> nameList;
     private List<Servicios> filteredNameList;
     ComandoSercicio comandoSercicio;
+    Modelo modelo = Modelo.getInstance();
 
     public ServicioAdapter(Context context, List<Servicios> nameList) {
         super();
@@ -47,7 +55,10 @@ public class ServicioAdapter extends RecyclerView.Adapter<ServicioAdapter.Servic
     @Override
     public void onBindViewHolder(@NonNull ServicioAdapter.ServicioViewHolder holder, final int position) {
         String direccion = filteredNameList.get(position).getDireccion();
+        String titlo = filteredNameList.get(position).getTitulo();
         holder.text_dir.setText(direccion);
+        holder.text_nombre.setText(titlo);
+
 
         if(filteredNameList.get(position).getEstado().equals("true")){
             holder.image_fav.setBackgroundResource(R.drawable.start);
@@ -55,16 +66,54 @@ public class ServicioAdapter extends RecyclerView.Adapter<ServicioAdapter.Servic
             holder.image_fav.setBackgroundResource(R.drawable.start2);
         }
 
+
         holder.image_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(filteredNameList.get(position).getEstado().equals("true")){
                     holder.image_fav.setBackgroundResource(R.drawable.start2);
-                    comandoSercicio.updateFavorito("false",filteredNameList.get(position).getKey());
+                    comandoSercicio.updateFavorito("false",filteredNameList.get(position).getKey(),"");
                 }else{
-                    holder.image_fav.setBackgroundResource(R.drawable.start);
-                    comandoSercicio.updateFavorito("true",filteredNameList.get(position).getKey());
+                    /*alert*/
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Enter name:");
+
+                    final EditText input_field = new EditText(context);
+                    input_field.setText("");
+
+                    builder.setCancelable(false);
+                    builder.setView(input_field);
+                    input_field.setText("");
+                    input_field.setSelection(input_field.getText().length());
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if(TextUtils.isEmpty(input_field.getText().toString())) {
+                                //input_field.setError("Ingrese el nombre del favorito");
+                                Toast.makeText(context, "Ingrese el nombre del favorito", Toast.LENGTH_LONG).show();
+
+                            }else{
+                                holder.image_fav.setBackgroundResource(R.drawable.start);
+                                comandoSercicio.updateFavorito("true",filteredNameList.get(position).getKey(),input_field.getText().toString());
+
+                            }
+
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+
+                        }
+                    });
+
+                    builder.show();
+
+
                 }
 
             }
@@ -148,11 +197,15 @@ public class ServicioAdapter extends RecyclerView.Adapter<ServicioAdapter.Servic
 
         private ImageView image_fav;
         private TextView text_dir;
+        private TextView text_nombre;
+        private LinearLayout layuotdata;
 
         ServicioViewHolder(@NonNull View itemView) {
             super(itemView);
             image_fav = itemView.findViewById(R.id.image_fav);
             text_dir = itemView.findViewById(R.id.text_dir);
+            text_nombre = itemView.findViewById(R.id.text_nombre);
+            layuotdata = itemView.findViewById(R.id.layuotdata);
         }
     }
 

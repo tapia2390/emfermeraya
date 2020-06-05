@@ -3,6 +3,7 @@ package com.enfermeraya.enfermeraya.ui.home;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -37,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
+import com.enfermeraya.enfermeraya.clases.RecyclerItemClickListener;
 import com.enfermeraya.enfermeraya.clases.Servicios;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
@@ -164,12 +167,9 @@ public class HomeFragment extends Fragment implements
             alerta("Sin Internet","Valide la conexión a internet");
         }
 
-
         date = new Date();
         hourFormat = new SimpleDateFormat("hh:mm aa");
         System.out.println("Hora: " + hourFormat.format(date));
-
-
 
 
         return root;
@@ -180,7 +180,6 @@ public class HomeFragment extends Fragment implements
         mMap = googleMap;
         modelo.mMap = googleMap;
         goolemapa(modelo.mMap );
-
 
     }
 
@@ -207,13 +206,13 @@ public class HomeFragment extends Fragment implements
     }
 
     private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
-        modelo.mMap = mMap;
+        //modelo.mMap = mMap;
      //   MarkerOptions marker = new MarkerOptions().position(new LatLng(lat, lng)).title("Enfermera");
 
         LatLng  latLng = new LatLng(lat,lng);
 
-        mMap.clear();
-        mMap.addMarker(new MarkerOptions()
+        modelo.mMap.clear();
+        modelo.mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(lat, lng))
                 .title("Enfermeraya")
                 .snippet(getCity(latLng))
@@ -222,8 +221,8 @@ public class HomeFragment extends Fragment implements
         );
 
 
-        if (mMap != null) {
-            mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+        if (modelo.mMap != null) {
+            modelo.mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
                 @Override
                 public void onMarkerDragStart(Marker marker) {
                     Log.v("1","1");
@@ -242,7 +241,7 @@ public class HomeFragment extends Fragment implements
             });
 
 
-            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            modelo.mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     Toast.makeText(getContext(),"click", Toast.LENGTH_SHORT).show();
@@ -252,7 +251,7 @@ public class HomeFragment extends Fragment implements
 
 
 
-            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            modelo.mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
                    // Toast.makeText(getActivity(), "datos"+latLng, Toast.LENGTH_SHORT).show();
@@ -622,19 +621,19 @@ public class HomeFragment extends Fragment implements
         TabHost.TabSpec spec=tabs.newTabSpec("mitab1");
         spec.setContent(R.id.tab1);
         spec.setIndicator("",
-                res.getDrawable(R.drawable.gpsimg));
+                res.getDrawable(R.drawable.gpdicon));
         tabs.addTab(spec);
 
         spec=tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
         spec.setIndicator("",
-                res.getDrawable(android.R.drawable.btn_star_big_off));
+                res.getDrawable(R.drawable.servicioicon));
         tabs.addTab(spec);
 
         spec=tabs.newTabSpec("mitab3");
         spec.setContent(R.id.tab3);
         spec.setIndicator("",
-                res.getDrawable(android.R.drawable.btn_star_big_off));
+                res.getDrawable(R.drawable.starticon));
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
@@ -663,6 +662,7 @@ public class HomeFragment extends Fragment implements
         recyclerView2.setLayoutManager(layoutManager2);
         recyclerView2.setAdapter(favortoAdapter);
 
+
         //click tap
         tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -671,9 +671,17 @@ public class HomeFragment extends Fragment implements
                 Toast.makeText(getActivity(),"Pulsada pestaña: " + tabId, Toast.LENGTH_SHORT).show();
 
                 if(tabId.equals("mitab3")){
-                    favortoAdapter.notifyDataSetChanged();
                     modelo.modal= "favoritos";
                     comandoFavoritos.getListFavorito();
+                    favortoAdapter.notifyDataSetChanged();
+
+                }
+
+                if(tabId.equals("mitab2")){
+                    modelo.modal= "servicios";
+                    comandoFavoritos.getListFavorito();
+                    servicioAdapter.notifyDataSetChanged();
+
                 }
             }
         });
@@ -712,6 +720,45 @@ public class HomeFragment extends Fragment implements
 
             }
         });*/
+
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Toast.makeText(getActivity(), "1:" + position,Toast.LENGTH_SHORT).show();
+                        modelo.latitud = modelo.listServicios.get(position).getLatitud();
+                        modelo.longitud = modelo.listServicios.get(position).getLongitud();
+                        goolemapa(modelo.mMap);
+
+                        dialog.dismiss();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+
+        recyclerView2.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Toast.makeText(getActivity(), "2:" + position,Toast.LENGTH_SHORT).show();
+
+                        modelo.latitud = modelo.listServicios.get(position).getLatitud();
+                        modelo.longitud = modelo.listServicios.get(position).getLongitud();
+                        goolemapa(modelo.mMap);
+
+                        dialog.dismiss();
+
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
 
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -763,11 +810,14 @@ public class HomeFragment extends Fragment implements
         EditText nombre_usuario = (EditText) mView2.findViewById(R.id.nombre_usuario);
         txtfecha = (EditText) mView2.findViewById(R.id.txtfecha);
         txtfechainicio = (EditText) mView2.findViewById(R.id.txtfechainicio);
+        EditText txt_direccion = (EditText) mView2.findViewById(R.id.txt_direccion);
         txtfechafin = (EditText) mView2.findViewById(R.id.txtfechafin);
         EditText infodireccion = (EditText) mView2.findViewById(R.id.infodireccion);
         EditText infoobservacione = (EditText) mView2.findViewById(R.id.infoobservacione);
 
 
+        String direccionBusqueda = search.getText().toString();
+        txt_direccion.setText(direccionBusqueda);
         //
         if(modelo.tipoLogin.equals("normal")){
             nombre_usuario.setText(modelo.usuario.getNombre() + " " + modelo.usuario.getApellido());
@@ -833,7 +883,28 @@ public class HomeFragment extends Fragment implements
         btnAcetar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comandoSercicio.registarServicio(search.getText().toString(), modelo.latitud, modelo.longitud);
+
+
+
+                String tipoServicio = btntiposervicio.getText().toString();
+                String nombreServicio = nombre_usuario.getText().toString();
+                String fecha = txtfecha.getText().toString();
+                String horanicio = txtfechainicio.getText().toString();
+                String horaFin = txtfechafin.getText().toString();
+                String direccion = txt_direccion.getText().toString();
+                String informacionAdicional = infodireccion.getText().toString();
+                String informaconObservaciones = infoobservacione.getText().toString();
+
+
+
+                if(tipoServicio.equals("Seleccione el servicio") || nombreServicio.equals(" ") || horanicio.equals("Hora Inicio") || horaFin.equals("Hora Fin")|| fecha.equals("Fecha Inicio")|| informacionAdicional.equals("")|| informaconObservaciones.equals("")){
+                    Toast.makeText(getActivity(),"Todos los campos son obligatorios", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+                comandoSercicio.registarServicio(tipoServicio,fecha, horanicio, horaFin,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"");
+                btntiposervicio.setText("Seleccione el servicio");
                 infodireccion.setText("");
                 infoobservacione.setText("");
                 dialog2.dismiss();
@@ -844,6 +915,26 @@ public class HomeFragment extends Fragment implements
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "1", Toast.LENGTH_LONG).show();
+
+                final CharSequence[] items = new CharSequence[modelo.listTipoServicios.size()];
+                ArrayList<String> servicioNames  = new ArrayList<String>();
+                for (int i = 0; i < modelo.listTipoServicios.size() ; i++) {
+                    items[i] = modelo.listTipoServicios.get(i).getNombre();
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Seleccione el servicio");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        // Do something with the selection
+                        Toast.makeText(getActivity(),  ":"+item + items[item], Toast.LENGTH_LONG).show();
+                        btntiposervicio.setText(items[item]);
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+
+
             }
         });
 
