@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBlanco"
+    android:background="@drawable/blanco_post_border_style"
     tools:ignore="MissingDefaultResource"
     android:orientation="vertical"
     android:padding="20sp">
@@ -31,7 +31,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Usuario"/>
+        android:text="Usuario"
+        />
 
     <EditText
         android:id="@+id/nombre_usuario"
@@ -39,7 +40,9 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:hint="Nombre"
-        android:padding="2sp"/>
+        android:padding="5sp"
+        android:background="@drawable/edittext_style"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -52,7 +55,9 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:hint="Dirección"
-        android:padding="2sp"/>
+        android:padding="5sp"
+        android:background="@drawable/edittext_style"
+        />
 
     <Space
         android:layout_width="match_parent"
@@ -167,8 +172,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:padding="2sp"
-        android:hint="Información adicional de la direecón"/>
+        android:hint="Información adicional de la direecón"
+        android:padding="5sp"
+        android:background="@drawable/edittext_style"
+        />
 
 
     <Space
@@ -192,8 +199,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:padding="2sp"
-        android:hint="Observaciones para el servicio"/>
+        android:hint="Observaciones para el servicio"
+        android:padding="5sp"
+        android:background="@drawable/edittext_style"
+        />
 
     <Space
         android:layout_width="match_parent"
