@@ -106,6 +106,14 @@ public class ComandoPerfil {
                 modelo.usuario.setCorreo(snap.child("correo").getValue().toString());
                 modelo.usuario.setFoto(snap.child("foto").getValue().toString());
                 modelo.usuario.setToken(snap.child("tokem").getValue().toString());
+                modelo.usuario.setDireccion(snap.child("direccion").getValue().toString());
+
+                double lattitud = (double)snap.child("lat").getValue();
+                double longitud = (double)snap.child("long").getValue();
+
+                modelo.usuario.setLatitud(lattitud);
+                modelo.usuario.setLongitud(longitud);
+
 
 
                 mListener.cargoUSuario();

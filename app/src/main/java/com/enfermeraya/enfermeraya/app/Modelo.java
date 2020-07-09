@@ -35,6 +35,7 @@ public class Modelo {
     public ArrayList<Favoritos> listFavoritos = new ArrayList<Favoritos>();
     public ArrayList<Servicios> listServicios = new ArrayList<Servicios>();
     public ArrayList<TipoServicio> listTipoServicios = new ArrayList<TipoServicio>();
+    public ArrayList<Usuario> listUsuario = new ArrayList<Usuario>();
     public  Favoritos favoritos = new Favoritos();
     public Servicios servicios =  new Servicios();
 

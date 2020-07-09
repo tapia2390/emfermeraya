@@ -58,7 +58,7 @@ public class ComandoFavoritos {
         //String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference memoReference = FirebaseDatabase.getInstance().getReference();
         String key = memoReference.push().getKey();
-        final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/favoritos/"+key);//ruta path
+        final DatabaseReference ref = database.getReference("servicioclientes/favoritos/"+key);//ruta path
 
 
         Map<String, Object> favorito = new HashMap<String, Object>();
@@ -95,7 +95,8 @@ public class ComandoFavoritos {
     public void  getListFavorito(){
         //preguntasFrecuentes
         modelo.listFavoritos.clear();
-        DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/");//ruta path
+
+        DatabaseReference ref = database.getReference("servicioclientes");//ruta path
 
         ChildEventListener listener = new ChildEventListener(){
             @Override

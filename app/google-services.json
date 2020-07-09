@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "608437740721-mkjhu5u1frg8lil1nt6nv48ukk1egu2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enfermeraya.enfermeraya",
+            "certificate_hash": "3c007a4e5c3a7976ea3642b219b19851d5b06d73"
+          }
+        },
+        {
           "client_id": "608437740721-qeamnh8ko2e4g67h6p2dndn6k8s6onge.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -23,20 +31,63 @@
           }
         },
         {
-          "client_id": "608437740721-5219eitm8one5ltn2vt4ks6e3j0ccj5r.apps.googleusercontent.com",
+          "client_id": "608437740721-0ippg12kdpi6m20v6a3pdlsjlfkkaogb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBhOEPk6jimJH5PPH_NrEh-DNu72KAdvVo"
+          "current_key": "AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8"
+        },
+        {
+          "current_key": "AIzaSyBmE0uXcScHMdOsjM_e7q8MmZTfa83qzOw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "608437740721-5219eitm8one5ltn2vt4ks6e3j0ccj5r.apps.googleusercontent.com",
+              "client_id": "608437740721-0ippg12kdpi6m20v6a3pdlsjlfkkaogb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608437740721:android:808ff85f9f53f4e5ffae90",
+        "android_client_info": {
+          "package_name": "com.enfermeraya.enfermerayaclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608437740721-ftid5lhcv34abnno1pjee69dab6oddis.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enfermeraya.enfermerayaclient",
+            "certificate_hash": "3c007a4e5c3a7976ea3642b219b19851d5b06d73"
+          }
+        },
+        {
+          "client_id": "608437740721-0ippg12kdpi6m20v6a3pdlsjlfkkaogb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8"
+        },
+        {
+          "current_key": "AIzaSyBmE0uXcScHMdOsjM_e7q8MmZTfa83qzOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608437740721-0ippg12kdpi6m20v6a3pdlsjlfkkaogb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

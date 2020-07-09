@@ -63,7 +63,7 @@ public class ComandoSercicio {
         //String uid = mAuth.getCurrentUser().getUid();
         DatabaseReference memoReference = FirebaseDatabase.getInstance().getReference();
         String key = memoReference.push().getKey();
-        final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/"+key);//ruta path
+        final DatabaseReference ref = database.getReference("servicioclientes/"+key);//ruta path
 
 
         Map<String, Object> favorito = new HashMap<String, Object>();
@@ -79,7 +79,9 @@ public class ComandoSercicio {
         favorito.put("longitud", longi);
         favorito.put("titulo", titulo);
         favorito.put("estado", "false");
+        favorito.put("uid",modelo.uid);
         favorito.put("timestamp", ServerValue.TIMESTAMP);
+
 
 
 
@@ -106,7 +108,8 @@ public class ComandoSercicio {
     public void  getListServicio(){
         //preguntasFrecuentes
         modelo.listServicios.clear();
-        DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/");//ruta path
+
+        DatabaseReference ref = database.getReference("servicioclientes/");//ruta path
 
         ChildEventListener listener = new ChildEventListener(){
             @Override
@@ -216,21 +219,23 @@ public class ComandoSercicio {
 
     public void updateFavorito(String estado, String key,String titulo){
 
-        final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/servicios/"+key+ "/estado/");//ruta path
+        final DatabaseReference ref = database.getReference("servicioclientes/"+key+ "/estado/");//ruta path
         ref.setValue(estado);
 
 
-        final DatabaseReference ref2 = database.getReference("usuario/"+modelo.uid+"/servicios/"+key+ "/titulo/");//ruta path
+        final DatabaseReference ref2 = database.getReference("servicioclientes/"+key+ "/titulo/");//ruta path
         ref2.setValue(titulo);
 
         mListener.actualizarFavorito();
 
-
     }
 
 
+    public void updateToken(String token){
 
-
+        final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/tokem/");//ruta path
+        ref.setValue(token);
+    }
 
     /**
      * Para evitar nullpointerExeptions

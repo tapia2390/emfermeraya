@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.textclassifier.TextLinks;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,11 +37,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.RecyclerItemClickListener;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.comandos.ComandoEnfermeroPrestadorSer;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
@@ -57,6 +65,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.io.IOException;
@@ -65,25 +75,32 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.JsonObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class HomeFragment extends Fragment implements
         OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener
-        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
+        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener{
 
 
 
 
-    private HomeViewModel homeViewModel;
     Modelo modelo = Modelo.getInstance();
     Geocoder geocoder = null;
-    private GoogleMap mMap;
     EditText search;
     ImageView imgsearc;
     MarkerOptions markerOptions;
@@ -94,7 +111,7 @@ public class HomeFragment extends Fragment implements
     private FavoritoAdapter favortoAdapter;
     private ServicioAdapter servicioAdapter;
     Button btn_servicio;
-
+    GoogleMap mMap;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     //adapter
@@ -109,11 +126,18 @@ public class HomeFragment extends Fragment implements
     EditText txtfechainicio;
     EditText txtfechafin;
     int setHora = 0;
+    String token = "";
+
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager2;
+    RecyclerView recyclerView, recyclerView2;
+    HomeViewModel homeViewModel;
+    ComandoEnfermeroPrestadorSer comandoEnfermeroPrestadorSer;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel =ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         //SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -127,6 +151,48 @@ public class HomeFragment extends Fragment implements
         search = (EditText)root.findViewById(R.id.search);
         imgsearc = (ImageView) root.findViewById(R.id.imgsearc);
         btn_servicio = (Button) root.findViewById(R.id.btn_servicio);
+
+        //btn_n1 = (Button) root.findViewById(R.id.btn_n1);
+        ///btn_n2 = (Button) root.findViewById(R.id.btn_n2);
+
+        token = FirebaseInstanceId.getInstance().getToken();
+        comandoEnfermeroPrestadorSer =  new ComandoEnfermeroPrestadorSer(this);
+
+
+
+
+
+        if (utility.estado(getActivity())) {
+            comandoSercicio.updateToken(token);
+            comandoEnfermeroPrestadorSer.getListClient();
+        }else{
+            alerta("Sin Internet","Valide la conexión a internet");
+        }
+
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("enviaratodos").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+               // Toast.makeText(getActivity(),"Enviado a todos!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        /*btn_n1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notificacionEspecifico();
+            }
+        });
+
+
+        btn_n2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notificacionTropico();
+            }
+        });*/
 
 
         mapa();
@@ -160,9 +226,11 @@ public class HomeFragment extends Fragment implements
 
 
         if (utility.estado(getActivity())) {
+            modelo.listServicios.clear();
             comandoFavoritos.getListFavorito();
             comandoSercicio.getListServicio();
             comandoSercicio.getTipoServicio();
+            listaMapa();
         }else{
             alerta("Sin Internet","Valide la conexión a internet");
         }
@@ -172,12 +240,78 @@ public class HomeFragment extends Fragment implements
         System.out.println("Hora: " + hourFormat.format(date));
 
 
+
         return root;
+    }
+
+    public void notificacionEspecifico(){
+
+        RequestQueue myrequest = Volley.newRequestQueue(getActivity());
+        JSONObject json = new JSONObject();
+        try {
+
+            //dgwoF-I3Q5-Ey2XrHjsQH4:APA91bETkph4iSnuQuGDoDMXHCX9wzoXA4Nc9zNsCapOd9OQ7F_PjM1ZGEesZtk_bOvNFbc9FrYvMyndpzgN5x8FVnU41SlmEsnS2Zxn9WcBTjNJUIg-QVoF3z8dsmddBnHma094vhGK
+            //fiU8SCcVQ0iVLaKM92VUc3:APA91bGb08P-X71QpmSGTuxGKWacitD8_QIMNPl_jcvwZrimLdclkr1x4j6ZbX_ZGAghVSbDw_t071xe27K3k8nt9JUUcSttEJwaEjD5NEwlvVMQDipoDYNsJNmLDZpu1veqkAFz9xCw
+            //eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0
+          //"eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0"
+            String token =  "eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0 ";
+            json.put("to",token);
+            JSONObject notification = new JSONObject();
+            notification.put("titulo","Titulo M");
+            notification.put("detalle","Detalle desde el movil");
+            json.put("data",notification);
+            String url = "https://fcm.googleapis.com/fcm/send";
+            JsonObjectRequest request =  new JsonObjectRequest(Request.Method.POST,url,json,null,null){
+                @Override
+                public Map<String, String> getHeaders()  {
+                    Map<String, String> header = new HashMap<>();
+                    header.put("Content-Type","application/json");
+                    header.put("Authorization","key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
+                    return header;
+                }
+            };
+            myrequest.add(request);
+
+        }catch (JSONException e){
+
+        }
+
+    }
+
+
+    public void notificacionTropico(){
+        RequestQueue myrequest = Volley.newRequestQueue(getActivity());
+        JSONObject json = new JSONObject();
+        try {
+
+            String token =  "/topics/"+"enviaratodos";
+            json.put("to",token);
+            JSONObject notification = new JSONObject();
+            notification.put("titulo","Titulo M");
+            notification.put("detalle","Detalle desde el movil");
+            json.put("data",notification);
+            String url = "https://fcm.googleapis.com/fcm/notification";
+            JsonObjectRequest request =  new JsonObjectRequest(Request.Method.POST,url,json,null,null){
+                @Override
+                public Map<String, String> getHeaders()  {
+                    Map<String, String> header = new HashMap<>();
+                    header.put("Content-Type","aplication/json");
+                    header.put("Authorization","key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
+                    return header;
+                }
+            };
+            myrequest.add(request);
+
+        }catch (JSONException e){
+
+        }
+
+
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+       // mMap = googleMap;
         modelo.mMap = googleMap;
         goolemapa(modelo.mMap );
 
@@ -185,6 +319,7 @@ public class HomeFragment extends Fragment implements
 
 
     public void goolemapa(GoogleMap mMap){
+
         modelo.mMap = mMap;
         //5.059288, -75.497652
         LatLng ctg = new LatLng(modelo.latitud, modelo.longitud);// colombia
@@ -196,13 +331,38 @@ public class HomeFragment extends Fragment implements
 
        // float verde = BitmapDescriptorFactory.HUE_GREEN;
         //marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde,mMap);
-        marcadorImg(modelo.latitud, modelo.longitud,"Pais Colombia",mMap);
+        marcadorImg(modelo.latitud, modelo.longitud,"Pais",mMap);
         //setLocation();
 
     }
 
-    private void marcadorColor(double lat, double lng, String  pais, float color, GoogleMap mMap){
-        mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(pais).icon(BitmapDescriptorFactory.defaultMarker(color)));
+
+    public void goolemapaCliente(GoogleMap mMap, double lat, double longi, String nombre){
+
+        modelo.mMap = mMap;
+        LatLng ctg = new LatLng(modelo.latitud, modelo.longitud);// colombia
+        CameraPosition possiCameraPosition = new CameraPosition.Builder().target(ctg).zoom(15).bearing(0).tilt(0).build();
+        CameraUpdate cam3 =
+                CameraUpdateFactory.newCameraPosition(possiCameraPosition);
+        mMap.animateCamera(cam3);
+        marcadorColor(modelo.latitud, modelo.longitud,nombre,mMap);
+
+    }
+
+
+    private void marcadorColor(double lat, double lng, String  pais, GoogleMap mMap){
+        mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(pais).icon(BitmapDescriptorFactory.defaultMarker()));
+    }
+
+
+    protected Marker createMarker(double lat, double lng, String  pais, GoogleMap mMap) {
+
+        return mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(lat, lng))
+                .anchor(0.5f, 0.5f)
+                .title(pais)
+                .snippet(pais)
+                .icon(BitmapDescriptorFactory.defaultMarker()));
     }
 
     private void marcadorImg(double lat, double lng, String  pais, GoogleMap mMap){
@@ -220,6 +380,7 @@ public class HomeFragment extends Fragment implements
                 .draggable(true)
         );
 
+        listaMapa();
 
         if (modelo.mMap != null) {
             modelo.mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
@@ -237,6 +398,10 @@ public class HomeFragment extends Fragment implements
                 public void onMarkerDragEnd(Marker marker) {
                     Log.v("3","3");
                     getCity(marker.getPosition());
+
+                    modelo.latitud = marker.getPosition().latitude;
+                    modelo.longitud = marker.getPosition().latitude;
+                    goolemapa(modelo.mMap);
                 }
             });
 
@@ -244,7 +409,7 @@ public class HomeFragment extends Fragment implements
             modelo.mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-                    Toast.makeText(getContext(),"click", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),"click", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             });
@@ -393,9 +558,10 @@ public class HomeFragment extends Fragment implements
         List<Address> addresses;
         String dir  = "";
 
-        geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
         try {
+            geocoder = new Geocoder(getActivity(), Locale.getDefault());
+
             List<Address> list = geocoder.getFromLocation(
             posicion.latitude, posicion.longitude, 1);
             if (!list.isEmpty()) {
@@ -421,7 +587,20 @@ public class HomeFragment extends Fragment implements
     public void getFavorito() {
 
         //Toast.makeText(getActivity(), ""+modelo.listFavoritos.size(), Toast.LENGTH_SHORT).show();
-        favList = modelo.listFavoritos;
+
+        if(recyclerView != null){
+
+
+                favList = modelo.listFavoritos;
+                favortoAdapter = new FavoritoAdapter(getActivity(), favList);
+                layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                recyclerView2.setLayoutManager(layoutManager2);
+                recyclerView2.setAdapter(favortoAdapter);
+                favortoAdapter.notifyDataSetChanged();
+
+        }
+
+
 
     }
 
@@ -450,7 +629,53 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void getServicio() {
-        serList = modelo.listServicios;
+
+        Log.v("tamano:", ""+modelo.listServicios.size());
+
+        onMapReady(modelo.mMap);
+
+        if(recyclerView != null){
+
+                serList = modelo.listServicios;
+                servicioAdapter = new ServicioAdapter(getActivity(), serList);
+                layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(servicioAdapter);
+
+
+            servicioAdapter.notifyDataSetChanged();
+
+        }
+
+
+    }
+
+
+    @Override
+    public void getClientes() {
+        int listUsuario = modelo.listUsuario.size();
+        Log.v("client size",  ": " +  listUsuario);
+
+        if(listUsuario > 0){
+            listaMapa();
+        }
+
+    }
+
+
+    @Override
+    public void errorClientes() {
+
+    }
+
+    public  void listaMapa(){
+        int listUsuario = modelo.listUsuario.size();
+        if(listUsuario > 0) {
+            for (int i = 0; i < listUsuario; i++) {
+
+                createMarker( modelo.listUsuario.get(i).getLatitud(), modelo.listUsuario.get(i).getLongitud(), modelo.listUsuario.get(i).getNombre(),modelo.mMap);
+            }
+        }
     }
 
     @Override
@@ -645,22 +870,12 @@ public class HomeFragment extends Fragment implements
 
         Button btnfavoritos = (Button) mView.findViewById(R.id.btnfavoritos);
         Button cerrar = (Button) mView.findViewById(R.id.cerrar);
-        RecyclerView recyclerView = mView.findViewById(R.id.recycler_view);
-        RecyclerView recyclerView2 = mView.findViewById(R.id.recycler_view2);
+         recyclerView = mView.findViewById(R.id.recycler_view);
+        recyclerView2 = mView.findViewById(R.id.recycler_view2);
         LinearLayout layaut1 = mView.findViewById(R.id.layaut1);
         LinearLayout layaut2 = mView.findViewById(R.id.layaut2);
 
 
-        servicioAdapter = new ServicioAdapter(getActivity(), serList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(servicioAdapter);
-
-
-        favortoAdapter = new FavoritoAdapter(getActivity(), favList);
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        recyclerView2.setLayoutManager(layoutManager2);
-        recyclerView2.setAdapter(favortoAdapter);
 
 
         //click tap
@@ -673,18 +888,17 @@ public class HomeFragment extends Fragment implements
                 if(tabId.equals("mitab3")){
                     modelo.modal= "favoritos";
                     comandoFavoritos.getListFavorito();
-                    favortoAdapter.notifyDataSetChanged();
 
                 }
 
-                if(tabId.equals("mitab2")){
+                else if(tabId.equals("mitab2")){
                     modelo.modal= "servicios";
-                    comandoFavoritos.getListFavorito();
-                    servicioAdapter.notifyDataSetChanged();
+                    comandoSercicio.getListServicio();
 
                 }
             }
         });
+
 
 
         // search2.setQuery(direccion, false);
@@ -726,10 +940,14 @@ public class HomeFragment extends Fragment implements
                 new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // do whatever
-                        Toast.makeText(getActivity(), "1:" + position,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "1:" + position,Toast.LENGTH_SHORT).show();
+                        //dialog.dismiss();
+                        modelo.mMap.clear();
                         modelo.latitud = modelo.listServicios.get(position).getLatitud();
                         modelo.longitud = modelo.listServicios.get(position).getLongitud();
                         goolemapa(modelo.mMap);
+                        listaMapa();
+
 
                         dialog.dismiss();
                     }
@@ -744,7 +962,7 @@ public class HomeFragment extends Fragment implements
                 new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // do whatever
-                        Toast.makeText(getActivity(), "2:" + position,Toast.LENGTH_SHORT).show();
+                        ///Toast.makeText(getActivity(), "2:" + position,Toast.LENGTH_SHORT).show();
 
                         modelo.latitud = modelo.listServicios.get(position).getLatitud();
                         modelo.longitud = modelo.listServicios.get(position).getLongitud();
@@ -852,7 +1070,7 @@ public class HomeFragment extends Fragment implements
                 datepickerdialog.showYearPickerFirst(false); //choose year first?
                 datepickerdialog.setAccentColor(Color.parseColor("#6BC0DC")); // custom accent color
                 datepickerdialog.setTitle("Selecione una fecha"); //dialog title
-                datepickerdialog.show(getActivity().getFragmentManager(), "Datepickerdialog"); //show dialog
+                datepickerdialog.show(getFragmentManager(), "Datepickerdialog"); //show dialog
             }
         });
 
@@ -948,7 +1166,7 @@ public class HomeFragment extends Fragment implements
         Calendar now = Calendar.getInstance();
         TimePickerDialog dpd = TimePickerDialog.newInstance(this, now.get(Calendar.HOUR), now.get(Calendar.MINUTE), false);
         dpd.setAccentColor(getResources().getColor(R.color.colorVerdeOscuro));
-        dpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
+        dpd.show(getFragmentManager(), "Timepickerdialog");
     }
 
     //___this is the listener callback method will be call on time selection by default date picker.

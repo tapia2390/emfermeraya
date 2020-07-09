@@ -27,7 +27,9 @@ import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.Splash;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Usuario;
+import com.enfermeraya.enfermeraya.comandos.ComandoEnfermeroPrestadorSer;
 import com.enfermeraya.enfermeraya.comandos.ComandoPerfil;
+import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,7 +49,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.enfermeraya.enfermeraya.views.Perfil.decodeBase64;
 
-public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnPerfilChangeListener{
+public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnPerfilChangeListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView camara1;
@@ -57,6 +59,7 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     ComandoPerfil comandoPerfil;
+
     Usuario usuario;
     Modelo modelo = Modelo.getInstance();
     SweetAlertDialog pDialog;
@@ -112,7 +115,6 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
         txt_calificacion = (TextView)findViewById(R.id.txt_calificacion);
 
         comandoPerfil =  new ComandoPerfil(this);
-
         if (utility.estado(getApplicationContext())) {
 
 
@@ -121,6 +123,7 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
             if(modelo.tipoLogin.equals("normal")){
                 loadswet("Cargando la información...");
                 comandoPerfil.getUsuario();
+
             }else{
                 String nombre  = ""+user.getDisplayName();
                 txtnombre.setText(""+nombre);
