@@ -83,4 +83,12 @@ Client Secret
     <!-- json key AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8-->
 
 
+    <!--tarjeta-->
+
+    <string name="banco_text">Banco</string>
+    <string name="vence_text">Vence</string>
+    <string name="fecha">12/20</string>
+    <string name="numero_cuenta">**** **** **** 0011</string>
+    <string name="agregar_tarjeta">Agregar Tarjeta</string>
+
 </resources>
