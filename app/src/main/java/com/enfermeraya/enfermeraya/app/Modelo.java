@@ -22,6 +22,7 @@ public class Modelo {
     public double latitud;
     public double longitud;
     public GoogleMap mMap;
+    public String token = "";
 
     public static Modelo getInstance() {
         return ourInstance;

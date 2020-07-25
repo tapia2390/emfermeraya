@@ -44,7 +44,7 @@ Client Secret
     <!--git comandos-->
     <!--
         git init
-        git add .
+        git add -A
         git commit -m "first commit"
 
         si no esta logueado git remote add origin  //url de git proyecto https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git
@@ -81,6 +81,14 @@ Client Secret
 
     <string name="home_second">Home Second</string>
     <!-- json key AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8-->
+
+
+    <!--faceboock
+
+    producccion = b9yVrzILOnMvxSQmidmREfGrTmw=
+    pruebas = /lbKvDnbIHMgdNklFe+1ytYPbM8=
+
+    -->
 
 
     <!--tarjeta-->

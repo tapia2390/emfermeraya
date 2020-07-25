@@ -71,6 +71,7 @@ public class ComandoEnfermeroPrestadorSer {
                 user.setApellido(snFav.child("apellido").getValue().toString());
                 user.setFoto(snFav.child("foto").getValue().toString());
                 user.setCelular(snFav.child("celular").getValue().toString());
+                user.setToken(snFav.child("tokem").getValue().toString());
                  modelo.listUsuario.add(user);
 
                 mListener.getClientes();

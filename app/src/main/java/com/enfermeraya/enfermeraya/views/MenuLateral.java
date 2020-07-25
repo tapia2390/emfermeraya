@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.WindowManager;
@@ -37,6 +38,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -49,7 +52,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.enfermeraya.enfermeraya.views.Perfil.decodeBase64;
 
-public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnPerfilChangeListener {
+public class MenuLateral extends AppCompatActivity  implements  ComandoPerfil.OnPerfilChangeListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     ImageView camara1;
@@ -63,6 +66,7 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
     Usuario usuario;
     Modelo modelo = Modelo.getInstance();
     SweetAlertDialog pDialog;
+    DrawerLayout drawer;
 
 
     @Override
@@ -95,7 +99,7 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
         utility = new Utility();
         usuario =  null;
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -159,6 +163,9 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
         getMenuInflater().inflate(R.menu.menu_lateral, menu);
         return true;
     }*/
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -279,7 +286,6 @@ public class MenuLateral extends AppCompatActivity  implements ComandoPerfil.OnP
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
     }
-
 
 
 

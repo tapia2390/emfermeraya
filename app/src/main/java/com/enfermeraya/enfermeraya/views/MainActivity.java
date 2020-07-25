@@ -142,7 +142,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
 
         //gogle
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id2))
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -154,6 +154,8 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
                 signIn();
             }
         });
+
+
 
         //fin google
 
@@ -751,12 +753,15 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
             locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-            modelo.latitud = loc.getLatitude();
-            modelo.longitud = loc.getLongitude();
-             //tvLatitud.setText(String.valueOf(loc.getLatitude()));
-            //tvLongitud.setText(String.valueOf(loc.getLongitude()));
-            //tvAltura.setText(String.valueOf(loc.getAltitude()));
-            //tvPrecision.setText(String.valueOf(loc.getAccuracy()));
+            if(loc != null){
+                modelo.latitud = loc.getLatitude();
+                modelo.longitud = loc.getLongitude();
+                //tvLatitud.setText(String.valueOf(loc.getLatitude()));
+                //tvLongitud.setText(String.valueOf(loc.getLongitude()));
+                //tvAltura.setText(String.valueOf(loc.getAltitude()));
+                //tvPrecision.setText(String.valueOf(loc.getAccuracy()));
+            }
+
         }
     }
 }

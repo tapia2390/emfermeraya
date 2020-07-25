@@ -54,7 +54,7 @@ public class ComandoSercicio {
 
     }
 
-    public  void registarServicio(String tipoServicio,String fecha,String horaInicio,String horaFin,
+    public  void registarServicio(String tipoServicio,String fecha,String horaServicio,
                                   String direccion, String informacion, String obsciones, double lat , double longi, String titulo){
         //creating a new user
         //creating a new user
@@ -70,8 +70,7 @@ public class ComandoSercicio {
 
         favorito.put("tipoServicio", tipoServicio);
         favorito.put("fecha", fecha);
-        favorito.put("horaInicio", horaInicio);
-        favorito.put("horaFin", horaFin);
+        favorito.put("horaServicio", horaServicio);
         favorito.put("direccion", direccion);
         favorito.put("informacion", informacion);
         favorito.put("obsciones", obsciones);
@@ -80,6 +79,7 @@ public class ComandoSercicio {
         favorito.put("titulo", titulo);
         favorito.put("estado", "false");
         favorito.put("uid",modelo.uid);
+        favorito.put("token",modelo.token);
         favorito.put("timestamp", ServerValue.TIMESTAMP);
 
 
@@ -129,8 +129,7 @@ public class ComandoSercicio {
 
                 ser.setTipoServicio(snFav.child("tipoServicio").getValue().toString());
                 ser.setFecha(snFav.child("fecha").getValue().toString());
-                ser.setHoraInicio(snFav.child("horaInicio").getValue().toString());
-                ser.setHoraFin(snFav.child("horaFin").getValue().toString());
+                ser.setHoraServicio(snFav.child("horaServicio").getValue().toString());
                 ser.setDireccion(snFav.child("direccion").getValue().toString());
                 ser.setInformacion(snFav.child("informacion").getValue().toString());
                 ser.setObsciones(snFav.child("obsciones").getValue().toString());
@@ -213,8 +212,6 @@ public class ComandoSercicio {
 
 
     }
-
-
 
 
     public void updateFavorito(String estado, String key,String titulo){

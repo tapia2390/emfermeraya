@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,15 +14,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.textclassifier.TextLinks;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,14 +28,15 @@ import android.widget.SearchView;
 import android.widget.TabHost;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -48,12 +46,18 @@ import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.RecyclerItemClickListener;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.clases.Usuario;
 import com.enfermeraya.enfermeraya.comandos.ComandoEnfermeroPrestadorSer;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
 import com.enfermeraya.enfermeraya.dapter.ServicioAdapter;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
+import com.enfermeraya.enfermeraya.notificacion.APIService;
+import com.enfermeraya.enfermeraya.notificacion.Client;
+import com.enfermeraya.enfermeraya.notificacion.Data;
+import com.enfermeraya.enfermeraya.notificacion.MyResponse;
+import com.enfermeraya.enfermeraya.notificacion.NotificationSender;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -62,6 +66,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -69,11 +75,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -81,23 +92,24 @@ import java.util.Locale;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.gson.JsonObject;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 public class HomeFragment extends Fragment implements
         OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener
-        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener{
-
-
-
+        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener {
 
     Modelo modelo = Modelo.getInstance();
     Geocoder geocoder = null;
@@ -122,9 +134,9 @@ public class HomeFragment extends Fragment implements
     DatePickerDialog datePickerDialog;
     Date date;
     DateFormat hourFormat;
-    EditText txtfecha;
-    EditText txtfechainicio;
-    EditText txtfechafin;
+
+    Button txtfechainicio;
+    Button txtfechafin;
     int setHora = 0;
     String token = "";
 
@@ -135,9 +147,18 @@ public class HomeFragment extends Fragment implements
     ComandoEnfermeroPrestadorSer comandoEnfermeroPrestadorSer;
 
 
+    private Serializable escolas;
+    private Circle mCircle;
+    private Marker mMarker;
+
+    String tiemposervicio = "";
+
+
+    private APIService apiService;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         //SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
@@ -148,7 +169,11 @@ public class HomeFragment extends Fragment implements
         comandoFavoritos = new ComandoFavoritos(this);
         comandoSercicio = new ComandoSercicio(this);
         utility = new Utility();
-        search = (EditText)root.findViewById(R.id.search);
+
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+
+
+        search = (EditText) root.findViewById(R.id.search);
         imgsearc = (ImageView) root.findViewById(R.id.imgsearc);
         btn_servicio = (Button) root.findViewById(R.id.btn_servicio);
 
@@ -156,18 +181,8 @@ public class HomeFragment extends Fragment implements
         ///btn_n2 = (Button) root.findViewById(R.id.btn_n2);
 
         token = FirebaseInstanceId.getInstance().getToken();
-        comandoEnfermeroPrestadorSer =  new ComandoEnfermeroPrestadorSer(this);
-
-
-
-
-
-        if (utility.estado(getActivity())) {
-            comandoSercicio.updateToken(token);
-            comandoEnfermeroPrestadorSer.getListClient();
-        }else{
-            alerta("Sin Internet","Valide la conexión a internet");
-        }
+        modelo.token = token;
+        comandoEnfermeroPrestadorSer = new ComandoEnfermeroPrestadorSer(this);
 
 
 
@@ -175,7 +190,7 @@ public class HomeFragment extends Fragment implements
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-               // Toast.makeText(getActivity(),"Enviado a todos!", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getActivity(),"Enviado a todos!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -213,13 +228,13 @@ public class HomeFragment extends Fragment implements
             public void onClick(View v) {
 
                 if (utility.estado(getActivity())) {
-                    if(search.getText().toString().equals("")){
+                    if (search.getText().toString().equals("")) {
                         Toast.makeText(getActivity(), "Ingrese una dirección", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     generarServicio();
-                }else{
-                    alerta("Sin Internet","Valide la conexión a internet");
+                } else {
+                    alerta("Sin Internet", "Valide la conexión a internet");
                 }
             }
         });
@@ -230,9 +245,10 @@ public class HomeFragment extends Fragment implements
             comandoFavoritos.getListFavorito();
             comandoSercicio.getListServicio();
             comandoSercicio.getTipoServicio();
-            listaMapa();
-        }else{
-            alerta("Sin Internet","Valide la conexión a internet");
+            comandoSercicio.updateToken(token);
+            comandoEnfermeroPrestadorSer.getListClient();
+        } else {
+            alerta("Sin Internet", "Valide la conexión a internet");
         }
 
         date = new Date();
@@ -240,11 +256,42 @@ public class HomeFragment extends Fragment implements
         System.out.println("Hora: " + hourFormat.format(date));
 
 
-
         return root;
+
+        ///https://es.stackoverflow.com/questions/116681/como-puedo-calcular-la-distancia-entre-2-puntos-en-google-maps-v3
+
+
     }
 
-    public void notificacionEspecifico(){
+
+
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data;
+        data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+                        Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_LONG);
+                    }else{
+                        Toast.makeText(getActivity(), "Servicio solicitado ", Toast.LENGTH_LONG);
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Error code" + response.code(), Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void notificacionEspecifico() {
 
         RequestQueue myrequest = Volley.newRequestQueue(getActivity());
         JSONObject json = new JSONObject();
@@ -253,56 +300,56 @@ public class HomeFragment extends Fragment implements
             //dgwoF-I3Q5-Ey2XrHjsQH4:APA91bETkph4iSnuQuGDoDMXHCX9wzoXA4Nc9zNsCapOd9OQ7F_PjM1ZGEesZtk_bOvNFbc9FrYvMyndpzgN5x8FVnU41SlmEsnS2Zxn9WcBTjNJUIg-QVoF3z8dsmddBnHma094vhGK
             //fiU8SCcVQ0iVLaKM92VUc3:APA91bGb08P-X71QpmSGTuxGKWacitD8_QIMNPl_jcvwZrimLdclkr1x4j6ZbX_ZGAghVSbDw_t071xe27K3k8nt9JUUcSttEJwaEjD5NEwlvVMQDipoDYNsJNmLDZpu1veqkAFz9xCw
             //eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0
-          //"eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0"
-            String token =  "eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0 ";
-            json.put("to",token);
+            //"eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0"
+            String token = "eAPR_vWsRp-tAlE2uWhCro:APA91bHHDYV8GzvBDJXOKjE0PMrbv_T7MQ27KS0fGCRFPxPNh2k_TmNBpuYNiqBq4XfRDTksxE7WJKAMO-enTRn5bkQ6LNrpz4jwZA6p2KgHv4PZAPYhm2kNJRt8BPrLhEk7uLxU6DQ0 ";
+            json.put("to", token);
             JSONObject notification = new JSONObject();
-            notification.put("titulo","Titulo M");
-            notification.put("detalle","Detalle desde el movil");
-            json.put("data",notification);
+            notification.put("titulo", "Titulo M");
+            notification.put("detalle", "Detalle desde el movil");
+            json.put("data", notification);
             String url = "https://fcm.googleapis.com/fcm/send";
-            JsonObjectRequest request =  new JsonObjectRequest(Request.Method.POST,url,json,null,null){
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json, null, null) {
                 @Override
-                public Map<String, String> getHeaders()  {
+                public Map<String, String> getHeaders() {
                     Map<String, String> header = new HashMap<>();
-                    header.put("Content-Type","application/json");
-                    header.put("Authorization","key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
+                    header.put("Content-Type", "application/json");
+                    header.put("Authorization", "key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
                     return header;
                 }
             };
             myrequest.add(request);
 
-        }catch (JSONException e){
+        } catch (JSONException e) {
 
         }
 
     }
 
 
-    public void notificacionTropico(){
+    public void notificacionTropico() {
         RequestQueue myrequest = Volley.newRequestQueue(getActivity());
         JSONObject json = new JSONObject();
         try {
 
-            String token =  "/topics/"+"enviaratodos";
-            json.put("to",token);
+            String token = "/topics/" + "enviaratodos";
+            json.put("to", token);
             JSONObject notification = new JSONObject();
-            notification.put("titulo","Titulo M");
-            notification.put("detalle","Detalle desde el movil");
-            json.put("data",notification);
+            notification.put("titulo", "Titulo M");
+            notification.put("detalle", "Detalle desde el movil");
+            json.put("data", notification);
             String url = "https://fcm.googleapis.com/fcm/notification";
-            JsonObjectRequest request =  new JsonObjectRequest(Request.Method.POST,url,json,null,null){
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json, null, null) {
                 @Override
-                public Map<String, String> getHeaders()  {
+                public Map<String, String> getHeaders() {
                     Map<String, String> header = new HashMap<>();
-                    header.put("Content-Type","aplication/json");
-                    header.put("Authorization","key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
+                    header.put("Content-Type", "aplication/json");
+                    header.put("Authorization", "key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
                     return header;
                 }
             };
             myrequest.add(request);
 
-        }catch (JSONException e){
+        } catch (JSONException e) {
 
         }
 
@@ -311,9 +358,45 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-       // mMap = googleMap;
+        // mMap = googleMap;
         modelo.mMap = googleMap;
+
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+      //  googleMap.setMyLocationEnabled(true);
+
+        // Enable / Disable zooming controls
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+        // Enable / Disable my location button
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        // Enable / Disable Compass icon
+        googleMap.getUiSettings().setCompassEnabled(true);
+
+        // Enable / Disable Rotate gesture
+        googleMap.getUiSettings().setRotateGesturesEnabled(true);
+
+        // Enable / Disable zooming functionality
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
+
+
+
         goolemapa(modelo.mMap );
+
+    }
+
+
+    private void drawMarkerWithCircle(LatLng position){
+        double radiusInMeters = 400.0;
+        int strokeColor = 0x000000ff; //red outline
+        int shadeColor = 0x440000ff; //opaque red fill
+
+        CircleOptions circleOptions = new CircleOptions().center(position).radius(radiusInMeters).fillColor(shadeColor).strokeColor(strokeColor).strokeWidth(8);
+        mCircle = modelo.mMap.addCircle(circleOptions);
+
+        //MarkerOptions markerOptions = new MarkerOptions().position(position);
+        //mMarker = modelo.mMap.addMarker(markerOptions);
 
     }
 
@@ -333,6 +416,53 @@ public class HomeFragment extends Fragment implements
         //marcadorColor(modelo.latitud, modelo.longitud,"Pais Colombia", verde,mMap);
         marcadorImg(modelo.latitud, modelo.longitud,"Pais",mMap);
         //setLocation();
+
+        try {
+
+            modelo.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(modelo.latitud, modelo.longitud), 15));
+
+            MarkerOptions options = new MarkerOptions();
+
+            // Setting the position of the marker
+
+            options.position(new LatLng(modelo.latitud, modelo.longitud));
+
+            //googleMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+
+            LatLng latLng = new LatLng(modelo.latitud, modelo.longitud);
+            drawMarkerWithCircle(latLng);
+
+
+            modelo.mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+                @Override
+                public void onMyLocationChange(Location location) {
+                    float[] distance = new float[2];
+
+                        /*
+                        Location.distanceBetween( mMarker.getPosition().latitude, mMarker.getPosition().longitude,
+                                mCircle.getCenter().latitude, mCircle.getCenter().longitude, distance);
+                                */
+
+                    Location.distanceBetween( location.getLatitude(), location.getLongitude(),
+                            mCircle.getCenter().latitude, mCircle.getCenter().longitude, distance);
+
+                    if( distance[0] > mCircle.getRadius()  ){
+                        //Afuera, distancia del centro
+                        //Toast.makeText(getActivity(), "Outside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius(), Toast.LENGTH_LONG).show();
+                    } else {
+                        //Dentro, distancia del centro:
+                        //Toast.makeText(getActivity(), "Inside, distance from center: " + distance[0] + " radius: " + mCircle.getRadius() , Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -380,7 +510,6 @@ public class HomeFragment extends Fragment implements
                 .draggable(true)
         );
 
-        listaMapa();
 
         if (modelo.mMap != null) {
             modelo.mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
@@ -402,6 +531,7 @@ public class HomeFragment extends Fragment implements
                     modelo.latitud = marker.getPosition().latitude;
                     modelo.longitud = marker.getPosition().latitude;
                     goolemapa(modelo.mMap);
+                    listaMapa();
                 }
             });
 
@@ -423,6 +553,7 @@ public class HomeFragment extends Fragment implements
                     modelo.latitud = latLng.latitude;
                     modelo.longitud = latLng.longitude;
                     goolemapa(modelo.mMap);
+                    listaMapa();
                 }
             });
         }
@@ -653,12 +784,21 @@ public class HomeFragment extends Fragment implements
 
     @Override
     public void getClientes() {
-        int listUsuario = modelo.listUsuario.size();
-        Log.v("client size",  ": " +  listUsuario);
 
-        if(listUsuario > 0){
-            listaMapa();
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int listUsuario = modelo.listUsuario.size();
+                Log.v("client size",  ": " +  listUsuario);
+
+                if(listUsuario > 0){
+                    listaMapa();
+                }
+            }
+        },5000);
+
+
+
 
     }
 
@@ -670,9 +810,23 @@ public class HomeFragment extends Fragment implements
 
     public  void listaMapa(){
         int listUsuario = modelo.listUsuario.size();
+
+        LatLng latlocal = new LatLng(modelo.latitud, modelo.longitud);// colombia
+
         if(listUsuario > 0) {
             for (int i = 0; i < listUsuario; i++) {
+                LatLng latclient = new LatLng(modelo.listUsuario.get(i).getLatitud(), modelo.listUsuario.get(i).getLongitud());
+               // double dista = CalculationByDistance(latclient,latlocal );
+                Location location = new Location("localizacion 1");
+                location.setLatitude(modelo.latitud);  //latitud
+                location.setLongitude(modelo.latitud); //longitud
+                Location location2 = new Location("localizacion 2");
+                location2.setLatitude(modelo.listUsuario.get(i).getLatitud());  //latitud
+                location2.setLongitude(modelo.listUsuario.get(i).getLatitud()); //longitud
+                double distance = location.distanceTo(location2);
 
+
+                modelo.listUsuario.get(i).setDistancia(distance);
                 createMarker( modelo.listUsuario.get(i).getLatitud(), modelo.listUsuario.get(i).getLongitud(), modelo.listUsuario.get(i).getNombre(),modelo.mMap);
             }
         }
@@ -684,6 +838,7 @@ public class HomeFragment extends Fragment implements
         if (utility.estado(getActivity())) {
             comandoSercicio.getListServicio();
             comandoFavoritos.getListFavorito();
+
         }else{
             alerta("Sin Internet","Valide la conexión a internet");
         }
@@ -718,7 +873,7 @@ public class HomeFragment extends Fragment implements
 
         //String date = dayOfMonth + "/" + (++monthOfYear) + "/" + year;
         String date= ""+fd+"/"+fm+"/"+year;
-        txtfecha .setText(""+date);
+        //txtfecha .setText(""+date);
 
     }
 
@@ -1026,10 +1181,10 @@ public class HomeFragment extends Fragment implements
         Button btnCancelar = (Button) mView2.findViewById(R.id.btnCancelar);
         Button btntiposervicio = (Button) mView2.findViewById(R.id.btntiposervicio);
         EditText nombre_usuario = (EditText) mView2.findViewById(R.id.nombre_usuario);
-        txtfecha = (EditText) mView2.findViewById(R.id.txtfecha);
-        txtfechainicio = (EditText) mView2.findViewById(R.id.txtfechainicio);
+        //txtfecha = (EditText) mView2.findViewById(R.id.txtfecha);
+        txtfechainicio = (Button) mView2.findViewById(R.id.txtfechainicio);
         EditText txt_direccion = (EditText) mView2.findViewById(R.id.txt_direccion);
-        txtfechafin = (EditText) mView2.findViewById(R.id.txtfechafin);
+        txtfechafin = (Button) mView2.findViewById(R.id.txtfechafin);
         EditText infodireccion = (EditText) mView2.findViewById(R.id.infodireccion);
         EditText infoobservacione = (EditText) mView2.findViewById(R.id.infoobservacione);
 
@@ -1053,7 +1208,7 @@ public class HomeFragment extends Fragment implements
         //eventos
 
         //piker
-        txtfecha.setOnClickListener(new View.OnClickListener() {
+        /*txtfecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar now = Calendar.getInstance();
@@ -1072,13 +1227,19 @@ public class HomeFragment extends Fragment implements
                 datepickerdialog.setTitle("Selecione una fecha"); //dialog title
                 datepickerdialog.show(getFragmentManager(), "Datepickerdialog"); //show dialog
             }
-        });
+        });*/
 
 
         txtfechainicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hora(view);
+
+                 tiemposervicio ="ahora";
+                txtfechainicio.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.fondo_post_border_style));
+                txtfechainicio.setTextColor(getActivity().getResources().getColor(R.color.colorBlanco));
+
+                txtfechafin.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edittext_style));
+                txtfechafin.setTextColor(getActivity().getResources().getColor(R.color.colorFondo));
             }
         });
 
@@ -1087,6 +1248,7 @@ public class HomeFragment extends Fragment implements
             @Override
             public void onClick(View view) {
                 hora(view);
+
             }
         });
 
@@ -1103,10 +1265,22 @@ public class HomeFragment extends Fragment implements
             public void onClick(View view) {
 
 
+                //odenamos la lista
+                Collections.sort(modelo.listUsuario, new Comparator<Usuario>() {
+                    @Override
+                    public int compare(Usuario c1, Usuario c2) {
+                        return Double.compare(c1.getDistancia(), c2.getDistancia());
+                    }
+                });
+
+
+
+
+                String fecha = String.valueOf(android.text.format.DateFormat.format("dd-MM-yyyy", new java.util.Date()));
 
                 String tipoServicio = btntiposervicio.getText().toString();
                 String nombreServicio = nombre_usuario.getText().toString();
-                String fecha = txtfecha.getText().toString();
+                //String fecha = txtfecha.getText().toString();
                 String horanicio = txtfechainicio.getText().toString();
                 String horaFin = txtfechafin.getText().toString();
                 String direccion = txt_direccion.getText().toString();
@@ -1115,17 +1289,31 @@ public class HomeFragment extends Fragment implements
 
 
 
-                if(tipoServicio.equals("Seleccione el servicio") || nombreServicio.equals(" ") || horanicio.equals("Hora Inicio") || horaFin.equals("Hora Fin")|| fecha.equals("Fecha Inicio")|| informacionAdicional.equals("")|| informaconObservaciones.equals("")){
+                if(tipoServicio.equals("Seleccione el servicio") || nombreServicio.equals(" ") || tiemposervicio.equals("")|| informacionAdicional.equals("")|| informaconObservaciones.equals("")){
                     Toast.makeText(getActivity(),"Todos los campos son obligatorios", Toast.LENGTH_LONG).show();
                     return;
                 }
 
 
-                comandoSercicio.registarServicio(tipoServicio,fecha, horanicio, horaFin,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"");
+                comandoSercicio.registarServicio(tipoServicio,fecha, tiemposervicio,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"");
                 btntiposervicio.setText("Seleccione el servicio");
                 infodireccion.setText("");
                 infoobservacione.setText("");
                 dialog2.dismiss();
+
+                if (tiemposervicio.equals("ahora")){
+
+                    for (int i = 0; i < modelo.listUsuario.size() ; i++) {
+                        if( modelo.listUsuario.get(i).getDistancia() <= 400){
+                            sendNotifications( modelo.listUsuario.get(i).getToken(),"Servicio", informacionAdicional);
+                            break;
+                        }
+                    }
+                }else{
+                    for (int i = 0; i < modelo.listUsuario.size() ; i++) {
+                        sendNotifications(modelo.listUsuario.get(i).getToken(), "Servicio", informacionAdicional);
+                    }
+                }
             }
         });
 
@@ -1237,12 +1425,43 @@ public class HomeFragment extends Fragment implements
 
         }
         if (setHora == 2) {
+            tiemposervicio="" + "" + part1 + " " + part2;
             txtfechafin.setText("" + "" + part1 + " " + part2);
 
+            txtfechafin.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.fondo_post_border_style));
+            txtfechafin.setTextColor(getActivity().getResources().getColor(R.color.colorBlanco));
+
+            txtfechainicio.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.edittext_style));
+            txtfechainicio.setTextColor(getActivity().getResources().getColor(R.color.colorFondo));
         }
 
     }
 
+    //calcular distancia
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 400;// radio de la tierra en  kilómetros
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
+    }
 
 
 

@@ -70,7 +70,6 @@ dependencies {
     implementation 'com.firebase:firebase-client-android:2.5.2'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
-    implementation 'com.google.firebase:firebase-messaging:20.2.1'
 
     //service
     //implementation 'com.google.android.gms:play-services-ads:19.1.0' // Mandatory
@@ -123,6 +122,9 @@ dependencies {
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 
 
+//retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 
 

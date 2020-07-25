@@ -15,11 +15,12 @@ public class Servicios {
     String titulo;
     String estado;
     long timestamp;
+    String horaServicio;
 
     public Servicios(){}
 
 
-    public Servicios(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp) {
+    public Servicios(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp, String horaServicio) {
         this.key = key;
         this.nombre = nombre;
         this.tipoServicio = tipoServicio;
@@ -34,6 +35,7 @@ public class Servicios {
         this.titulo = titulo;
         this.estado = estado;
         this.timestamp = timestamp;
+        this.horaServicio = horaServicio;
     }
 
     public String getKey() {
@@ -146,5 +148,13 @@ public class Servicios {
 
     public void setObsciones(String obsciones) {
         this.obsciones = obsciones;
+    }
+
+    public String getHoraServicio() {
+        return horaServicio;
+    }
+
+    public void setHoraServicio(String horaServicio) {
+        this.horaServicio = horaServicio;
     }
 }

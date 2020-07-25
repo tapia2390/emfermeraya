@@ -47,6 +47,11 @@
             android:title="Ayuda" />
 
         <item
+            android:id="@+id/cerrasecion"
+            android:icon="@drawable/logout1"
+            android:title="Cerrar sesión." />
+
+        <item
             android:id="@+id/nav_legal"
             android:title="Legal V.1.2.100" />
     </group>

@@ -80,44 +80,21 @@
         android:layout_width="match_parent"
         android:layout_height="10sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fecha:"/>
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="10sp"/>
 
-
-    <EditText
-        android:id="@+id/txtfecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fecha Inicio"
-        android:textSize="14sp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:editable="false"
-        android:focusable="false"
-        android:padding="2sp"
-        android:background="@drawable/edittext_style"
-        android:textColor="@color/colorFondo"/>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
+        <Button
             android:id="@+id/txtfechainicio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hora Inicio"
+            android:layout_height="20sp"
+            android:text="Ahora"
             android:background="@drawable/edittext_style"
             android:layout_weight="1"
             android:editable="false"
@@ -133,10 +110,10 @@
             android:layout_height="wrap_content"/>
 
 
-        <EditText
+        <Button
             android:id="@+id/txtfechafin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20sp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:editable="false"
@@ -144,7 +121,7 @@
             android:background="@drawable/edittext_style"
             android:gravity="center"
             android:padding="2sp"
-            android:text="Hora Fin"
+            android:text="Despues"
             android:textColor="@color/colorFondo"
             android:textSize="14sp" />
 
