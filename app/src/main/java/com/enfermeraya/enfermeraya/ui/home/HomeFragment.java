@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -30,6 +31,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -41,6 +43,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.util.Util;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
@@ -59,6 +62,7 @@ import com.enfermeraya.enfermeraya.notificacion.Data;
 import com.enfermeraya.enfermeraya.notificacion.MyResponse;
 import com.enfermeraya.enfermeraya.notificacion.NotificationSender;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -71,17 +75,26 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -104,6 +117,8 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
@@ -156,6 +171,8 @@ public class HomeFragment extends Fragment implements
 
     private APIService apiService;
 
+    SearchView search2;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -171,6 +188,13 @@ public class HomeFragment extends Fragment implements
         utility = new Utility();
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+
+
+        //search gogole map
+        // Initialize the SDK
+        Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+        // Create a new PlacesClient instance
+        PlacesClient placesClient = Places.createClient(getActivity());
 
 
         search = (EditText) root.findViewById(R.id.search);
@@ -256,9 +280,30 @@ public class HomeFragment extends Fragment implements
         System.out.println("Hora: " + hourFormat.format(date));
 
 
+        search.setFocusable(false);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS,
+                        Place.Field.LAT_LNG,
+                        Place.Field.NAME);
+
+                // create Intent
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY,
+                        fieldList).build(getActivity());
+
+                //star activity result
+                startActivityForResult(intent,100);
+
+            }
+        });
+
+
         return root;
 
         ///https://es.stackoverflow.com/questions/116681/como-puedo-calcular-la-distancia-entre-2-puntos-en-google-maps-v3
+
 
 
     }
@@ -795,7 +840,7 @@ public class HomeFragment extends Fragment implements
                     listaMapa();
                 }
             }
-        },5000);
+        },1000);
 
 
 
@@ -814,6 +859,11 @@ public class HomeFragment extends Fragment implements
         LatLng latlocal = new LatLng(modelo.latitud, modelo.longitud);// colombia
 
         if(listUsuario > 0) {
+
+            PolylineOptions pop;
+
+            // Initialize the SDK
+
             for (int i = 0; i < listUsuario; i++) {
                 LatLng latclient = new LatLng(modelo.listUsuario.get(i).getLatitud(), modelo.listUsuario.get(i).getLongitud());
                // double dista = CalculationByDistance(latclient,latlocal );
@@ -826,9 +876,18 @@ public class HomeFragment extends Fragment implements
                 double distance = location.distanceTo(location2);
 
 
+                pop= new PolylineOptions();
+                pop.width(5).color(Color.BLUE).geodesic(true);;
+                pop.add(latlocal);
+                pop.add(latclient);
+                modelo.mMap.addPolyline(pop);
+
                 modelo.listUsuario.get(i).setDistancia(distance);
                 createMarker( modelo.listUsuario.get(i).getLatitud(), modelo.listUsuario.get(i).getLongitud(), modelo.listUsuario.get(i).getNombre(),modelo.mMap);
             }
+
+
+
         }
     }
 
@@ -987,6 +1046,7 @@ public class HomeFragment extends Fragment implements
 
     public void dialogmap(String direccion){
 
+        modelo.modal = "searchdir";
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.dialog_map, null);
 
@@ -1021,7 +1081,7 @@ public class HomeFragment extends Fragment implements
 
 
         //atributos modal - popup
-        final SearchView search2 = (SearchView) mView.findViewById(R.id.search_view);
+        search2 = (SearchView) mView.findViewById(R.id.search_view);
 
         Button btnfavoritos = (Button) mView.findViewById(R.id.btnfavoritos);
         Button cerrar = (Button) mView.findViewById(R.id.cerrar);
@@ -1031,8 +1091,6 @@ public class HomeFragment extends Fragment implements
         LinearLayout layaut2 = mView.findViewById(R.id.layaut2);
 
 
-
-
         //click tap
         tabs.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -1040,13 +1098,19 @@ public class HomeFragment extends Fragment implements
                 Log.i("AndroidTabsDemo", "Pulsada pestaña: " + tabId);
                 Toast.makeText(getActivity(),"Pulsada pestaña: " + tabId, Toast.LENGTH_SHORT).show();
 
+                if(tabId.equals("mitab1")){
+                    modelo.modal = "searchdir";
+                    search2.setQuery("",false);
+                }
                 if(tabId.equals("mitab3")){
+                    search2.setQuery("",false);
                     modelo.modal= "favoritos";
                     comandoFavoritos.getListFavorito();
 
                 }
 
                 else if(tabId.equals("mitab2")){
+                    search2.setQuery("",false);
                     modelo.modal= "servicios";
                     comandoSercicio.getListServicio();
 
@@ -1147,7 +1211,22 @@ public class HomeFragment extends Fragment implements
                @Override
                public boolean onQueryTextSubmit(String queryString) {
 
-                   if(modelo.modal.equals("servicios")){
+                   if(modelo.modal.equals("searchdir")){
+                       //search gogole map
+                       // Initialize the SDK
+                      if(!search2.getQuery().toString().equals("")){
+                          Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+
+                          search2.setFocusable(false);
+
+                          List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+                          Intent intent = new Autocomplete.IntentBuilder(
+                                  AutocompleteActivityMode.FULLSCREEN, fields)
+                                  .build(getActivity());
+                          startActivityForResult(intent, 110);
+                      }
+                   }
+                   else if(modelo.modal.equals("servicios")){
                        servicioAdapter.getFilter().filter(queryString);
                    }else{
                        favortoAdapter.getFilter().filter(queryString);
@@ -1158,7 +1237,23 @@ public class HomeFragment extends Fragment implements
 
                @Override
                public boolean onQueryTextChange(String queryString) {
-                   if(modelo.modal.equals("servicios")){
+
+                   if(modelo.modal.equals("searchdir")){
+                       //search gogole map
+                       // Initialize the SDK
+                       if(!search2.getQuery().toString().equals("")){
+                           Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+
+                           search2.setFocusable(false);
+
+                           List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG, Place.Field.ADDRESS);
+                           Intent intent = new Autocomplete.IntentBuilder(
+                                   AutocompleteActivityMode.FULLSCREEN, fields)
+                                   .build(getActivity());
+                           startActivityForResult(intent, 110);
+                       }
+                   }
+                   else if(modelo.modal.equals("servicios")){
                        servicioAdapter.getFilter().filter(queryString);
                    }else{
                        favortoAdapter.getFilter().filter(queryString);
@@ -1166,7 +1261,6 @@ public class HomeFragment extends Fragment implements
                    return false;
                }
            });
-
 
     }
 
@@ -1464,5 +1558,134 @@ public class HomeFragment extends Fragment implements
     }
 
 
+    /*@Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == 2) {
 
+            //wen succes
+            //Initialize plac3
+            Place place = Autocomplete.getPlaceFromIntent(data);
+            //set adres editTest
+            search.setText(place.getAddress());
+            //set location name
+            String name = String.format("Locaty Name : %s", place.getName());
+            // set Lat Long
+            LatLng search = place.getLatLng();
+        }
+        else if(resultCode == AutocompleteActivity.RESULT_CANCELED){
+                //when error
+                //initialize status
+            Status  status = Autocomplete.getStatusFromIntent(data);
+            //display toas
+            Toast.makeText(getActivity(), status.getStatusMessage(), Toast.LENGTH_LONG).show();
+
+        }
+    }*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                if (place.getLatLng() != null) {
+                    // reverse geoCoding to get Street Address, city,state and postal code
+
+                    Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                    try {
+                        System.out.println("------addressList-----" + place.getAddress() + "             " + place.getName());
+                        List<Address> addressList = geocoder.getFromLocation(
+                                place.getLatLng().latitude, place.getLatLng().longitude, 1);
+                        System.out.println("------addressList-----" + addressList);
+                        if (addressList != null && addressList.size() > 0) {
+                            Address address = addressList.get(0);
+                            System.out.println("------address-----" + address);
+                            search.setText(address.getAddressLine(0));
+                            String featureName = "";
+                            if (address.getFeatureName()!=null){
+                                featureName = address.getFeatureName();
+                            }
+                            String throughFare = "";
+                            if (address.getThoroughfare()!=null){
+                                throughFare = address.getThoroughfare();
+                            }
+                            String streetAddress = featureName + " " + throughFare;
+                            search.setText(streetAddress);
+                            if (address.getLocality() != null) {
+                                search.setText(address.getLocality());
+                            } else {
+                               // callGeoCodeAPI(place.getLatLng().latitude + "," + place.getLatLng().longitude);
+                            }
+                            //stateEd.setText(address.getAdminArea());
+                            //postCodeEd.setText(address.getPostalCode());
+                            //countryEd.setText(address.getCountryName());
+                        }
+
+                    } catch (IOException e) {
+                        Log.e("TAG", "Unable connect to Geocoder", e);
+                    }
+
+                }
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Status status = Autocomplete.getStatusFromIntent(data);
+                if (getActivity() != null) {
+                   Toast.makeText(getActivity(), status.getStatusMessage(), Toast.LENGTH_LONG).show();
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
+
+        if (requestCode == 110) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                if (place.getLatLng() != null) {
+                    // reverse geoCoding to get Street Address, city,state and postal code
+
+                    Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                    try {
+                        System.out.println("------addressList-----" + place.getAddress() + "             " + place.getName());
+                        List<Address> addressList = geocoder.getFromLocation(
+                                place.getLatLng().latitude, place.getLatLng().longitude, 1);
+                        System.out.println("------addressList-----" + addressList);
+                        if (addressList != null && addressList.size() > 0) {
+                            Address address = addressList.get(0);
+                            System.out.println("------address-----" + address);
+                            search2.setQuery(address.getAddressLine(0),false);
+                            String featureName = "";
+                            if (address.getFeatureName()!=null){
+                                featureName = address.getFeatureName();
+                            }
+                            String throughFare = "";
+                            if (address.getThoroughfare()!=null){
+                                throughFare = address.getThoroughfare();
+                            }
+                            String streetAddress = featureName + " " + throughFare;
+                            search2.setQuery(streetAddress,false);
+                            if (address.getLocality() != null) {
+                                search2.setQuery(address.getLocality(),false);
+                            } else {
+                                // callGeoCodeAPI(place.getLatLng().latitude + "," + place.getLatLng().longitude);
+                            }
+                            //stateEd.setText(address.getAdminArea());
+                            //postCodeEd.setText(address.getPostalCode());
+                            //countryEd.setText(address.getCountryName());
+                        }
+
+                    } catch (IOException e) {
+                        Log.e("TAG", "Unable connect to Geocoder", e);
+                    }
+
+                }
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Status status = Autocomplete.getStatusFromIntent(data);
+                if (getActivity() != null) {
+                    search2.setQuery("",false);
+                    Toast.makeText(getActivity(), status.getStatusMessage(), Toast.LENGTH_LONG).show();
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
+    }
 }
