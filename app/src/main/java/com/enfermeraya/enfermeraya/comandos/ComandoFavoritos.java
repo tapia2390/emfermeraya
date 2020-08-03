@@ -124,6 +124,9 @@ public class ComandoFavoritos {
                     fav.setEstado(snFav.child("estado").getValue().toString());
                     fav.setTimestamp(timestamp);
 
+                    if (snFav.child("uidCliente").exists()) {
+                        fav.setUidCliente(snFav.child("uidCliente").getValue().toString());
+                    }
 
                     modelo.listFavoritos.add(fav);
 

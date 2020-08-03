@@ -53,6 +53,7 @@ import com.enfermeraya.enfermeraya.clases.Usuario;
 import com.enfermeraya.enfermeraya.comandos.ComandoEnfermeroPrestadorSer;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
+import com.enfermeraya.enfermeraya.comandos.ComandoServicio;
 import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
 import com.enfermeraya.enfermeraya.dapter.ServicioAdapter;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
@@ -124,7 +125,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class HomeFragment extends Fragment implements
         OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener
-        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener {
+        , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener,
+        DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener
+         {
 
     Modelo modelo = Modelo.getInstance();
     Geocoder geocoder = null;

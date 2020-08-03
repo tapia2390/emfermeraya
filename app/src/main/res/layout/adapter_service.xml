@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="75sp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:layout_marginBottom="15sp"
     android:background="@drawable/blanco_square_style"
     android:padding="10sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center|right"
+        android:gravity="center|right">
+
+        <ImageView
+            android:id="@+id/image_fav"
+            android:layout_width="18sp"
+            android:layout_height="15sp"
+            android:background="@drawable/start"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -15,7 +31,7 @@
 
        <LinearLayout
            android:id="@+id/layuotdata"
-           android:layout_width="250sp"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="vertical">
 
@@ -23,19 +39,21 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:orientation="horizontal">
+
+
              <TextView
-                 android:id="@+id/text_nombre"
+                 android:id="@+id/text_dir"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:layout_gravity="center|left"
-                 android:textSize="16sp"
+                 android:layout_gravity="left"
+                 android:textSize="14sp"
                  android:textColor="@color/colorNegro"
-                 android:text=""
-                 android:textStyle="bold"
-                 android:gravity="center|left"
+                 android:text="ca.47 # 27-43"
+                 android:gravity="left"
                  android:layout_marginLeft="2sp"
-                 android:layout_weight="4"
-                 />
+                 android:textStyle="bold"
+                 android:layout_weight="1"/>
+
 
              <TextView
                  android:id="@+id/text_fecha"
@@ -44,42 +62,76 @@
                  android:layout_gravity="center|left"
                  android:textSize="16sp"
                  android:textColor="@color/colorNegro"
-                 android:text=""
+                 android:text="24-07-2020"
                  android:gravity="center|right"
                  android:layout_marginLeft="2sp"
-                 android:layout_weight="6"
+                 android:layout_weight="2"
                  />
+
+
+
          </LinearLayout>
 
 
-           <TextView
-               android:id="@+id/text_dir"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center|left"
-               android:textSize="14sp"
-               android:textColor="@color/colorNegro"
-               android:text=""
-               android:gravity="center|left"
-               android:layout_marginLeft="2sp"
-               />
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             >
+
+             <TextView
+                 android:id="@+id/text_nombre"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center|left"
+                 android:textSize="16sp"
+                 android:textColor="@color/colorNegro"
+                 android:text="aaaaaaaaaaaaaaaaaaaaa"
+                 android:gravity="center|left"
+                 android:layout_marginLeft="2sp"
+
+                 />
+
+             <TextView
+                 android:id="@+id/text_estado"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center|left"
+                 android:textSize="14sp"
+                 android:textColor="@color/colorNegro"
+                 android:text="Pendiente"
+                 android:gravity="center|right"
+                 android:layout_marginLeft="2sp"
+                 />
+
+
+             <LinearLayout
+                 android:id="@+id/layoutcalificacion"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+                 android:layout_weight="1"
+                 android:visibility="gone">
+
+                 <Button
+                     android:id="@+id/btn_calificar"
+                     android:layout_width="70sp"
+                     android:layout_height="28sp"
+                     android:layout_gravity="center|right"
+                     android:textSize="9sp"
+                     android:textColor="@color/colorNegro"
+                     android:text="Calificar"
+                     android:gravity="center"
+                     android:layout_marginLeft="2sp"
+                     android:background="@drawable/button"
+                     />
+
+             </LinearLayout>
+
+         </LinearLayout>
        </LinearLayout>
 
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_gravity="center|right"
-          android:gravity="center|right">
 
-          <ImageView
-              android:id="@+id/image_fav"
-              android:layout_width="18sp"
-              android:layout_height="15sp"
-              android:background="@drawable/start"
-              android:layout_gravity="right" />
-
-      </LinearLayout>
 
    </LinearLayout>
 

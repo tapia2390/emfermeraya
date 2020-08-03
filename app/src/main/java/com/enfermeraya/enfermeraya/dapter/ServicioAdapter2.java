@@ -7,11 +7,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,9 +58,29 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         String direccion = filteredNameList.get(position).getDireccion();
         String titlo = filteredNameList.get(position).getInformacion();
         String fecha = filteredNameList.get(position).getFecha();
+        String estado = filteredNameList.get(position).getEstado();
         holder.text_dir.setText(direccion);
         holder.text_nombre.setText(titlo);
         holder.text_fecha.setText(fecha);
+
+        if(estado.equals("false")){
+            holder.text_estado.setText("Pendiente");
+            holder.layoutcalificacion.setVisibility(View.GONE);
+        }
+        else if(estado.equals("Aceptado")){
+            holder.text_estado.setText("Aceptado");
+        }
+        else if(estado.equals("Terminado")){
+            holder.text_estado.setText("Terminado");
+            holder.text_estado.setVisibility(View.GONE);
+            holder.layoutcalificacion.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.text_estado.setText("Finalizado");
+            holder.text_estado.setVisibility(View.VISIBLE);
+            holder.layoutcalificacion.setVisibility(View.GONE);
+        }
+
 
 
         if(filteredNameList.get(position).getEstado().equals("true")){
@@ -66,6 +88,42 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         }else{
             holder.image_fav.setBackgroundResource(R.drawable.start2);
         }
+
+
+        ///modal calificiacion
+        holder.btn_calificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    View layout= null;
+                    LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    layout = inflater.inflate(R.layout.dialog_calificacion, null);
+                    final RatingBar ratingBar = (RatingBar)layout.findViewById(R.id.ratingBar);
+                    builder.setTitle("Calificacion");
+                    builder.setMessage("Gracias por calificarnos, nos ayudará a brindarle el mejor servicio. .");
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Float value = ratingBar.getRating();
+                            Toast.makeText(context,"su calificación es : "+value,Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    builder.setNegativeButton("No,Gracias", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+                    builder.setView(layout);
+                    builder.show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
     }
@@ -148,7 +206,10 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         private TextView text_dir;
         private TextView text_nombre;
         private TextView text_fecha;
+        private TextView text_estado;
         private LinearLayout layuotdata;
+        private LinearLayout layoutcalificacion;
+        private Button btn_calificar;
 
         ServicioViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -157,6 +218,10 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
             text_nombre = itemView.findViewById(R.id.text_nombre);
             text_fecha = itemView.findViewById(R.id.text_fecha);
             layuotdata = itemView.findViewById(R.id.layuotdata);
+            text_estado = itemView.findViewById(R.id.text_estado);
+            layoutcalificacion = itemView.findViewById(R.id.layoutcalificacion);
+            btn_calificar = itemView.findViewById(R.id.btn_calificar);
+
         }
     }
 

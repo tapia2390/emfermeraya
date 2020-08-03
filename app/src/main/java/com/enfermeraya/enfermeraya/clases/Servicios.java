@@ -16,11 +16,13 @@ public class Servicios {
     String estado;
     long timestamp;
     String horaServicio;
+    String uidCliente;
+    double calificaion;
 
     public Servicios(){}
 
 
-    public Servicios(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp, String horaServicio) {
+    public Servicios(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp, String horaServicio, String uidCliente, double calificaion) {
         this.key = key;
         this.nombre = nombre;
         this.tipoServicio = tipoServicio;
@@ -36,6 +38,8 @@ public class Servicios {
         this.estado = estado;
         this.timestamp = timestamp;
         this.horaServicio = horaServicio;
+        this.uidCliente = uidCliente;
+        this.calificaion = calificaion;
     }
 
     public String getKey() {
@@ -156,5 +160,21 @@ public class Servicios {
 
     public void setHoraServicio(String horaServicio) {
         this.horaServicio = horaServicio;
+    }
+
+    public String getUidCliente() {
+        return uidCliente;
+    }
+
+    public void setUidCliente(String uidCliente) {
+        this.uidCliente = uidCliente;
+    }
+
+    public double getCalificaion() {
+        return calificaion;
+    }
+
+    public void setCalificaion(double calificaion) {
+        this.calificaion = calificaion;
     }
 }

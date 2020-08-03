@@ -13,20 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ea8fbd-cb58-490d-aa94-8ed5a49b6279" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_libraries_places_places_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileContent/fileContent.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoServicio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_calificacion.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -37,16 +25,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_0_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Favoritos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Favoritos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Servicios.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Servicios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/adapter_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/adapter_service.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +125,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FirebaseGoogleSignInAndroid-master/FirebaseGoogleSignInAndroid-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="memory.settings.postsync.last.time.stamp" value="1595029410625" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
@@ -148,11 +137,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\res\layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/notificacion" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.enfermeraya.enfermeraya.ui.home" />
@@ -365,9 +354,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="200" y="122" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1595632682032" />
-    <state x="453" y="100" key="#com.intellij.ide.util.MemberChooser" timestamp="1595029976455">
-      <screen x="0" y="23" width="1280" height="709" />
+    <state x="483" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1596054093200">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="483" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1596054093200" />
     <state x="453" y="100" key="#com.intellij.ide.util.MemberChooser/0.23.1280.709@0.23.1280.709" timestamp="1595029976455" />
     <state width="394" height="438" key="DebuggerActiveHint" timestamp="1595651029230">
       <screen x="0" y="0" width="1366" height="728" />
@@ -377,51 +367,51 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="145" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1595721524084" />
-    <state width="1306" height="175" key="GridCell.Tab.0.bottom" timestamp="1595735815700">
+    <state width="1306" height="198" key="GridCell.Tab.0.bottom" timestamp="1596036017041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="175" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595735815700" />
-    <state width="1306" height="175" key="GridCell.Tab.0.center" timestamp="1595735815700">
+    <state width="1306" height="198" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596036017041" />
+    <state width="1306" height="198" key="GridCell.Tab.0.center" timestamp="1596036017040">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="175" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1595735815700" />
-    <state width="1306" height="175" key="GridCell.Tab.0.left" timestamp="1595735815700">
+    <state width="1306" height="198" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596036017040" />
+    <state width="1306" height="198" key="GridCell.Tab.0.left" timestamp="1596036017040">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="175" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1595735815700" />
-    <state width="1306" height="175" key="GridCell.Tab.0.right" timestamp="1595735815700">
+    <state width="1306" height="198" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596036017040" />
+    <state width="1306" height="198" key="GridCell.Tab.0.right" timestamp="1596036017040">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="175" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1595735815700" />
-    <state width="1306" height="201" key="GridCell.Tab.1.bottom" timestamp="1595726806389">
+    <state width="1306" height="198" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596036017040" />
+    <state width="1306" height="198" key="GridCell.Tab.1.bottom" timestamp="1596036017041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="201" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1595726806389" />
-    <state width="1306" height="201" key="GridCell.Tab.1.center" timestamp="1595726806389">
+    <state width="1306" height="198" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596036017041" />
+    <state width="1306" height="198" key="GridCell.Tab.1.center" timestamp="1596036017041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="201" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1595726806389" />
-    <state width="1306" height="201" key="GridCell.Tab.1.left" timestamp="1595726806389">
+    <state width="1306" height="198" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1596036017041" />
+    <state width="1306" height="198" key="GridCell.Tab.1.left" timestamp="1596036017041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="201" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1595726806389" />
-    <state width="1306" height="201" key="GridCell.Tab.1.right" timestamp="1595726806389">
+    <state width="1306" height="198" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1596036017041" />
+    <state width="1306" height="198" key="GridCell.Tab.1.right" timestamp="1596036017041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1306" height="201" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1595726806389" />
-    <state x="318" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1595628574762">
+    <state width="1306" height="198" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1596036017041" />
+    <state x="318" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1596249563706">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="318" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1595628574762" />
+    <state x="318" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1596249563706" />
     <state x="298" y="210" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1595079972531" />
-    <state x="379" y="97" width="689" height="534" key="find.popup" timestamp="1595718467647">
+    <state x="379" y="97" width="689" height="534" key="find.popup" timestamp="1595989188977">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="97" width="689" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1595718467647" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1595735859432">
+    <state x="379" y="97" width="689" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1595989188977" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1596054001383">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1595735859432" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1596054001383" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,7 +613,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>643</line>
+          <line>646</line>
           <option name="timeStamp" value="401" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -633,12 +623,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>314</line>
+          <line>317</line>
           <option name="timeStamp" value="444" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>320</line>
+          <line>323</line>
           <option name="timeStamp" value="445" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -663,38 +653,48 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>291</line>
+          <line>294</line>
           <option name="timeStamp" value="460" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1563</line>
+          <line>1566</line>
           <option name="timeStamp" value="462" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1578</line>
+          <line>1581</line>
           <option name="timeStamp" value="463" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1567</line>
+          <line>1570</line>
           <option name="timeStamp" value="464" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1569</line>
+          <line>1572</line>
           <option name="timeStamp" value="465" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1631</line>
+          <line>1634</line>
           <option name="timeStamp" value="466" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1240</line>
+          <line>1243</line>
           <option name="timeStamp" value="467" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter2.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="468" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/dapter/ServicioAdapter2.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="469" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -83,9 +83,6 @@ public class ComandoSercicio {
         favorito.put("timestamp", ServerValue.TIMESTAMP);
 
 
-
-
-
         ref.setValue(favorito, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -133,12 +130,14 @@ public class ComandoSercicio {
                 ser.setDireccion(snFav.child("direccion").getValue().toString());
                 ser.setInformacion(snFav.child("informacion").getValue().toString());
                 ser.setObsciones(snFav.child("obsciones").getValue().toString());
-
-
                 ser.setTitulo(snFav.child("titulo").getValue().toString());
                 ser.setEstado(snFav.child("estado").getValue().toString());
-                modelo.listServicios.add(ser);
 
+                if (snFav.child("uidCliente").exists()) {
+                    ser.setUidCliente(snFav.child("uidCliente").getValue().toString());
+                }
+
+                modelo.listServicios.add(ser);
                 mListener.getServicio();
 
             }
