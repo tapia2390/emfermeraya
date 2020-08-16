@@ -21,6 +21,11 @@
             app:destination="@id/nav_mis_servicios" />
 
         <action
+            android:name="com.enfermeraya.enfermeraya.ui.Historial.HistorialFragment"
+            android:id="@+id/action_nav_home_to_nav_historial"
+            app:destination="@id/nav_historial" />
+
+        <action
             android:name="com.enfermeraya.enfermeraya.ui.Pagos.PagosFragment"
             android:id="@+id/action_nav_home_to_nav_pagos"
             app:destination="@id/nav_pagos" />
@@ -53,6 +58,12 @@
         android:label="@string/menu_mis_servicios"
         tools:layout="@layout/fragment_mis_servicios" />
 
+
+    <fragment
+        android:id="@+id/nav_historial"
+        android:name="com.enfermeraya.enfermeraya.ui.Historial.HistorialFragment"
+        android:label="@string/menu_historial"
+        tools:layout="@layout/fragment_historial" />
 
     <fragment
         android:id="@+id/nav_pagos"

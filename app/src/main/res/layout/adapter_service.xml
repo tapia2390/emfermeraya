@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:layout_marginBottom="15sp"
@@ -92,39 +93,78 @@
 
                  />
 
-             <TextView
-                 android:id="@+id/text_estado"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="center|left"
-                 android:textSize="14sp"
-                 android:textColor="@color/colorNegro"
-                 android:text="Pendiente"
-                 android:gravity="center|right"
-                 android:layout_marginLeft="2sp"
-                 />
-
 
              <LinearLayout
-                 android:id="@+id/layoutcalificacion"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:orientation="vertical"
-                 android:layout_weight="1"
-                 android:visibility="gone">
+                 android:orientation="horizontal">
 
                  <Button
-                     android:id="@+id/btn_calificar"
-                     android:layout_width="70sp"
-                     android:layout_height="28sp"
-                     android:layout_gravity="center|right"
-                     android:textSize="9sp"
-                     android:textColor="@color/colorNegro"
-                     android:text="Calificar"
-                     android:gravity="center"
-                     android:layout_marginLeft="2sp"
-                     android:background="@drawable/button"
-                     />
+                     android:id="@+id/text_estado"
+                     android:layout_width="wrap_content"
+                     android:layout_height="25sp"
+                     android:text="Detalle"
+                     android:textSize="12sp"
+                     android:textColor="@color/colorBlanco"
+                     android:background="@drawable/fondo_post_border_style"
+                     android:layout_gravity="right"
+                     android:paddingRight="1sp"/>
+
+                 <LinearLayout
+                     android:id="@+id/layoutcalificacion"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:layout_weight="1"
+                     android:visibility="visible">
+
+                     <Button
+                         android:id="@+id/btn_calificar"
+                         android:layout_width="wrap_content"
+                         android:layout_height="25sp"
+                         android:layout_gravity="center|right"
+                         android:textSize="9sp"
+                         android:textColor="@color/colorBlanco"
+                         android:text="Calificar"
+                         android:gravity="center"
+                         android:layout_marginLeft="2sp"
+                         android:background="@drawable/fondo_post_border_style"
+                        android:visibility="gone" />
+
+
+
+                     <LinearLayout
+                         android:id="@+id/start"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_gravity="right|center"
+                         android:gravity="right|center"
+                         android:visibility="gone">
+
+                         <TextView
+                             android:id="@+id/txt_calificacion"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:paddingTop="@dimen/nav_header_vertical_spacing"
+                             android:text="3.5"
+                             android:textColor="@color/colorNegro"
+                             android:textSize="16sp"
+                             android:layout_gravity="center"
+                             android:gravity="center"
+                             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                         <ImageView
+                             android:id="@+id/imageView2"
+                             android:layout_width="15sp"
+                             android:layout_height="15sp"
+                             android:contentDescription="@string/nav_header_desc"
+                             app:srcCompat="@drawable/start"
+                             android:layout_gravity="center"
+                             android:gravity="center"/>
+                     </LinearLayout>
+                 </LinearLayout>
+
 
              </LinearLayout>
 

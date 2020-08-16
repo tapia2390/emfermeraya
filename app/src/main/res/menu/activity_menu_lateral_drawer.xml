@@ -31,6 +31,10 @@
             android:icon="@drawable/img_legal"
             android:title="Mis servicios" />
 
+        <item
+            android:id="@+id/nav_historial"
+            android:icon="@drawable/img_legal"
+            android:title="Historial" />
 
         <item
             android:id="@+id/nav_pagos"

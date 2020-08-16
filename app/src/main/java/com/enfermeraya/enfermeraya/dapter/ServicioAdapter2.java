@@ -3,6 +3,7 @@ package com.enfermeraya.enfermeraya.dapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,17 +24,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.comandos.ComandoHistorial;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
+import com.enfermeraya.enfermeraya.views.DetalleHistorial;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.ServicioViewHolder> implements Filterable, ComandoSercicio.OnSercicioChangeListener {
+public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.ServicioViewHolder> implements Filterable, ComandoSercicio.OnSercicioChangeListener, ComandoHistorial.OnHistorialChangeListener {
 
     private Context context;
     private List<Servicios> nameList;
     private List<Servicios> filteredNameList;
     ComandoSercicio comandoSercicio;
+    ComandoHistorial comandoHistorial;
     Modelo modelo = Modelo.getInstance();
 
     public ServicioAdapter2(Context context, List<Servicios> nameList) {
@@ -43,6 +47,7 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         this.filteredNameList = nameList;
 
         comandoSercicio = new ComandoSercicio(this);
+        comandoHistorial =  new ComandoHistorial(this);
 
     }
 
@@ -59,27 +64,22 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         String titlo = filteredNameList.get(position).getInformacion();
         String fecha = filteredNameList.get(position).getFecha();
         String estado = filteredNameList.get(position).getEstado();
+        double calificacion = filteredNameList.get(position).getCalificaion();
         holder.text_dir.setText(direccion);
         holder.text_nombre.setText(titlo);
         holder.text_fecha.setText(fecha);
 
-        if(estado.equals("false")){
-            holder.text_estado.setText("Pendiente");
-            holder.layoutcalificacion.setVisibility(View.GONE);
-        }
-        else if(estado.equals("Aceptado")){
-            holder.text_estado.setText("Aceptado");
-        }
-        else if(estado.equals("Terminado")){
-            holder.text_estado.setText("Terminado");
-            holder.text_estado.setVisibility(View.GONE);
-            holder.layoutcalificacion.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.text_estado.setText("Finalizado");
-            holder.text_estado.setVisibility(View.VISIBLE);
-            holder.layoutcalificacion.setVisibility(View.GONE);
-        }
+
+        holder.text_estado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modelo.servicios = filteredNameList.get(position);
+                Intent i = new Intent(context, DetalleHistorial.class);
+                context.startActivity(i);
+            }
+        });
+
+
 
 
 
@@ -105,8 +105,18 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
                     builder.setMessage("Gracias por calificarnos, nos ayudará a brindarle el mejor servicio. .");
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+
+
+
+
                             Float value = ratingBar.getRating();
-                            Toast.makeText(context,"su calificación es : "+value,Toast.LENGTH_LONG).show();
+                            double califi = Double.parseDouble(value.toString());
+                            Toast.makeText(context,"su calificación es : "+califi,Toast.LENGTH_LONG).show();
+                            comandoHistorial.calificar(filteredNameList.get(position).getKey(),califi);
+                            holder.text_estado.setVisibility(View.GONE);
+                            holder.btn_calificar.setVisibility(View.GONE);
+                            holder.start.setVisibility(View.VISIBLE);
+                            holder.txt_calificacion.setText(""+califi);
                         }
                     });
                     builder.setNegativeButton("No,Gracias", new DialogInterface.OnClickListener() {
@@ -200,16 +210,28 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         comandoSercicio.getListServicio();
     }
 
+    @Override
+    public void errorHistorial() {
+
+    }
+
+    @Override
+    public void okHistorial() {
+
+    }
+
     class ServicioViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView image_fav;
         private TextView text_dir;
         private TextView text_nombre;
         private TextView text_fecha;
-        private TextView text_estado;
+        private Button text_estado;
         private LinearLayout layuotdata;
         private LinearLayout layoutcalificacion;
         private Button btn_calificar;
+        private LinearLayout start;
+        private TextView txt_calificacion;
 
         ServicioViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -221,6 +243,8 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
             text_estado = itemView.findViewById(R.id.text_estado);
             layoutcalificacion = itemView.findViewById(R.id.layoutcalificacion);
             btn_calificar = itemView.findViewById(R.id.btn_calificar);
+            start = itemView.findViewById(R.id.start);
+            txt_calificacion = itemView.findViewById(R.id.txt_calificacion);
 
         }
     }
