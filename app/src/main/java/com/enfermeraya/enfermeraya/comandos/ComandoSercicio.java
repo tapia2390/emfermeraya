@@ -55,7 +55,7 @@ public class ComandoSercicio {
     }
 
     public  void registarServicio(String tipoServicio,String fecha,String horaServicio,
-                                  String direccion, String informacion, String obsciones, double lat , double longi, String titulo){
+                                  String direccion, String informacion, String obsciones, double lat , double longi, String titulo, String nombreEnfermero){
         //creating a new user
         //creating a new user
 
@@ -80,6 +80,7 @@ public class ComandoSercicio {
         favorito.put("estado", "false");
         favorito.put("uid",modelo.uid);
         favorito.put("token",modelo.token);
+        favorito.put("nombreCliente",nombreEnfermero);
         favorito.put("timestamp", ServerValue.TIMESTAMP);
 
 
@@ -136,6 +137,19 @@ public class ComandoSercicio {
                 if (snFav.child("uidCliente").exists()) {
                     ser.setUidCliente(snFav.child("uidCliente").getValue().toString());
                 }
+
+                if(snFav.child("nombreEnfermero").exists()){
+                    ser.setNameEmfermero(snFav.child("nombreEnfermero").getValue().toString());
+                }else{
+                    ser.setNameEmfermero("");
+                }
+
+                if(snFav.child("nombreCliente").exists()){
+                    ser.setNameCliente(snFav.child("nombreCliente").getValue().toString());
+                }else{
+                    ser.setNameCliente("");
+                }
+
 
                 modelo.listServicios.add(ser);
                 mListener.getServicio();

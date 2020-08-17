@@ -128,6 +128,19 @@ public class ComandoFavoritos {
                         fav.setUidCliente(snFav.child("uidCliente").getValue().toString());
                     }
 
+                    if(snFav.child("nombreEnfermero").exists()){
+                        fav.setNameEmfermero(snFav.child("nombreEnfermero").getValue().toString());
+                    }else{
+                        fav.setNameEmfermero("");
+                    }
+
+                    if(snFav.child("nombreCliente").exists()){
+                        fav.setNameCliente(snFav.child("nombreCliente").getValue().toString());
+                    }else{
+                        fav.setNameCliente("");
+                    }
+
+
                     modelo.listFavoritos.add(fav);
 
                 }

@@ -15,16 +15,17 @@ import com.enfermeraya.enfermeraya.Splash;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+
 public class MyFireBaseMessagingService extends FirebaseMessagingService {
     String title,message,otro;
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-            super.onMessageReceived(remoteMessage);
+        super.onMessageReceived(remoteMessage);
 
-         otro = remoteMessage.getFrom();
+        otro = remoteMessage.getFrom();
         title=remoteMessage.getData().get("Title");
         message=remoteMessage.getData().get("Message");
-            ///intent
+        ///intent
 
         Intent i = new Intent(this, Splash.class);
         i.putExtra("item_id", title);

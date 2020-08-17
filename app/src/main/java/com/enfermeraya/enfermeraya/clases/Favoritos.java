@@ -18,11 +18,13 @@ public class Favoritos {
     String horaServicio;
     String uidCliente;
     double calificaion;
+    String nameCliente;
+    String nameEmfermero;
 
     public Favoritos(){}
 
 
-    public Favoritos(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp, String horaServicio,String uidCliente, double calificaion) {
+    public Favoritos(String key, String nombre, String tipoServicio, String fecha, String horaInicio, String horaFin, String informacion, String obsciones, String direccion, double latitud, double longitud, String titulo, String estado, long timestamp, String horaServicio,String uidCliente, double calificaion, String nameCliente, String nameEmfermero) {
         this.key = key;
         this.nombre = nombre;
         this.tipoServicio = tipoServicio;
@@ -40,6 +42,9 @@ public class Favoritos {
         this.horaServicio = horaServicio;
         this.uidCliente = uidCliente;
         this.calificaion = calificaion;
+        this.uidCliente = uidCliente;
+        this.nameCliente = nameCliente;
+        this.nameEmfermero =  nameEmfermero;
     }
 
     public String getKey() {
@@ -176,5 +181,21 @@ public class Favoritos {
 
     public void setCalificaion(double calificaion) {
         this.calificaion = calificaion;
+    }
+
+    public String getNameCliente() {
+        return nameCliente;
+    }
+
+    public void setNameCliente(String nameCliente) {
+        this.nameCliente = nameCliente;
+    }
+
+    public String getNameEmfermero() {
+        return nameEmfermero;
+    }
+
+    public void setNameEmfermero(String nameEmfermero) {
+        this.nameEmfermero = nameEmfermero;
     }
 }

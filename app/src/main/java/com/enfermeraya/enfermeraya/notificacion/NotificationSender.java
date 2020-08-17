@@ -9,6 +9,5 @@ public class NotificationSender {
         this.to = to;
     }
 
-    public NotificationSender() {
-    }
+
 }

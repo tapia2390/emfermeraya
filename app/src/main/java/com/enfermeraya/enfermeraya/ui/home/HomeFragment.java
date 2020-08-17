@@ -313,31 +313,32 @@ public class HomeFragment extends Fragment implements
 
 
 
-    public void sendNotifications(String usertoken, String title, String message) {
-        Data data;
-        data = new Data(title, message);
-        NotificationSender sender = new NotificationSender(data, usertoken);
-        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
-            @Override
-            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                if (response.code() == 200) {
-                    if (response.body().success != 1) {
-                        Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_LONG);
-                    }else{
-                        Toast.makeText(getActivity(), "Servicio solicitado ", Toast.LENGTH_LONG);
-                    }
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Error code" + response.code(), Toast.LENGTH_SHORT);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<MyResponse> call, Throwable t) {
+             //puch
+             public void sendNotifications(String usertoken, String title, String message) {
+                 Data data = new Data(title, message);
+                 NotificationSender sender = new NotificationSender(data, usertoken);
+                 apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+                     @Override
+                     public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                         if (response.code() == 200) {
+                             if (response.body().success != 1) {
+                                 Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_LONG).show();
+                             }else{
+                                 Toast.makeText(getActivity(), "servicio aceptado ", Toast.LENGTH_LONG).show();
+                             }
+                         }
+                         else{
+                             Toast.makeText(getActivity(), "Error code" + response.code(), Toast.LENGTH_SHORT).show();
+                         }
+                     }
 
-            }
-        });
-    }
+                     @Override
+                     public void onFailure(Call<MyResponse> call, Throwable t) {
+
+                     }
+                 });
+             }
 
     public void notificacionEspecifico() {
 
@@ -361,7 +362,7 @@ public class HomeFragment extends Fragment implements
                 public Map<String, String> getHeaders() {
                     Map<String, String> header = new HashMap<>();
                     header.put("Content-Type", "application/json");
-                    header.put("Authorization", "key=AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
+                    header.put("Authorization", "AAAAjam3JLE:APA91bGNpDYH4v7oL2Ik8plXaKi60l8pyuWucBoAxmjZ0-TZlWSamGvF5r6Sjg3snoPNlSd7ugQtlK18-Rbzs5ISoUprY_-v200uIrjdsuWyE6fBkwYyjyq_MlHreD-MwAOf6o57iCvo");
                     return header;
                 }
             };
@@ -1383,6 +1384,7 @@ public class HomeFragment extends Fragment implements
                 String direccion = txt_direccion.getText().toString();
                 String informacionAdicional = infodireccion.getText().toString();
                 String informaconObservaciones = infoobservacione.getText().toString();
+                String nombreEnfermero =  modelo.usuario.getNombre();
 
 
 
@@ -1392,25 +1394,26 @@ public class HomeFragment extends Fragment implements
                 }
 
 
-                comandoSercicio.registarServicio(tipoServicio,fecha, tiemposervicio,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"");
+                comandoSercicio.registarServicio(tipoServicio,fecha, tiemposervicio,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"",nombreEnfermero);
                 btntiposervicio.setText("Seleccione el servicio");
                 infodireccion.setText("");
                 infoobservacione.setText("");
-                dialog2.dismiss();
 
                 if (tiemposervicio.equals("ahora")){
 
                     for (int i = 0; i < modelo.listUsuario.size() ; i++) {
                         if( modelo.listUsuario.get(i).getDistancia() <= 400){
-                            sendNotifications( modelo.listUsuario.get(i).getToken(),"Servicio", informacionAdicional);
+                            sendNotifications( modelo.listUsuario.get(i).getToken(),"Servicio", "Hay un nuevo servicio");
                             break;
                         }
                     }
                 }else{
                     for (int i = 0; i < modelo.listUsuario.size() ; i++) {
-                        sendNotifications(modelo.listUsuario.get(i).getToken(), "Servicio", informacionAdicional);
+                        sendNotifications(modelo.listUsuario.get(i).getToken(), "Servicio", "Hay un nuevo servicio");
                     }
                 }
+                dialog2.dismiss();
+
             }
         });
 
