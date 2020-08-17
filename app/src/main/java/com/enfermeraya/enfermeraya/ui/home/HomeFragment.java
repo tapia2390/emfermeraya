@@ -310,11 +310,7 @@ public class HomeFragment extends Fragment implements
 
 
     }
-
-
-
-
-             //puch
+    //puch
              public void sendNotifications(String usertoken, String title, String message) {
                  Data data = new Data(title, message);
                  NotificationSender sender = new NotificationSender(data, usertoken);
@@ -335,6 +331,8 @@ public class HomeFragment extends Fragment implements
 
                      @Override
                      public void onFailure(Call<MyResponse> call, Throwable t) {
+                         String error = t.getMessage();
+                         String error2 = call.request().body().toString();
 
                      }
                  });
@@ -1399,18 +1397,23 @@ public class HomeFragment extends Fragment implements
                 infodireccion.setText("");
                 infoobservacione.setText("");
 
+                int cont = 0;
                 if (tiemposervicio.equals("ahora")){
 
                     for (int i = 0; i < modelo.listUsuario.size() ; i++) {
                         if( modelo.listUsuario.get(i).getDistancia() <= 400){
-                            sendNotifications( modelo.listUsuario.get(i).getToken(),"Servicio", "Hay un nuevo servicio");
-                            break;
+                            String token = modelo.listUsuario.get(i).getToken();
+                            sendNotifications( token,"Servicio", "Hay un nuevo servicio");
+                            cont = cont+1;
                         }
                     }
                 }else{
-                    for (int i = 0; i < modelo.listUsuario.size() ; i++) {
-                        sendNotifications(modelo.listUsuario.get(i).getToken(), "Servicio", "Hay un nuevo servicio");
+                    if(cont == 0){
+                        for (int i = 0; i < modelo.listUsuario.size() ; i++) {
+                            sendNotifications(modelo.listUsuario.get(i).getToken(), "Servicio", "Hay un nuevo servicio");
+                        }
                     }
+
                 }
                 dialog2.dismiss();
 
