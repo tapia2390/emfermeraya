@@ -826,6 +826,10 @@ public class HomeFragment extends Fragment implements
         }
 
 
+        //mostrar pines
+        //goolemapa(modelo.mMap);
+        listaMapa();
+
     }
 
 
@@ -1292,7 +1296,7 @@ public class HomeFragment extends Fragment implements
             nombre_usuario.setText(modelo.usuario.getNombre() + " " + modelo.usuario.getApellido());
         }else{
             nombre_usuario.setText(user.getDisplayName());
-            }
+        }
 
 
         //show
