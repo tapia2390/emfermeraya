@@ -540,4 +540,10 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
         return output;
     }
 
+
+    public void pagar(View v){
+
+        alerta("Tarjeta","Valide los datos de la tarje..");
+    }
+
 }

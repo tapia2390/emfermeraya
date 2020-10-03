@@ -52,6 +52,9 @@ public class ComandoObternerDatosEnfermera {
                 TipoServicio ser = new TipoServicio();
                 ser.setKey(snFav.getKey());
                 ser.setNombre(snFav.child("Nombre").getValue().toString());
+                Long precio=  (Long) snFav.child("precio").getValue();
+
+                ser.setPrecio(precio);
                 modelo.listTipoServicios.add(ser);
                 mListener.getTipoServicio();
 

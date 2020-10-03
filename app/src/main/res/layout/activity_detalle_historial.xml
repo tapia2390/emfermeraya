@@ -249,6 +249,19 @@
                 android:layout_height="15sp"/>
 
 
+
+
+            <Button
+                android:id="@+id/btn_pagar"
+                android:layout_width="match_parent"
+                android:layout_height="35sp"
+                android:textSize="12sp"
+                android:text="Pagar Servicio"
+                android:background="@drawable/fondo_post_border_style"
+                android:textColor="@color/colorBlanco"
+                android:onClick="pagar"/>
+
+
         </LinearLayout>
     </ScrollView>
 

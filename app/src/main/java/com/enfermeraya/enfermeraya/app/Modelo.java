@@ -24,6 +24,10 @@ public class Modelo {
     public double longitud;
     public GoogleMap mMap;
     public String token = "";
+    public String apikeyculqi = "sk_test_f72aa2b44a34d349";
+    public String tokenculqi ="";
+    public String qulqiId = "";
+
 
     public static Modelo getInstance() {
         return ourInstance;

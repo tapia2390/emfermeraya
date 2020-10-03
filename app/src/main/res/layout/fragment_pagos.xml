@@ -130,7 +130,7 @@
         android:id="@+id/btntarjeta"
         android:layout_width="200sp"
         android:layout_height="40sp"
-        android:text="Agregar Tarjeta"
+        android:text="Crear Tarjeta"
         android:textSize="15sp"
         android:background="@drawable/primary2_post_border_style"
         android:textColor="@color/colorBlanco"

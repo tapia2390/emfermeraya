@@ -16,10 +16,11 @@ public class Usuario {
     private double distancia;
     private double tiempo;
     private  boolean estado;
+    private  String idculqi;
 
     public Usuario(){}
 
-    public Usuario(String key, String nombre, String apellido, String celular, String correo, String pasString, String foto, String token, String direccion, double latitud, double longitud, double distancia, double tiempo, boolean estado) {
+    public Usuario(String key, String nombre, String apellido, String celular, String correo, String pasString, String foto, String token, String direccion, double latitud, double longitud, double distancia, double tiempo, boolean estado,String idculqi) {
         this.key = key;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,6 +35,7 @@ public class Usuario {
         this.distancia = distancia;
         this.tiempo = tiempo;
         this.estado = estado;
+        this.idculqi =  idculqi;
     }
 
     public String getKey() {
@@ -151,6 +153,11 @@ public class Usuario {
     }
 
 
+    public String getIdculqi() {
+        return idculqi;
+    }
 
-
+    public void setIdculqi(String idculqi) {
+        this.idculqi = idculqi;
+    }
 }

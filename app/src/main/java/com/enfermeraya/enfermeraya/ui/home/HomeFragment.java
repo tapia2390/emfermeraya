@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -1287,6 +1288,8 @@ public class HomeFragment extends Fragment implements
         txtfechafin = (Button) mView2.findViewById(R.id.txtfechafin);
         EditText infodireccion = (EditText) mView2.findViewById(R.id.infodireccion);
         EditText infoobservacione = (EditText) mView2.findViewById(R.id.infoobservacione);
+        LinearLayout layputprecio = (LinearLayout) mView2.findViewById(R.id.layputprecio);
+        TextView txtprecio = (TextView) mView2.findViewById(R.id.txtprecio);
 
 
         String direccionBusqueda = search.getText().toString();
@@ -1396,7 +1399,7 @@ public class HomeFragment extends Fragment implements
                 }
 
 
-                comandoSercicio.registarServicio(tipoServicio,fecha, tiemposervicio,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"",nombreEnfermero);
+                comandoSercicio.registarServicio(tipoServicio,fecha, tiemposervicio,direccion,informacionAdicional, informaconObservaciones,modelo.latitud, modelo.longitud,"",nombreEnfermero, txtprecio.getText().toString());
                 btntiposervicio.setText("Seleccione el servicio");
                 infodireccion.setText("");
                 infoobservacione.setText("");
@@ -1430,9 +1433,11 @@ public class HomeFragment extends Fragment implements
                 Toast.makeText(getActivity(), "1", Toast.LENGTH_LONG).show();
 
                 final CharSequence[] items = new CharSequence[modelo.listTipoServicios.size()];
+                final CharSequence[] items2 = new CharSequence[modelo.listTipoServicios.size()];
                 ArrayList<String> servicioNames  = new ArrayList<String>();
                 for (int i = 0; i < modelo.listTipoServicios.size() ; i++) {
                     items[i] = modelo.listTipoServicios.get(i).getNombre();
+                    items2[i] = modelo.listTipoServicios.get(i).getPrecio().toString();
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -1442,6 +1447,8 @@ public class HomeFragment extends Fragment implements
                         // Do something with the selection
                         Toast.makeText(getActivity(),  ":"+item + items[item], Toast.LENGTH_LONG).show();
                         btntiposervicio.setText(items[item]);
+                        layputprecio.setVisibility(View.VISIBLE);
+                        txtprecio.setText(items2[item]);
                         dialog.dismiss();
                     }
                 });

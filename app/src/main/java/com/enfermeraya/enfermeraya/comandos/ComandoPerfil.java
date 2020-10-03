@@ -91,6 +91,33 @@ public class ComandoPerfil {
 
 
 
+
+
+    public  void actualizarUsuarioidculqi(){
+
+        final DatabaseReference ref = database.getReference("usuario/"+modelo.uid+"/");//ruta path
+
+        Map<String, Object> enviarRegistroUsuario = new HashMap<String, Object>();
+
+        enviarRegistroUsuario.put("idculqi", modelo.qulqiId);
+
+        ref.updateChildren(enviarRegistroUsuario, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError == null) {
+
+                    mListener.setUsuarioListener();
+
+                } else {
+                    mListener.errorSetUsuario();
+                }
+            }
+        });
+
+
+
+    }
+
     public void getUsuario(){
         //metodo que me trae la razon social
         //se guarda en clase modelo
@@ -107,6 +134,11 @@ public class ComandoPerfil {
                 modelo.usuario.setFoto(snap.child("foto").getValue().toString());
                 modelo.usuario.setToken(snap.child("tokem").getValue().toString());
                 modelo.usuario.setDireccion(snap.child("direccion").getValue().toString());
+
+                if(snap.child("idculqi").exists()){
+                    modelo.usuario.setIdculqi(snap.child("idculqi").getValue().toString());
+
+                }
 
                 double lattitud = (double)snap.child("lat").getValue();
                 double longitud = (double)snap.child("long").getValue();

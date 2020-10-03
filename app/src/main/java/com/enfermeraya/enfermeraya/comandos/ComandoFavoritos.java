@@ -122,6 +122,7 @@ public class ComandoFavoritos {
                     fav.setObsciones(snFav.child("obsciones").getValue().toString());
                     fav.setTitulo(snFav.child("titulo").getValue().toString());
                     fav.setEstado(snFav.child("estado").getValue().toString());
+                    fav.setPrecio(snFav.child("precio").getValue().toString());
                     fav.setTimestamp(timestamp);
 
                     if (snFav.child("uidCliente").exists()) {

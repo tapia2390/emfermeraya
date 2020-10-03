@@ -8,79 +8,83 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ea8fbd-cb58-490d-aa94-8ed5a49b6279" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Utility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoTarjeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cargo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/CargoCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/ClassCargo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/ClienteCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Tarjeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/TokenCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Validation/Validation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearTarjeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearUserCulqi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/border_error.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/border_sucess.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_crear_tarjeta.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_crear_user_culqi.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_2_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_common_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_fragment_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_runtime_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_navigation_navigation_ui_2_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_3_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_17_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_core_17_4_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_19_3_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_19_3_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_20_2_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_20_2_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_16_3_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_16_3_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_20_2_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_20_2_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_maps_google_maps_services_0_14_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_maps_google_maps_services_0_14_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_3_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_3_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_3_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_3_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_wdullaer_materialdatetimepicker_4_2_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_wdullaer_materialdatetimepicker_4_2_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_4_42_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_4_42_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_4_42_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_4_42_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_4_42_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_4_42_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_share_4_42_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_share_4_42_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_crash_16_2_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_crash_16_2_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_roughike_bottom_bar_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_roughike_bottom_bar_2_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/appcompat/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/appcompat/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/constraintlayout/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/espresso/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/espresso/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/ext/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/androidx/test/ext/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/gms/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/gms/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/android/material/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/firebase/group-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/google/firebase/group-index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/app/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/app/Modelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Favoritos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Favoritos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Servicios.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Servicios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/TipoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/TipoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/clases/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoFavoritos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoObternerDatosEnfermera.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoObternerDatosEnfermera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoPerfil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoPerfil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoSercicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Pagos/PagosFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Pagos/PagosFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/DetalleHistorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/DetalleHistorial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/Registrarse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/Registrarse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detalle_historial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detalle_historial.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_service.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pagos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_pagos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="FRTBE80322853423" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="pixel_2_pie_9_0_-_api_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -129,6 +133,7 @@
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -163,7 +168,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EnfermerayaClient" />
     <property name="memory.settings.postsync.last.time.stamp" value="1595029410625" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
@@ -177,12 +182,8 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.enfermeraya.enfermeraya.ui.home" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\MOVIL\emfermeraya\app\src\main\res\layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/notificacion" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+    <key name="android.template.-1749998202">
+      <recent name="com.enfermeraya.enfermeraya" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.enfermeraya.enfermeraya.views" />
@@ -192,14 +193,24 @@
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\res\xml" />
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\java\com\enfermeraya\enfermeraya\clases" />
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\res\drawable" />
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\java\com\enfermeraya\enfermeraya\culqi" />
+      <recent name="C:\MOVIL\emfermeraya\app\src\main\res\layout" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.enfermeraya.enfermeraya.culqi.Culqi" />
       <recent name="com.enfermeraya.enfermeraya.comandos" />
       <recent name="com.enfermeraya.enfermeraya.clases" />
       <recent name="com.enfermeraya.enfermeraya.dapter" />
       <recent name="com.enfermeraya.enfermeraya.ui.Ayuda" />
-      <recent name="com.enfermeraya.enfermeraya.ui.Historial" />
     </key>
     <key name="android.template.1934315047">
+      <recent name="com.enfermeraya.enfermeraya.views" />
+    </key>
+    <key name="android.template.1864635380">
       <recent name="com.enfermeraya.enfermeraya.views" />
     </key>
   </component>
@@ -398,9 +409,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="200" y="122" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1595632682032" />
-    <state x="483" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1597617980125">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="461" y="83" key="#com.intellij.ide.util.MemberChooser" timestamp="1601349539308">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="461" y="83" key="#com.intellij.ide.util.MemberChooser/0.0.1304.768@0.0.1304.768" timestamp="1601349539308" />
     <state x="483" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597617980125" />
     <state x="483" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1597418858219" />
     <state x="453" y="100" key="#com.intellij.ide.util.MemberChooser/0.23.1280.709@0.23.1280.709" timestamp="1595029976455" />
@@ -408,82 +420,114 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="126" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1597327037198" />
-    <state x="318" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1597596766491">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="304" y="305" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1601353663823">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="304" y="305" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1304.768@0.0.1304.768" timestamp="1601353663823" />
     <state x="318" y="289" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597596766491" />
-    <state x="452" y="248" width="465" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1596944343549">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="431" y="262" width="447" height="306" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600291041261">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="431" y="262" width="447" height="306" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1304.768@0.0.1304.768" timestamp="1600291041261" />
     <state x="452" y="248" width="465" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1596944343549" />
-    <state width="396" height="438" key="DebuggerActiveHint" timestamp="1597671906751">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="487" y="214" key="AndroidCreateXmlResourceDialog" timestamp="1600225846370">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="487" y="214" key="AndroidCreateXmlResourceDialog/0.0.1304.768@0.0.1304.768" timestamp="1600225846370" />
+    <state x="507" y="149" key="AndroidProcessChooserDialog" timestamp="1601337908333">
+      <screen x="0" y="0" width="1304" height="768" />
+    </state>
+    <state x="507" y="149" key="AndroidProcessChooserDialog/0.0.1304.768@0.0.1304.768" timestamp="1601337908333" />
+    <state width="398" height="463" key="DebuggerActiveHint" timestamp="1601338053766">
+      <screen x="0" y="0" width="1304" height="768" />
+    </state>
+    <state width="398" height="463" key="DebuggerActiveHint/0.0.1304.768@0.0.1304.768" timestamp="1601338053766" />
     <state width="396" height="438" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1597671906751" />
-    <state x="1800" y="135" key="FileChooserDialogImpl" timestamp="1597511907214">
-      <screen x="1366" y="0" width="1280" height="680" />
+    <state x="442" y="152" key="FileChooserDialogImpl" timestamp="1601354628012">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="442" y="152" key="FileChooserDialogImpl/0.0.1304.768@0.0.1304.768" timestamp="1601354628012" />
     <state x="1800" y="135" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1280.680@1366.0.1280.680" timestamp="1597511907214" />
     <state x="463" y="145" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1597328052534" />
-    <state width="1323" height="200" key="GridCell.Tab.0.bottom" timestamp="1597684359911">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.0.bottom" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.0.bottom/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202397" />
     <state width="1323" height="200" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597684359911" />
-    <state width="1323" height="200" key="GridCell.Tab.0.center" timestamp="1597684359910">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.0.center" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.0.center/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202397" />
     <state width="1323" height="200" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597684359910" />
-    <state width="1323" height="200" key="GridCell.Tab.0.left" timestamp="1597684359910">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.0.left" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.0.left/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202397" />
     <state width="1323" height="200" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597684359910" />
-    <state width="1323" height="200" key="GridCell.Tab.0.right" timestamp="1597684359911">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.0.right" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.0.right/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202397" />
     <state width="1323" height="200" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597684359911" />
-    <state width="1323" height="297" key="GridCell.Tab.1.bottom" timestamp="1597675956440">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.1.bottom" timestamp="1601356689973">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.1.bottom/0.0.1304.768@0.0.1304.768" timestamp="1601356689973" />
     <state width="1323" height="221" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202398" />
     <state width="1323" height="297" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597675956440" />
-    <state width="1323" height="297" key="GridCell.Tab.1.center" timestamp="1597675956436">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.1.center" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.1.center/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202398" />
     <state width="1323" height="297" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1597675956436" />
-    <state width="1323" height="297" key="GridCell.Tab.1.left" timestamp="1597675956436">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.1.left" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.1.left/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202397" />
     <state width="1323" height="297" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1597675956436" />
-    <state width="1323" height="297" key="GridCell.Tab.1.right" timestamp="1597675956440">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1261" height="164" key="GridCell.Tab.1.right" timestamp="1601356689972">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="1261" height="164" key="GridCell.Tab.1.right/0.0.1304.768@0.0.1304.768" timestamp="1601356689972" />
     <state width="1323" height="221" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623202398" />
     <state width="1323" height="297" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1597675956440" />
-    <state x="318" y="192" key="com.intellij.ide.util.TipDialog" timestamp="1597684881826">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="660" height="392" key="XDebugger.FullValuePopup" timestamp="1601338201548">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state width="660" height="392" key="XDebugger.FullValuePopup/0.0.1304.768@0.0.1304.768" timestamp="1601338201548" />
+    <state x="468" y="162" key="chooseDestDirectoryDialog" timestamp="1600225651449">
+      <screen x="0" y="0" width="1304" height="768" />
+    </state>
+    <state x="468" y="162" key="chooseDestDirectoryDialog/0.0.1304.768@0.0.1304.768" timestamp="1600225651449" />
+    <state x="304" y="203" key="com.intellij.ide.util.TipDialog" timestamp="1601406233482">
+      <screen x="0" y="0" width="1304" height="768" />
+    </state>
+    <state x="304" y="203" key="com.intellij.ide.util.TipDialog/0.0.1304.768@0.0.1304.768" timestamp="1601406233482" />
     <state x="318" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597511390472" />
-    <state x="318" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1597684881826" />
+    <state x="318" y="192" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1598295354762" />
     <state x="298" y="210" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1595079972531" />
-    <state x="379" y="97" width="689" height="534" key="find.popup" timestamp="1597670180989">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="362" y="102" width="658" height="564" key="find.popup" timestamp="1601353197182">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="362" y="102" width="658" height="564" key="find.popup/0.0.1304.768@0.0.1304.768" timestamp="1601353197182" />
     <state x="379" y="97" width="842" height="534" key="find.popup/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623150307" />
     <state x="379" y="97" width="689" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1597670180989" />
-    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1597685670914">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="324" y="171" width="642" height="715" key="run.anything.popup" timestamp="1601355824387">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="324" y="171" width="642" height="715" key="run.anything.popup/0.0.1304.768@0.0.1304.768" timestamp="1601355824387" />
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1597623231971" />
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1597685670914" />
-    <state x="346" y="49" key="search.everywhere.popup" timestamp="1597418825446">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="330" y="52" key="search.everywhere.popup" timestamp="1600279707792">
+      <screen x="0" y="0" width="1304" height="768" />
     </state>
+    <state x="330" y="52" key="search.everywhere.popup/0.0.1304.768@0.0.1304.768" timestamp="1600279707792" />
     <state x="346" y="49" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1597418825446" />
   </component>
   <component name="XDebuggerManager">
@@ -561,12 +605,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoPerfil.java</url>
-          <line>99</line>
+          <line>126</line>
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoPerfil.java</url>
-          <line>94</line>
+          <line>121</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -701,32 +745,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1576</line>
+          <line>1583</line>
           <option name="timeStamp" value="462" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1591</line>
+          <line>1598</line>
           <option name="timeStamp" value="463" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1580</line>
+          <line>1587</line>
           <option name="timeStamp" value="464" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1582</line>
+          <line>1589</line>
           <option name="timeStamp" value="465" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1644</line>
+          <line>1651</line>
           <option name="timeStamp" value="466" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1246</line>
+          <line>1247</line>
           <option name="timeStamp" value="467" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -756,7 +800,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>1409</line>
+          <line>1412</line>
           <option name="timeStamp" value="476" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -806,8 +850,124 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/home/HomeFragment.java</url>
-          <line>829</line>
+          <line>830</line>
           <option name="timeStamp" value="503" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearUserCulqi.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="504" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearUserCulqi.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="506" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="517" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearUserCulqi.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="519" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/views/CrearUserCulqi.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="520" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="521" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="522" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="523" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="524" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/culqi/Culqi/Cliente.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="525" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="527" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Historial/HistorialFragment.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="528" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Historial/HistorialFragment.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="529" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Historial/HistorialFragment.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="530" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="531" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="533" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="534" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="535" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="536" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="538" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Pagos/PagosFragment.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="539" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/ui/Pagos/PagosFragment.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="540" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/enfermeraya/enfermeraya/comandos/ComandoHistorial.java</url>
+          <line>129</line>
+          <properties method="onChildChanged" />
+          <option name="timeStamp" value="537" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

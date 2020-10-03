@@ -137,6 +137,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 
+//disain
+    //noinspection GradleCompatible
+    implementation  'com.android.support:customtabs:29.0.0'
+
+
+
+
 
 
 }

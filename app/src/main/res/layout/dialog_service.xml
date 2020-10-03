@@ -80,6 +80,31 @@
         android:layout_width="match_parent"
         android:layout_height="10sp"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/layputprecio"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valor del servicio"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtprecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10000"
+            android:gravity="right"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="10sp"/>

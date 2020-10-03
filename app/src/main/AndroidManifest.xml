@@ -45,17 +45,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".views.DetalleHistorial"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            tools:ignore="LockedOrientationActivity" ></activity>
-
-        <activity android:name=".views.ListaFavoritos"
+        <activity android:name=".views.CrearUserCulqi"></activity>
+        <activity android:name=".views.CrearTarjeta" />
+        <activity
+            android:name=".views.DetalleHistorial"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="LockedOrientationActivity" />
-
+        <activity
+            android:name=".views.ListaFavoritos"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".views.MenuLateral"
             android:label="@string/title_activity_menu_lateral"

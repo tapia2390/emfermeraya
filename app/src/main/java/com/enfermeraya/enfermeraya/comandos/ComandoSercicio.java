@@ -55,7 +55,8 @@ public class ComandoSercicio {
     }
 
     public  void registarServicio(String tipoServicio,String fecha,String horaServicio,
-                                  String direccion, String informacion, String obsciones, double lat , double longi, String titulo, String nombreEnfermero){
+                                  String direccion, String informacion, String obsciones, double lat ,
+                                  double longi, String titulo, String nombreEnfermero, String precio){
         //creating a new user
         //creating a new user
 
@@ -82,6 +83,7 @@ public class ComandoSercicio {
         favorito.put("token",modelo.token);
         favorito.put("nombreCliente",nombreEnfermero);
         favorito.put("timestamp", ServerValue.TIMESTAMP);
+        favorito.put("precio", precio);
 
 
         ref.setValue(favorito, new DatabaseReference.CompletionListener() {
@@ -133,6 +135,10 @@ public class ComandoSercicio {
                 ser.setObsciones(snFav.child("obsciones").getValue().toString());
                 ser.setTitulo(snFav.child("titulo").getValue().toString());
                 ser.setEstado(snFav.child("estado").getValue().toString());
+
+                if(snFav.child("precio").exists()){
+                    ser.setPrecio(snFav.child("precio").getValue().toString());
+                }
 
                 if (snFav.child("uidCliente").exists()) {
                     ser.setUidCliente(snFav.child("uidCliente").getValue().toString());
@@ -195,6 +201,8 @@ public class ComandoSercicio {
                 TipoServicio ser = new TipoServicio();
                 ser.setKey(snFav.getKey());
                 ser.setNombre(snFav.child("Nombre").getValue().toString());
+                Long precio=  (Long) snFav.child("precio").getValue();
+                ser.setPrecio(precio);
                 modelo.listTipoServicios.add(ser);
                 mListener.getTipoServicio();
 

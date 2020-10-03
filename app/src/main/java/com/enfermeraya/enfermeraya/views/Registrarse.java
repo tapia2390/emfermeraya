@@ -509,7 +509,7 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
         String foto = this.foto;
         String token = this.token;
 
-        usuario = new Usuario("",nombre,apellido,celular,correo,password,foto,token, "",modelo.latitud,modelo.longitud,0,0,true);
+        usuario = new Usuario("",nombre,apellido,celular,correo,password,foto,token, "",modelo.latitud,modelo.longitud,0,0,true,"");
 
         comandoValidarCorreoFirebase.registroUsuario(usuario);
     }
