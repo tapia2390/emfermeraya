@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50sp"
+    android:layout_height="70sp"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:layout_marginBottom="15sp"
-    android:background="@drawable/blanco_post_border_style">
+
+    android:background="@drawable/blue_border_rounded_cornwe3">
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal">
+       android:orientation="horizontal"
+       android:padding="10sp">
 
        <LinearLayout
            android:id="@+id/layuotdata"
-           android:layout_width="250sp"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:orientation="vertical">
 
@@ -24,8 +26,8 @@
                android:layout_height="wrap_content"
                android:layout_gravity="center|left"
                android:textSize="16sp"
-               android:textColor="@color/colorNegro"
-               android:text=""
+               android:textColor="@color/colorVerdeOscuro"
+               android:text="wqewqeqwewqe"
                android:textStyle="bold"
                android:gravity="center|left"
                android:layout_marginLeft="2sp"
@@ -38,7 +40,6 @@
                android:layout_height="wrap_content"
                android:layout_gravity="center|left"
                android:textSize="14sp"
-               android:textColor="@color/colorNegro"
                android:text=""
                android:gravity="center|left"
                android:layout_marginLeft="2sp"
@@ -54,8 +55,8 @@
 
           <ImageView
               android:id="@+id/image_fav"
-              android:layout_width="18sp"
-              android:layout_height="15sp"
+              android:layout_width="23sp"
+              android:layout_height="20sp"
               android:background="@drawable/start"
               android:layout_gravity="right" />
 

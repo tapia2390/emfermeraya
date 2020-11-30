@@ -626,7 +626,7 @@ public class HomeFragment extends Fragment implements
 
             String total_str = list.get(0).toString();
             System.out.println(":"+total_str);
-            Toast.makeText(getActivity().getApplicationContext(),total_str, Toast.LENGTH_LONG);
+            //Toast.makeText(getActivity().getApplicationContext(),total_str, Toast.LENGTH_LONG);
             int position=total_str.indexOf("latitude");
             String str1 = total_str.substring(position+9); //위치 받아옴(latitude)
             //  System.out.println(">>"+str1);
@@ -1068,19 +1068,19 @@ public class HomeFragment extends Fragment implements
         TabHost.TabSpec spec=tabs.newTabSpec("mitab1");
         spec.setContent(R.id.tab1);
         spec.setIndicator("",
-                res.getDrawable(R.drawable.gpdicon));
+                res.getDrawable(R.drawable.tapubicaion));
         tabs.addTab(spec);
 
         spec=tabs.newTabSpec("mitab2");
         spec.setContent(R.id.tab2);
         spec.setIndicator("",
-                res.getDrawable(R.drawable.servicioicon));
+                res.getDrawable(R.drawable.tapservicio));
         tabs.addTab(spec);
 
         spec=tabs.newTabSpec("mitab3");
         spec.setContent(R.id.tab3);
         spec.setIndicator("",
-                res.getDrawable(R.drawable.starticon));
+                res.getDrawable(R.drawable.tapfavorito));
         tabs.addTab(spec);
 
         tabs.setCurrentTab(0);
@@ -1103,7 +1103,7 @@ public class HomeFragment extends Fragment implements
             @Override
             public void onTabChanged(String tabId) {
                 Log.i("AndroidTabsDemo", "Pulsada pestaña: " + tabId);
-                Toast.makeText(getActivity(),"Pulsada pestaña: " + tabId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),"Pulsada pestaña: " + tabId, Toast.LENGTH_SHORT).show();
 
                 if(tabId.equals("mitab1")){
                     modelo.modal = "searchdir";
@@ -1430,7 +1430,7 @@ public class HomeFragment extends Fragment implements
         btntiposervicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getActivity(), "1", Toast.LENGTH_LONG).show();
 
                 final CharSequence[] items = new CharSequence[modelo.listTipoServicios.size()];
                 final CharSequence[] items2 = new CharSequence[modelo.listTipoServicios.size()];
@@ -1445,7 +1445,7 @@ public class HomeFragment extends Fragment implements
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
                         // Do something with the selection
-                        Toast.makeText(getActivity(),  ":"+item + items[item], Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getActivity(),  ":"+item + items[item], Toast.LENGTH_LONG).show();
                         btntiposervicio.setText(items[item]);
                         layputprecio.setVisibility(View.VISIBLE);
                         txtprecio.setText(items2[item]);

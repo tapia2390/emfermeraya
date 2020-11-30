@@ -59,6 +59,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
     @Override
     public void onBindViewHolder(@NonNull HistorialAdapter.HistorialViewHolder holder, final int position) {
         String fecha = filteredNameList.get(position).getFecha();
+        String hora = filteredNameList.get(position).getHoraFin();
         String servicio = filteredNameList.get(position).getTipoServicio();
         //String nombre = filteredNameList.get(position).getNombre();
         String direccion = filteredNameList.get(position).getDireccion();
@@ -66,7 +67,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
         double calificacion = filteredNameList.get(position).getCalificaion();
         String nombre = filteredNameList.get(position).getNameCliente();
 
-        holder.txtfecha.setText(fecha);
+        holder.txtfecha.setText(fecha+"\n 10:00 PM" );
         holder.txtservicio.setText(servicio);
         holder.txtnombre.setText(nombre);
         holder.txtdireccion.setText(direccion);

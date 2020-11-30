@@ -25,7 +25,7 @@
     <string name="facebook_app_id">2482660775167299</string>
     <string name="fb_login_protocol_scheme">fb2482660775167299</string>
 
-    <string name="title_titulo_terminos">Terminos y condiciones</string>
+    <string name="title_titulo_terminos">Términos y condiciones</string>
     <string name="title_desc_terminos">Sin descripción</string>
 
     <!---
@@ -52,7 +52,7 @@ Client Secret
             git push -u origin master
 
     -->
-<!--culqi
+    <!--culqi
 https://blog.letsgodev.com/tips-es/verificar-servicio-de-culqi-en-10-minutos/
 -->
     <!---Registro Usuario-->
@@ -83,6 +83,7 @@ https://blog.letsgodev.com/tips-es/verificar-servicio-de-culqi-en-10-minutos/
     <string name="menu_historial">Historial</string>
 
     <string name="home_second">Home Second</string>
+    <string name="copyrigth">&#169; 2020</string>
     <!-- json key AIzaSyAb1OpcP-fi7YUTeaDtARMB4HCCNEq2rk8-->
 
 
@@ -101,5 +102,19 @@ https://blog.letsgodev.com/tips-es/verificar-servicio-de-culqi-en-10-minutos/
     <string name="fecha">12/20</string>
     <string name="numero_cuenta">**** **** **** 0011</string>
     <string name="agregar_tarjeta">Agregar Tarjeta</string>
+
+
+    <string name="card_header">NFN CARD</string>
+    <string name="card_number_sample">XXXX XXXX XXXX XXXX</string>
+    <string name="card_validity_label">VALID UPTO</string>
+    <string name="card_validity_sample">MM/YY</string>
+    <string name="card_name_sample">CARD HOLDER</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_holders_name">Card Holder\'s Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="card_validity">Expires</string>
+    <string name="card_cvv">CVV/CVC Number</string>
 
 </resources>

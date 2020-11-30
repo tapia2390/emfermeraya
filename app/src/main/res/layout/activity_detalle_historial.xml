@@ -15,19 +15,29 @@
         android:layout_gravity="center"
         android:text="Detalle Servicio"/>
 
-    <Space
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="5sp"/>
+        android:layout_height="150dp"
+        android:background="@drawable/blue_bg">
 
-    <ImageView
-        android:id="@+id/camara1"
-        android:layout_width="90sp"
-        android:layout_height="90sp"
-        android:layout_below="@+id/textView5"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:src="@drawable/camara"
-        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/camara1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/camara2"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
 
     <Space
         android:layout_width="match_parent"
@@ -63,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@color/colorFondo" />
+                    android:background="@drawable/degradado" />
 
                 <RelativeLayout
                     android:layout_width="412dp"
@@ -91,7 +101,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_toEndOf="@+id/txtfecha"
                         android:layout_toRightOf="@+id/txtfecha"
-                        android:background="@color/colorFondo" />
+                        android:background="@drawable/degradado" />
 
                     <TextView
                         android:id="@+id/txtservicio"
@@ -141,15 +151,7 @@
 
 
             <!--observaciones-->
-            <TextView
-                style="@style/Base.TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/vertical_separator"
-                android:layout_toRightOf="@+id/vertical_separator"
-                android:text="Observaciones"
-                android:padding="5sp"/>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -165,13 +167,23 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@color/colorFondo" />
+                    android:background="@drawable/degradado" />
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/vertical_separator"
+                    android:layout_toRightOf="@+id/vertical_separator"
+                    android:text="Observaciones"
+                    android:padding="5sp"/>
 
                 <RelativeLayout
                     android:layout_width="412dp"
                     android:layout_height="match_parent"
                     android:paddingLeft="16dp"
-                    android:paddingTop="8dp"
+                    android:paddingTop="20sp"
                     android:paddingEnd="16dp"
                     android:paddingRight="16dp">
 
@@ -193,16 +205,6 @@
 
 
             <!--medicamentos-->
-            <TextView
-                style="@style/Base.TextAppearance.AppCompat.Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/vertical_separator"
-                android:layout_toRightOf="@+id/vertical_separator"
-                android:text="Medicamentos"
-                android:padding="5sp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -217,18 +219,28 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:background="@color/colorFondo" />
+                    android:background="@drawable/degradado" />
 
                 <RelativeLayout
                     android:layout_width="412dp"
                     android:layout_height="match_parent"
                     android:paddingLeft="16dp"
-                    android:paddingTop="8dp"
+                    android:paddingTop="18dp"
                     android:paddingEnd="16dp"
                     android:paddingRight="16dp">
 
 
+                    <TextView
+                        style="@style/Base.TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="-6dp"
+                        android:layout_marginLeft="-6dp"
+                        android:text="Medicamentos"
+                        android:padding="5sp"/>
+
                     <EditText
+                        android:paddingTop="20sp"
                         android:id="@+id/medicamentos"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -257,7 +269,7 @@
                 android:layout_height="35sp"
                 android:textSize="12sp"
                 android:text="Pagar Servicio"
-                android:background="@drawable/fondo_post_border_style"
+                android:background="@drawable/login_button_bk"
                 android:textColor="@color/colorBlanco"
                 android:onClick="pagar"/>
 

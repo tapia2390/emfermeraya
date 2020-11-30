@@ -1,140 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="30sp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotomedium"
-        android:text="Agregar Tarjeta"
-        android:textColor="@color/colorPrimary2"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
-    <Space
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10sp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="301dp"
-        android:layout_height="178dp"
-        android:layout_gravity="center"
-        android:elevation="5dp"
-        app:cardBackgroundColor="@color/colorPrimary2"
-        app:cardCornerRadius="8dp"
-        app:cardPreventCornerOverlap="false">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="10sp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Tarjeta"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_height"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:background="@drawable/ic_card_bg"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin">
+
+
+
+                <ImageView
+                    android:layout_width="@dimen/chip_width"
+                    android:layout_height="@dimen/chip_height"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="@dimen/items_inbetween"
+                    android:src="@drawable/ic_chip" />
+
+                <TextView
+                    android:id="@+id/tv_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/card_number_sample"
+                    android:textColor="@color/card_text_color"
+                    android:textSize="@dimen/header_text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/items_inbetween_small"
+                        android:text="@string/card_validity_label"
+                        android:textColor="@color/card_text_color"
+                        android:textSize="@dimen/xsmall_text" />
+
+                    <TextView
+                        android:id="@+id/tv_validity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/card_validity_sample"
+                        android:textColor="@color/card_text_color"
+                        android:textSize="@dimen/xsmall_text" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_member_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/card_name_sample"
+                    android:textAllCaps="true"
+                    android:textColor="@color/card_text_color"
+                    android:textSize="@dimen/medium_text" />
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="37dp"
-                android:background="@drawable/chiptarjeta"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                android:id="@+id/ivType"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/items_inbetween_small"
+                android:layout_marginBottom="@dimen/items_inbetween_small"
+                android:layout_width="@dimen/cardtype_width"
+                android:layout_height="@dimen/cardtype_height"
+                android:background="@drawable/ic_mastercard"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="22dp"
-                android:background="@drawable/mastercad"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/robotomedium"
-                android:text="@string/numero_cuenta"
-                android:textColor="@color/colorBlanco"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4"
-                tools:ignore="MissingConstraints" />
+        </RelativeLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="53dp"
-                android:layout_marginBottom="23dp"
-                android:fontFamily="@font/robotomedium"
-                android:text="@string/banco_text"
-                android:textColor="@color/colorBlanco"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btntarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginRight="62dp"
+            android:layout_marginTop="18.7dp"
+            android:text="Registarse"
+            android:background="@drawable/login_button_bknegro"
+            />
 
+    </LinearLayout>
+</FrameLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/robotomedium"
-                android:text="@string/vence_text"
-                android:textColor="@color/colorBlanco"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="33dp"
-                android:layout_marginBottom="23dp"
-                android:fontFamily="@font/robotomedium"
-                android:text="@string/fecha"
-                android:textColor="@color/colorBlanco"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
-
-    <Button
-        android:id="@+id/btntarjeta"
-        android:layout_width="200sp"
-        android:layout_height="40sp"
-        android:text="Crear Tarjeta"
-        android:textSize="15sp"
-        android:background="@drawable/primary2_post_border_style"
-        android:textColor="@color/colorBlanco"
-        android:layout_gravity="center"
-        tools:ignore="InvalidId" />
-    
-</LinearLayout>

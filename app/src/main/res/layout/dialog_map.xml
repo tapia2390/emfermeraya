@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBlanco"
     tools:ignore="MissingDefaultResource"
-    android:orientation="vertical"
-    android:padding="5sp">
+    android:orientation="vertical">
 
+    <Button
+        android:id="@+id/cerrar"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:background="@drawable/equix"
+        android:layout_alignParentRight="true"/>
 
 
     <LinearLayout
@@ -16,41 +21,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/cerrar"
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            android:background="@drawable/cerrar"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:layout_marginBottom="10sp"/>
-
-        <SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="35sp"
-            app:queryHint="Enter animal name"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
-            android:background="@drawable/blanco_post_border_style"
-            android:alpha="0.8"
-            android:queryHint="Dirección"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </SearchView>
-
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10sp"/>
 
         <TabHost android:id="@android:id/tabhost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:orientation="vertical"
@@ -59,7 +34,12 @@
 
                 <TabWidget android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@android:id/tabs" />
+                    android:id="@android:id/tabs"
+                    app:tabMode="fixed"
+                    app:tabGravity="fill"
+                    android:background="@color/colorVerdeOscuro">
+
+                   </TabWidget>
 
                 <FrameLayout android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -73,8 +53,28 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Buscar dirección"/>
+                            android:text="Buscar dirección"
+                            android:textSize="15sp"
+                            android:textColor="@color/colorVerdeOscuro"
+                            android:textStyle="bold"
+                            android:padding="5sp"/>
 
+                        <SearchView
+                            android:id="@+id/search_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="35sp"
+                            app:queryHint="Enter animal name"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/blue_border_rounded_cornwe22"
+                            android:alpha="0.8"
+                            android:queryHint="Dirección"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </SearchView>
                     </LinearLayout>
 
                     <LinearLayout android:id="@+id/tab2"
@@ -87,6 +87,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="500sp"
                             android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Lista de direcciones"
+                                android:textSize="15sp"
+                                android:textColor="@color/colorVerdeOscuro"
+                                android:textStyle="bold"
+                                android:padding="5sp"/>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recycler_view"
@@ -105,6 +114,15 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Direcciones favoritas"
+                            android:textSize="15sp"
+                            android:textColor="@color/colorVerdeOscuro"
+                            android:textStyle="bold"
+                            android:padding="5sp"/>
 
 
 
@@ -173,4 +191,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>

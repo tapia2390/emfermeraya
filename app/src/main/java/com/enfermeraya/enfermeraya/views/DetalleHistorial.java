@@ -135,7 +135,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
                 txtservicio.setText(modelo.historial.getTipoServicio());
                 txtnombre.setText(modelo.historial.getNameEmfermero());
                 text_medical_center.setText(modelo.historial.getDireccion());
-                btnestado.setText(modelo.historial.getEstado());
+               // btnestado.setText(modelo.historial.getEstado());
                 observacionesenferm.setText(modelo.historial.getObservacionesEnfermero());
                 medicamentos.setText(modelo.historial.getMedicamentosAsignados());
                 btntitulo.setText("Detalle Historico");
@@ -150,11 +150,12 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
 
             }else{
                 servicios =  modelo.servicios;
-                txtfecha.setText(modelo.servicios.getFecha());
+                txtfecha.setText(modelo.servicios.getFecha()+"\n 10:00 PM");
                 txtservicio.setText(modelo.servicios.getTipoServicio());
                 txtnombre.setText(modelo.servicios.getNameEmfermero());
                 text_medical_center.setText(modelo.servicios.getDireccion());
-                btnestado.setText(modelo.servicios.getEstado());
+                //btnestado.setText(modelo.servicios.getEstado());
+                btnestado.setText("Pendiente");
                 btntitulo.setText("Detalle Servicio");
 
             }

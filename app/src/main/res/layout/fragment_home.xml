@@ -23,7 +23,7 @@
         <!--android:layout_alignParentBottom="true"-->
 
         <LinearLayout
-            android:layout_width="270sp"
+            android:layout_width="280sp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
@@ -44,7 +44,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30sp"
+                android:layout_height="40sp"
                 android:orientation="horizontal"
                 android:background="@drawable/blanco_post_border_style"
                 android:padding="3sp">
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawablePadding="5sp"
-                    android:hint="Lugar de recojida"
+                    android:hint="Buscar direeción"
                     android:background="@drawable/blanco_post_border_style"
                     android:singleLine="true"
                     android:padding="2sp"
@@ -96,10 +96,10 @@
         <Button
             android:id="@+id/btn_servicio"
             android:layout_width="270sp"
-            android:layout_height="35sp"
+            android:layout_height="45sp"
             android:textSize="12sp"
             android:text="Solicitar Servicio"
-            android:background="@drawable/fondo_post_border_style"
+            android:background="@drawable/login_button_bk"
             android:textColor="@color/colorBlanco"/>
 
 

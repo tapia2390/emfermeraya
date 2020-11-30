@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorhueso"
     tools:context=".ui.MisServicios.MisServiciosFragment">
 
 
@@ -21,7 +22,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="3dp"
-            android:background="@drawable/blanco_post_border_style"
+            android:background="@drawable/blue_border_rounded_cornwe22"
             android:alpha="0.8"
             android:queryHint="Dirección"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +38,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            />
+            android:layout_marginEnd="8dp" />
 
 
     </LinearLayout>

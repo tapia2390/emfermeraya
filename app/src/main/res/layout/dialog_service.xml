@@ -4,23 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/blanco_post_border_style"
+    android:background="@drawable/degradado"
     tools:ignore="MissingDefaultResource"
     android:orientation="vertical"
-    android:padding="20sp">
+    >
 
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:background="@drawable/equix"
+        android:layout_gravity="right"
+        android:layout_margin="5sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Servicio"
+        android:text="SERVICIO"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:textColor="#FFF"
         android:layout_gravity="center"
         android:gravity="center"/>
 
@@ -28,222 +31,344 @@
         android:layout_width="match_parent"
         android:layout_height="10sp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Usuario"
-        />
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/nombre_usuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:hint="Nombre"
-        android:padding="5sp"
-        android:background="@drawable/edittext_style"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dirección"/>
-
-    <EditText
-        android:id="@+id/txt_direccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:hint="Dirección"
-        android:padding="5sp"
-        android:background="@drawable/edittext_style"
-        />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
-
-    <Button
-        android:id="@+id/btntiposervicio"
-        android:layout_width="match_parent"
-        android:layout_height="30sp"
-        android:textSize="14sp"
-        android:text="Seleccione el servicio"
-        android:inputType="textCapCharacters"
-        android:background="@drawable/edittext_style"
-        android:textColor="@color/colorFondo"
-        />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
 
 
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="12sp"
+               android:layout_marginRight="12sp"
+               android:layout_marginTop="10dp"
+               android:background="@drawable/blue_border_rounded_cornwe">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
+               <!-- INPUT -->
+               <EditText
+                   android:id="@+id/nombre_usuario"
+                   android:layout_toRightOf="@+id/username_icon"
+                   android:hint="Usuario"
+                   android:textSize="12sp"
+                   android:paddingLeft="17dp"
+                   android:paddingTop="15dp"
+                   android:paddingBottom="15dp"
+                   android:maxLines="1"
+                   android:inputType="text"
+                   android:textCursorDrawable="@drawable/cursor_color"
+                   android:background="@android:color/transparent"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"/>
 
+               <!-- ICON -->
+               <ImageView
+                   android:id="@+id/username_icon"
+                   android:src="@drawable/user2"
+                   android:layout_width="14.7dp"
+                   android:layout_height="10.3dp"
+                   android:layout_marginLeft="17dp"
+                   android:layout_centerVertical="true"
+                   />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/layputprecio"
-        android:visibility="gone">
+           </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Valor del servicio"
-            android:layout_gravity="center"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/txtprecio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="10000"
-            android:gravity="right"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/txtfechainicio"
-            android:layout_width="match_parent"
-            android:layout_height="20sp"
-            android:text="Ahora"
-            android:background="@drawable/edittext_style"
-            android:layout_weight="1"
-            android:editable="false"
-            android:focusable="false"
-            android:textSize="14sp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="2sp"
-            android:textColor="@color/colorFondo"/>
-
-        <Space
-            android:layout_width="10sp"
-            android:layout_height="wrap_content"/>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/txtfechafin"
-            android:layout_width="match_parent"
-            android:layout_height="20sp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:editable="false"
-            android:focusable="false"
-            android:background="@drawable/edittext_style"
-            android:gravity="center"
-            android:padding="2sp"
-            android:text="Despues"
-            android:textColor="@color/colorFondo"
-            android:textSize="14sp" />
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="12sp"
+                   android:layout_marginRight="12sp"
+                   android:layout_marginTop="10dp"
+                   android:background="@drawable/blue_border_rounded_cornwe">
 
-    </LinearLayout>
+                   <!-- INPUT -->
+                   <EditText
+                       android:id="@+id/txt_direccion"
+                       android:layout_toRightOf="@+id/username_icon2"
+                       android:hint="Dirección"
+                       android:textSize="12sp"
+                       android:paddingLeft="17dp"
+                       android:paddingTop="15dp"
+                       android:paddingBottom="15dp"
+                       android:maxLines="1"
+                       android:inputType="textEmailAddress"
+                       android:textCursorDrawable="@drawable/cursor_color"
+                       android:background="@android:color/transparent"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+
+                   <!-- ICON -->
+                   <ImageView
+                       android:id="@+id/username_icon2"
+                       android:src="@drawable/direccion"
+                       android:layout_width="14.7dp"
+                       android:layout_height="10.3dp"
+                       android:layout_marginLeft="17dp"
+                       android:layout_centerVertical="true"
+                       />
+
+               </RelativeLayout>
 
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="12sp"
+                   android:layout_marginRight="12sp"
+                   android:layout_marginTop="10dp"
+                   android:background="@drawable/blue_border_rounded_cornwe">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Información"/>
 
+                   <Button
+                       android:id="@+id/btntiposervicio"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="Seleccione el servicio"
+                       android:inputType="textCapCharacters"
+                       android:background="@drawable/blue_border_rounded_cornwe"
+                       android:textColor="@color/colorFondo"
+                       />
 
-    <Space
-            android:layout_width="match_parent"
-            android:layout_height="10sp"/>
+               </RelativeLayout>
 
 
 
-    <EditText
-        android:id="@+id/infodireccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:hint="Información adicional de la direecón"
-        android:padding="5sp"
-        android:background="@drawable/edittext_style"
-        />
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"/>
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="12sp"
+                   android:layout_marginRight="12sp"
+                   android:layout_marginTop="10dp"
+                   android:orientation="horizontal">
 
 
 
-    <EditText
-        android:id="@+id/infoobservacione"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:hint="Observaciones para el servicio"
-        android:padding="5sp"
-        android:background="@drawable/edittext_style"
-        />
+                   <Button
+                       android:id="@+id/txtfechainicio"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="AHORA"
+                       android:inputType="textCapCharacters"
+                       android:background="@drawable/blue_border_rounded_cornwe"
+                       android:textColor="@color/colorFondo"
+                       android:layout_weight="1"/>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10sp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnAcetar"
-                android:layout_width="match_parent"
-                android:layout_height="30sp"
-                android:text="Aceptar"
-                android:background="@drawable/fondo_post_border_style"
-                android:layout_weight="1"
-                android:textColor="@color/colorBlanco"/>
-
-            <Space
-                android:layout_width="10sp"
-                android:layout_height="wrap_content"/>
+                   <Space
+                       android:layout_width="5sp"
+                       android:layout_height="wrap_content"/>
 
 
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="match_parent"
-                android:layout_height="30sp"
-                android:layout_weight="1"
-                android:background="@drawable/fondo_post_border_style"
-                android:text="Cancelar"
-                android:textColor="@color/colorBlanco" />
+                   <Button
+                       android:id="@+id/txtfechafin"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="DESPUES"
+                       android:inputType="textCapCharacters"
+                       android:background="@drawable/blue_border_rounded_cornwe"
+                       android:textColor="@color/colorFondo"
+                       android:layout_weight="1"/>
 
-        </LinearLayout>
+
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginLeft="12sp"
+                   android:layout_marginRight="12sp"
+                   android:layout_marginTop="10dp"
+                   android:id="@+id/layputprecio"
+                   android:visibility="gone">
+
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="Valor del servicio:"
+                       android:layout_gravity="center"
+                       android:layout_weight="1"
+                       android:textSize="15sp"
+                       android:textColor="#FFF"/>
+
+                   <TextView
+                       android:id="@+id/txtprecio"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="$10000"
+                       android:gravity="right"
+                       android:textStyle="bold"
+                       android:layout_weight="1"
+                       android:textSize="15sp"
+                       android:textColor="#FFF"/>
+               </LinearLayout>
 
 
 
 
 
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:orientation="horizontal"
+                   >
+
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="13dp"
+                       android:layout_marginRight="15dp"
+                       android:background="@drawable/rectangle">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="110dp"
+                           android:layout_marginLeft="13dp"
+                           android:layout_marginRight="19dp"
+                           android:orientation="vertical">
+
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="10.3dp"
+                               android:gravity="center_horizontal"
+                               android:text="Información:"
+                               android:textColor="@color/colorFondo"
+                               android:textSize="16.7sp" />
+
+
+                           <EditText
+                               android:id="@+id/infodireccion"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_marginTop="10dp"
+                               android:text=""
+                               android:gravity="top"
+                               android:layout_gravity="top"
+                               android:textColor="#9e9d9d"
+                               android:textSize="12.3sp" />
+
+
+
+                           <View
+                               android:layout_width="match_parent"
+                               android:layout_height="1dp"
+                               android:layout_marginTop="45sp"
+                               android:background="@color/colorFondo" />
+
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:orientation="horizontal"
+                   >
+
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="13dp"
+                       android:layout_marginRight="20dp"
+                       android:background="@drawable/rectangle">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="110dp"
+                           android:layout_marginLeft="13dp"
+                           android:layout_marginRight="19dp"
+                           android:orientation="vertical">
+
+
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="10.3dp"
+                               android:gravity="center_horizontal"
+                               android:text="Observaciones"
+                               android:textColor="@color/colorFondo"
+                               android:textSize="16.7sp" />
+
+
+                           <EditText
+                               android:id="@+id/infoobservacione"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_marginTop="10dp"
+                               android:text=""
+                               android:gravity="top"
+                               android:layout_gravity="top"
+                               android:textColor="#9e9d9d"
+                               android:textSize="12.3sp" />
+
+
+
+                           <View
+                               android:layout_width="match_parent"
+                               android:layout_height="1dp"
+                               android:layout_marginTop="45sp"
+                               android:background="@color/colorFondo" />
+
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="12sp"
+                   android:layout_marginRight="12sp"
+                   android:layout_marginTop="10dp"
+                   android:orientation="horizontal">
+
+
+                   <Button
+                       android:id="@+id/btnAcetar"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="14sp"
+                       android:text="CREAR SERVICIO"
+                       android:inputType="textCapCharacters"
+                       android:background="@drawable/blue_border_rounded_cornwe"
+                       android:textColor="@color/colorFondo"
+                       android:layout_weight="1"/>
+
+               </LinearLayout>
+           </LinearLayout>
+
+
+           <Space
+               android:layout_width="match_parent"
+               android:layout_height="5sp"/>
+       </LinearLayout>
+       
+
+
+   </ScrollView>
 
 
 </LinearLayout>

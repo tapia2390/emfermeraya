@@ -1,141 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical"
+    android:background="#FFF"
+    style="@style/loginParent">
+    <ScrollView
+        style="@style/parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <RelativeLayout
+            style="@style/parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crear Cliente"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
 
+                <LinearLayout
+                    style="@style/parent"
+                    android:background="@drawable/login_shape_bk2"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5sp"/>
+                    <ImageView
+                        style="@style/parent"
+                        android:background="@drawable/ic_login_bk2"
+                        android:contentDescription="" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textAutoComplete"
-                    android:ems="10"
-                    android:id="@+id/txtfirst_name"
-                    android:background="@drawable/border"
-                    android:selectAllOnFocus="false"
-                    android:hint="Nombre"
-                    android:text=""/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textAutoComplete"
-                    android:ems="10"
-                    android:background="@drawable/border"
-                    android:id="@+id/txtlast_name"
-                    android:hint="Apellido"
-                    android:text=""
-                    android:layout_marginTop="10dp"/>
-
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:id="@+id/txtemail"
-                    android:background="@drawable/border"
-                    android:hint="Correo"
-                    android:text=""
-                    />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textAutoComplete"
-                    android:ems="10"
-                    android:id="@+id/txtaddress"
-                    android:background="@drawable/border"
-                    android:hint="Dirección"
-                    android:text=""
-                    />
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textAutoComplete"
-                    android:ems="10"
-                    android:id="@+id/txtaddress_city"
-                    android:background="@drawable/border"
-                    android:hint="Ciudad"
-                    android:text=""
-                    />
-
-
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5sp"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/txtphone_number"
-                    android:background="@drawable/border"
-                    android:selectAllOnFocus="false"
-                    android:hint="Celular"
-                    android:text=""/>
-
-                <Button
-                    android:text="Crear Cliente"
-                    android:layout_width="150sp"
-                    android:layout_height="30sp"
-                    android:id="@+id/btn_user"
-                    android:layout_marginTop="15dp"
-                    android:textColor="@color/mdtp_white"
-                    android:background="@drawable/fondo_post_border_style"
-                    android:layout_gravity="center"
-                    android:onClick="tarjeta" />
+                </LinearLayout>
 
             </LinearLayout>
 
-        </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
 
 
-    </LinearLayout>
+                <TextView
+                    style="@style/headerText"
+                    android:layout_gravity="center"
+                    android:text="Crear Cliente"
+                    android:layout_marginTop="40dp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="200sp">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtfirst_name"
+                        android:layout_toRightOf="@+id/username_icon"
+                        android:hint="Nombre"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:maxLines="1"
+                        android:inputType="textEmailAddress"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/username_icon"
+                        android:src="@drawable/user2"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="12.7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtlast_name"
+                        android:layout_toRightOf="@+id/icon2"
+                        android:hint="Apellido"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingBottom="15dp"
+                        android:maxLength="10"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/icon2"
+                        android:src="@drawable/user2"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="12.7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtemail"
+                        android:layout_toRightOf="@+id/icon3"
+                        android:hint="Correo"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingBottom="15dp"
+                        android:maxLength="10"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/icon3"
+                        android:src="@drawable/email"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="12.7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtaddress_city"
+                        android:layout_toRightOf="@+id/icon4"
+                        android:hint="Ciudad"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingBottom="15dp"
+                        android:maxLength="10"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/icon4"
+                        android:src="@drawable/direccion"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="12.7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtaddress"
+                        android:layout_toRightOf="@+id/icon6"
+                        android:hint="Ciudad"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingBottom="15dp"
+                        android:maxLength="10"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/icon6"
+                        android:src="@drawable/direccion"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="12.7dp"
+                    android:background="@drawable/blue_border_rounded_cornwe">
+
+                    <!-- INPUT -->
+                    <EditText
+                        android:id="@+id/txtphone_number"
+                        android:layout_toRightOf="@+id/icon5"
+                        android:hint="Celular"
+                        android:textSize="12sp"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="15dp"
+                        android:maxLines="1"
+                        android:inputType="textPassword"
+                        android:paddingBottom="15dp"
+                        android:maxLength="10"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <!-- ICON -->
+                    <ImageView
+                        android:id="@+id/icon5"
+                        android:src="@drawable/phone"
+                        android:layout_width="14.7dp"
+                        android:layout_height="10.3dp"
+                        android:layout_marginLeft="17dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_marginTop="18.7dp"
+                    android:text="Crear Cliente"
+                    android:onClick="tarjeta"
+                    android:background="@drawable/login_button_bk"
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+
+    </ScrollView>
+
 </RelativeLayout>
+
+

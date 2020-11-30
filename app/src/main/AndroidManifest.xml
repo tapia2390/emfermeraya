@@ -45,7 +45,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".views.CrearUserCulqi"></activity>
+        <activity android:name=".views.PreguntasFrecuetes"></activity>
+        <activity android:name=".views.Contactanos" />
+        <activity android:name=".views.InfoApp" />
+        <activity android:name=".views.CrearUserCulqi" />
         <activity android:name=".views.CrearTarjeta" />
         <activity
             android:name=".views.DetalleHistorial"
