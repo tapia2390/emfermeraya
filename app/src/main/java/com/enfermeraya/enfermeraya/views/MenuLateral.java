@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.Splash;
@@ -140,6 +141,8 @@ public class MenuLateral extends AppCompatActivity  implements  ComandoPerfil.On
                     Glide.with(getApplicationContext())
                             .load(user.getPhotoUrl())
                             .apply(RequestOptions.circleCropTransform())
+                            .error(R.mipmap.ic_launcher_round)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(camara1);
 
 

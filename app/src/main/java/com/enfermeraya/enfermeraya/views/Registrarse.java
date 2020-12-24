@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,6 +56,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -508,8 +510,9 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
         String password = txt_passwor.getText().toString();
         String foto = this.foto;
         String token = this.token;
+        String cod = this.codigo();
 
-        usuario = new Usuario("",nombre,apellido,celular,correo,password,foto,token, "",modelo.latitud,modelo.longitud,0,0,true,"");
+        usuario = new Usuario("",nombre,apellido,celular,correo,password,foto,token, "",modelo.latitud,modelo.longitud,0,0,true,"", cod);
 
         comandoValidarCorreoFirebase.registroUsuario(usuario);
     }
@@ -573,6 +576,8 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
                     public void onClick(SweetAlertDialog sDialog) {
 
                         sDialog.dismissWithAnimation();
+                        modelo.tipoLogin="normal";
+                        setPreference(modelo.tipoLogin);
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
                         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
@@ -583,11 +588,55 @@ public class Registrarse extends Activity implements ComandoValidarCorreoFirebas
                 .show();
     }
 
+    public void setPreference(String tipoLogin){
+        SharedPreferences.Editor editor = getSharedPreferences("tipoLogin", MODE_PRIVATE).edit();
+        editor.putString("tipoLogin", tipoLogin);
+        editor.apply();
+    }
 
     public void terminos(View v){
         Intent i = new Intent(getApplicationContext(), Teminos.class);
         startActivity(i);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
         finish();
+    }
+    
+    //codigo
+    public  String codigo(){
+        // Inicializamos la variable que almacenará la codigo.
+        String codigoaleatorio = "";
+// Inicializamos la instancia de la clase Random con la que
+// generaremos el valor aleatorio.
+        Random rnd = new Random();
+
+// Creamos un ciclo que se ejecute 7 veces, que corresponden al
+// texto de la codigo.
+        for (int i = 0; i < 4; i++)
+        {
+            // Con este condicional verificamos si estamos en la parte
+            // numérica o alfabética de la codigo.
+            // Solo debe entrar al condicional si estamos generando los
+            // números de la codigo.
+            if(i < 2)
+            {
+                // Con esta instrucción se genera un número aleatorio entre
+                // 0 y 9, no se incluye el 10.
+                codigoaleatorio += rnd.nextInt(10);
+            }
+            // Entrará en esta parte del condicional cuando estemos generando
+            // las letras de la codigo.
+            else
+            {
+                // Con esta instrucción se genera un número aleatorio entre
+                // 65 y 90, no se incluye el 91. Luego se convierte a un 
+                // caracter ASCII.
+                codigoaleatorio += (char)(rnd.nextInt(91) + 65);
+            }
+        }
+
+// Por último imprimimos la codigo en la consola.
+        System.out.println("el código es: " + codigoaleatorio);
+        
+        return  codigoaleatorio.replace(" ","");
     }
 }

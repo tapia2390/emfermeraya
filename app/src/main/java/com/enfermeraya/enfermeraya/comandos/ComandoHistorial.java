@@ -128,22 +128,23 @@ public class ComandoHistorial {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Log.v("S", s);
 
             }
 
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+            public void onChildRemoved(@NonNull DataSnapshot sanap) {
+                Log.v("S", ""+sanap);
             }
 
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+            public void onChildMoved(@NonNull DataSnapshot sanap, @Nullable String s) {
+                Log.v("S", ""+sanap+ "---"+s);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.v("error", ""+databaseError.getMessage());
             }
         });
     }

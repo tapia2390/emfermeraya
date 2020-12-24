@@ -55,6 +55,7 @@ import com.enfermeraya.enfermeraya.comandos.ComandoEnfermeroPrestadorSer;
 import com.enfermeraya.enfermeraya.comandos.ComandoFavoritos;
 import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.comandos.ComandoServicio;
+import com.enfermeraya.enfermeraya.comandos.ComandoSetting;
 import com.enfermeraya.enfermeraya.dapter.FavoritoAdapter;
 import com.enfermeraya.enfermeraya.dapter.ServicioAdapter;
 import com.enfermeraya.enfermeraya.models.utility.Utility;
@@ -127,7 +128,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class HomeFragment extends Fragment implements
         OnMapReadyCallback, ComandoFavoritos.OnFavoritosChangeListener, ComandoSercicio.OnSercicioChangeListener
         , TimePickerDialog.OnTimeSetListener, android.app.TimePickerDialog.OnTimeSetListener,
-        DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener
+        DatePickerDialog.OnDateSetListener, ComandoEnfermeroPrestadorSer.OnSercicioChangeListener,
+        ComandoSetting.OnComandoSettingChangeListener
          {
 
     Modelo modelo = Modelo.getInstance();
@@ -144,6 +146,8 @@ public class HomeFragment extends Fragment implements
     Button btn_servicio;
     GoogleMap mMap;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    ComandoSetting comandoSetting;
+
 
     //adapter
     private List<Favoritos> favList = new ArrayList<>();
@@ -189,6 +193,7 @@ public class HomeFragment extends Fragment implements
 
         comandoFavoritos = new ComandoFavoritos(this);
         comandoSercicio = new ComandoSercicio(this);
+        comandoSetting = new ComandoSetting(this);
         utility = new Utility();
 
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
@@ -275,6 +280,7 @@ public class HomeFragment extends Fragment implements
             comandoSercicio.getTipoServicio();
             comandoSercicio.updateToken(token);
             comandoEnfermeroPrestadorSer.getListClient();
+            comandoSetting.getsetting();
         } else {
             alerta("Sin Internet", "Valide la conexión a internet");
         }
@@ -943,8 +949,13 @@ public class HomeFragment extends Fragment implements
 
     }
 
+             @Override
+             public void setting() {
+                 Log.v("setting", modelo.setting.getMsmcompartir());
+             }
 
-    /* Aqui empieza la Clase Localizacion */
+
+             /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
         HomeFragment mainActivity;
         public HomeFragment getMainActivity() {

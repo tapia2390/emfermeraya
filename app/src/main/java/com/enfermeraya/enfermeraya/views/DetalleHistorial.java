@@ -65,6 +65,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
     TextView txtnombre;
     TextView text_medical_center;
     Button btnestado;
+    Button btn_pagar;
     Button btntitulo;
     Utility utility;
     Modelo modelo = Modelo.getInstance();
@@ -112,6 +113,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
         txtnombre = (TextView) findViewById(R.id.txtnombre);
         text_medical_center = (TextView) findViewById(R.id.text_medical_center);
         btnestado = (Button) findViewById(R.id.btnestado);
+        btn_pagar = (Button) findViewById(R.id.btn_pagar);
         observacionesenferm = (EditText) findViewById(R.id.observacionesenferm);
         medicamentos = (EditText) findViewById(R.id.medicamentos);
         camara1 = (ImageView)findViewById(R.id.camara1);
@@ -126,9 +128,9 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
 
         if(utility.estado(getApplicationContext())){
 
-
             Bundle parametros = this.getIntent().getExtras();
             if(parametros !=null){
+                btn_pagar.setVisibility(View.VISIBLE);
                 dato = parametros.getString("historial");
                 historial =  modelo.historial;
                 txtfecha.setText(modelo.historial.getFecha());
@@ -149,6 +151,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
                 btnestado.setText("Finalizado");
 
             }else{
+
                 servicios =  modelo.servicios;
                 txtfecha.setText(modelo.servicios.getFecha()+"\n 10:00 PM");
                 txtservicio.setText(modelo.servicios.getTipoServicio());
@@ -191,7 +194,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(dato.equals("")){
+       /* if(dato.equals("")){
             Intent i = new Intent(getApplicationContext(), MenuLateral.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -199,7 +202,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
             startActivity(i);
             overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
             finish();
-        }
+        }*/
     }
 
     @Override
@@ -546,5 +549,7 @@ public class DetalleHistorial extends Activity implements ComandoPerfil.OnPerfil
 
         alerta("Tarjeta","Valide los datos de la tarje..");
     }
+
+
 
 }

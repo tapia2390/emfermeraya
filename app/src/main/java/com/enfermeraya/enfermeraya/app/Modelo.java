@@ -5,6 +5,7 @@ import com.enfermeraya.enfermeraya.clases.ClassTerminosYCondiciones;
 import com.enfermeraya.enfermeraya.clases.Favoritos;
 import com.enfermeraya.enfermeraya.clases.Historial;
 import com.enfermeraya.enfermeraya.clases.Servicios;
+import com.enfermeraya.enfermeraya.clases.Setting;
 import com.enfermeraya.enfermeraya.clases.TipoServicio;
 import com.enfermeraya.enfermeraya.clases.Usuario;
 import com.enfermeraya.enfermeraya.views.ListaFavoritos;
@@ -46,6 +47,7 @@ public class Modelo {
     public  Favoritos favoritos = new Favoritos();
     public Servicios servicios =  new Servicios();
     public Historial historial =  new Historial();
+    public Setting setting =  new Setting();
 
     public Usuario usuario = new Usuario();
     public String tipoLogin = "";

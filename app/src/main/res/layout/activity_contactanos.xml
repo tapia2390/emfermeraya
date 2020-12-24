@@ -52,7 +52,8 @@
                     android:textColor="@color/colorVerdeOscuro"
                     android:textSize="13.3sp" />
 
-                <com.enfermeraya.enfermeraya.customfonts.EditText_Poppins_Semi_Bold
+                <EditText
+                    android:id="@+id/asunto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -77,7 +78,8 @@
                     android:textColor="@color/colorVerdeOscuro"
                     android:textSize="13.3sp" />
 
-                <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                <EditText
+                    android:id="@+id/mensaje"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11.7dp"
@@ -110,7 +112,8 @@
                     android:text="Enviar"
                     android:background="@drawable/login_button_bk"
                     android:textColor="#FFF"
-                    android:textSize="12.3sp" />
+                    android:textSize="12.3sp"
+                    android:onClick="correo"/>
 
 
 
@@ -128,14 +131,16 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/fb" />
+                    android:src="@drawable/fb"
+                    android:onClick="facebook"/>
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginLeft="29dp"
                     android:layout_marginTop="30dp"
-                    android:src="@drawable/linkedin" />
+                    android:src="@drawable/linkedin"
+                    android:onClick="linkedln"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -148,7 +153,8 @@
                         android:layout_height="48dp"
                         android:layout_marginLeft="29dp"
                         android:layout_marginTop="50dp"
-                        android:src="@drawable/twitter" />
+                        android:src="@drawable/twitter"
+                        android:onClick="twitter"/>
 
                 </LinearLayout>
 

@@ -66,6 +66,7 @@ public class ComandoPerfil {
         enviarRegistroUsuario.put("nombre", u.getNombre());
         enviarRegistroUsuario.put("apellido", u.getApellido());
         enviarRegistroUsuario.put("celular", u.getCelular());
+        enviarRegistroUsuario.put("codigo", u.getCodigo());
 
         if(!u.getFoto().equals("")){
             enviarRegistroUsuario.put("foto", u.getFoto());
@@ -133,7 +134,7 @@ public class ComandoPerfil {
                 modelo.usuario.setCorreo(snap.child("correo").getValue().toString());
                 modelo.usuario.setFoto(snap.child("foto").getValue().toString());
                 modelo.usuario.setToken(snap.child("tokem").getValue().toString());
-                modelo.usuario.setDireccion(snap.child("direccion").getValue().toString());
+                modelo.usuario.setCodigo(snap.child("codigo").getValue().toString());
 
                 if(snap.child("idculqi").exists()){
                     modelo.usuario.setIdculqi(snap.child("idculqi").getValue().toString());

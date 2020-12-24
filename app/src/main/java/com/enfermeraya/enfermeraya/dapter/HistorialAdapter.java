@@ -26,7 +26,6 @@ import com.enfermeraya.enfermeraya.app.Modelo;
 import com.enfermeraya.enfermeraya.clases.Historial;
 import com.enfermeraya.enfermeraya.clases.Historial;
 import com.enfermeraya.enfermeraya.comandos.ComandoHistorial;
-import com.enfermeraya.enfermeraya.comandos.ComandoSercicio;
 import com.enfermeraya.enfermeraya.views.DetalleHistorial;
 
 import java.util.ArrayList;

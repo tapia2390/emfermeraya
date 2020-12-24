@@ -40,7 +40,7 @@
 
     <style name="FacebookLoginButton">
         <item name="android:background">@drawable/fb</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">0sp</item>
         <item name="android:gravity">center</item>
     </style>
 

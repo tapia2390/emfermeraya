@@ -175,7 +175,7 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
                     camara1.setClickable(false);
                     txt_camara1.setClickable(false);
 
-                    //Bitmap bitmap = BitmapFactory.decodeFile(user.getPhotoUrl());
+                    //Bitmap bitmap = BitmapFactory.decodfeFile(user.getPhotoUrl());
 
                     try {
                        // Uri url = user.getPhotoUrl();
@@ -258,7 +258,8 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
             usuario.setNombre(txt_nombre.getText().toString());
             usuario.setApellido(txt_nombre.getText().toString());
             usuario.setCelular(txt_celular.getText().toString());
-            usuario.setFoto(foto);
+
+
 
 
 
@@ -595,7 +596,13 @@ public class Perfil extends Activity implements ComandoPerfil.OnPerfilChangeList
         txt_celular.setText("" + modelo.usuario.getCelular());
         txt_correo.setText("" + modelo.usuario.getCorreo());
         if (!modelo.usuario.getFoto().equals("")) {
-            camara1.setImageBitmap(getCircularBitmap(decodeBase64(modelo.usuario.getFoto())));
+            if(modelo.usuario.getFoto() != null){
+                camara1.setImageBitmap(getCircularBitmap(decodeBase64(modelo.usuario.getFoto())));
+            }
+            else{
+                camara1.setBackgroundResource(R.mipmap.ic_launcher_round);
+            }
+
         }
 
 

@@ -64,74 +64,18 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
         String titlo = filteredNameList.get(position).getInformacion();
         String fecha = filteredNameList.get(position).getFecha();
         String estado = filteredNameList.get(position).getEstado();
-        double calificacion = filteredNameList.get(position).getCalificaion();
         holder.text_dir.setText(direccion);
         holder.text_nombre.setText(titlo);
         holder.text_fecha.setText(fecha);
+        holder.text_estado.setText("Estado del servicio: " + estado);
 
 
-        holder.text_estado.setOnClickListener(new View.OnClickListener() {
+        holder.btndetalle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 modelo.servicios = filteredNameList.get(position);
                 Intent i = new Intent(context, DetalleHistorial.class);
                 context.startActivity(i);
-            }
-        });
-
-
-
-
-
-        if(filteredNameList.get(position).getEstado().equals("true")){
-            holder.image_fav.setBackgroundResource(R.drawable.start);
-        }else{
-            holder.image_fav.setBackgroundResource(R.drawable.start2);
-        }
-
-
-        ///modal calificiacion
-        holder.btn_calificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    View layout= null;
-                    LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    layout = inflater.inflate(R.layout.dialog_calificacion, null);
-                    final RatingBar ratingBar = (RatingBar)layout.findViewById(R.id.ratingBar);
-                    builder.setTitle("Calificacion");
-                    builder.setMessage("Gracias por calificarnos, nos ayudará a brindarle el mejor servicio. .");
-                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-
-
-
-                            Float value = ratingBar.getRating();
-                            double califi = Double.parseDouble(value.toString());
-                            Toast.makeText(context,"su calificación es : "+califi,Toast.LENGTH_LONG).show();
-                            comandoHistorial.calificar(filteredNameList.get(position).getKey(),califi);
-                            holder.text_estado.setVisibility(View.GONE);
-                            holder.btn_calificar.setVisibility(View.GONE);
-                            holder.start.setVisibility(View.VISIBLE);
-                            holder.txt_calificacion.setText(""+califi);
-                        }
-                    });
-                    builder.setNegativeButton("No,Gracias", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setCancelable(false);
-                    builder.setView(layout);
-                    builder.show();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -222,29 +166,21 @@ public class ServicioAdapter2 extends RecyclerView.Adapter<ServicioAdapter2.Serv
 
     class ServicioViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView image_fav;
+
         private TextView text_dir;
         private TextView text_nombre;
         private TextView text_fecha;
-        private Button text_estado;
-        private LinearLayout layuotdata;
-        private LinearLayout layoutcalificacion;
-        private Button btn_calificar;
-        private LinearLayout start;
-        private TextView txt_calificacion;
+        private TextView text_estado;
+        private Button btndetalle;
 
         ServicioViewHolder(@NonNull View itemView) {
             super(itemView);
-            image_fav = itemView.findViewById(R.id.image_fav);
+
             text_dir = itemView.findViewById(R.id.text_dir);
             text_nombre = itemView.findViewById(R.id.text_nombre);
             text_fecha = itemView.findViewById(R.id.text_fecha);
-            layuotdata = itemView.findViewById(R.id.layuotdata);
             text_estado = itemView.findViewById(R.id.text_estado);
-            layoutcalificacion = itemView.findViewById(R.id.layoutcalificacion);
-            btn_calificar = itemView.findViewById(R.id.btn_calificar);
-            start = itemView.findViewById(R.id.start);
-            txt_calificacion = itemView.findViewById(R.id.txt_calificacion);
+            btndetalle = itemView.findViewById(R.id.btndetalle);
 
         }
     }

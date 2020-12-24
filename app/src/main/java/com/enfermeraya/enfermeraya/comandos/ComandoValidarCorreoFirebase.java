@@ -86,7 +86,7 @@ public class ComandoValidarCorreoFirebase {
                             enviarRegistroUsuario.put("direccion", "");
                             enviarRegistroUsuario.put("lat", u.getLatitud());
                             enviarRegistroUsuario.put("long", u.getLongitud());
-
+                            enviarRegistroUsuario.put("codigo", u.getCodigo());
                             ref.setValue(enviarRegistroUsuario, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {

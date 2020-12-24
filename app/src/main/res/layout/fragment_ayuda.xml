@@ -243,11 +243,13 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/fb"
                 android:layout_width="26.7dp"
                 android:layout_height="26.7dp"
                 android:src="@drawable/fb" />
 
             <ImageView
+                android:id="@+id/ins"
                 android:layout_width="26.7dp"
                 android:layout_height="26.7dp"
                 android:layout_marginLeft="20dp"
@@ -255,12 +257,14 @@
                 android:src="@drawable/instagram" />
 
             <ImageView
+                android:id="@+id/tw"
                 android:layout_width="26.7dp"
                 android:layout_height="26.7dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/twitter" />
 
             <ImageView
+                android:id="@+id/in"
                 android:layout_width="26.7dp"
                 android:layout_height="26.7dp"
                 android:src="@drawable/linkedin" />

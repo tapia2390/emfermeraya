@@ -128,7 +128,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
         // gogole
         signInButton = (ImageView) findViewById(R.id.login_gmail);
         //facebook
-        loginButtonFacebook = (Button) findViewById(R.id.login_button);
+        loginButtonFacebook = (LoginButton) findViewById(R.id.login_button);
 
 
         email = (EditText) findViewById(R.id.email);
@@ -168,6 +168,10 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
 
 
         // Initialize Facebook Login button
+
+
+
+
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -322,6 +326,7 @@ public class MainActivity extends Activity implements ComandoValidarUsuario.OnVa
                         // User is signed in
 
                         modelo.uid = user.getUid();
+                        modelo.tipoLogin="normal";
                         Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                         loadswet("Validando la información...");
 

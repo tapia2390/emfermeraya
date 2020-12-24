@@ -46,6 +46,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.enfermeraya.enfermeraya.R;
 import com.enfermeraya.enfermeraya.app.Modelo;
@@ -163,7 +164,7 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
 
             Log.v("User" ,  ""+user.getDisplayName());
 
-            if(modelo.tipoLogin.equals("normal")){
+            if(modelo.tipoLogin.equals("normal") ){
                 loadswet("Cargando la información...");
                 comandoPerfil.getUsuario();
             }else{
@@ -192,6 +193,8 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
                     Glide.with(getActivity())
                             .load(user.getPhotoUrl())
                             .apply(RequestOptions.circleCropTransform())
+                            .error(R.drawable.camara2)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(camara1);
 
 
@@ -213,7 +216,7 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        Toast.makeText(getActivity(), modelo.tipoLogin, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), modelo.tipoLogin, Toast.LENGTH_SHORT).show();
 
         getPreference();
         modelo.tipoLogin = tipoLogin;
@@ -647,7 +650,7 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
         txt_apellido.setText("" + modelo.usuario.getApellido());
         txt_celular.setText("" + modelo.usuario.getCelular());
         txt_correo.setText("" + modelo.usuario.getCorreo());
-        if (!modelo.usuario.getFoto().equals("")) {
+        if (!modelo.usuario.getFoto().equals("") || !modelo.usuario.getFoto().equals("")) {
             camara1.setImageBitmap(getCircularBitmap(decodeBase64(modelo.usuario.getFoto())));
         }
 
@@ -657,6 +660,7 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
     @Override
     public void setUsuarioListener() {
         hideDialog();
+        alerta("Actualización","Datos Actualizados");
         alerta("Actualización","Datos Actualizados");
     }
 
@@ -682,6 +686,8 @@ public class MiCuentaFragment extends Fragment implements ComandoPerfilFragment.
         }
         else if(modelo.tipoLogin.equals("gmail")){
             cerrarGmail();
+        }else{
+            cerrarNormal();
         }
 
     }

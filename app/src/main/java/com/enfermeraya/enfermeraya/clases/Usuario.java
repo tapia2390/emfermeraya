@@ -17,10 +17,11 @@ public class Usuario {
     private double tiempo;
     private  boolean estado;
     private  String idculqi;
+    private String codigo;
 
     public Usuario(){}
 
-    public Usuario(String key, String nombre, String apellido, String celular, String correo, String pasString, String foto, String token, String direccion, double latitud, double longitud, double distancia, double tiempo, boolean estado,String idculqi) {
+    public Usuario(String key, String nombre, String apellido, String celular, String correo, String pasString, String foto, String token, String direccion, double latitud, double longitud, double distancia, double tiempo, boolean estado,String idculqi, String codigo) {
         this.key = key;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,6 +37,7 @@ public class Usuario {
         this.tiempo = tiempo;
         this.estado = estado;
         this.idculqi =  idculqi;
+        this.codigo= codigo;
     }
 
     public String getKey() {
@@ -159,5 +161,13 @@ public class Usuario {
 
     public void setIdculqi(String idculqi) {
         this.idculqi = idculqi;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

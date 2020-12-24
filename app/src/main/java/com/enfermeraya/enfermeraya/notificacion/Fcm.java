@@ -35,8 +35,12 @@ public class Fcm extends FirebaseMessagingService {
     }
 
     private void  guardarToken(String s) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("usuario");
-        ref.child(modelo.uid+"/token/").setValue(s);
+
+        if(!modelo.uid.equals("")){
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("usuario");
+            ref.child(modelo.uid+"/token/").setValue(s);
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

@@ -3,7 +3,7 @@
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/tools">
 
 
     <ScrollView
@@ -113,7 +113,7 @@
                 </RelativeLayout>
 
 
-                <EditText
+                <Button
                     android:id="@+id/iniciarsession"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,8 +146,6 @@
 
 
             </LinearLayout>
-
-
 
 
             <LinearLayout
@@ -201,18 +199,29 @@
                     android:orientation="horizontal">
 
 
-                    <Button
-                        android:id="@+id/login_button"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="32.7dp"
                         android:layout_height="32.7dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:clickable="true"
-                        android:background="@drawable/fb"
-                        />
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="18dp">
+
+                        <com.facebook.login.widget.LoginButton
+                            android:id="@+id/login_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingBottom="25dp"
+                            android:paddingLeft="7.5dp"
+                            android:layout_gravity="center"
+                            android:paddingTop="25dp" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+
 
 
                     <ImageView
+
                         android:id="@+id/login_gmail"
                         android:layout_width="32.7dp"
                         android:layout_height="32.7dp"

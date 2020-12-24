@@ -271,7 +271,9 @@
                 android:text="Pagar Servicio"
                 android:background="@drawable/login_button_bk"
                 android:textColor="@color/colorBlanco"
-                android:onClick="pagar"/>
+                android:onClick="pagar"
+                android:visibility="gone"/>
+
 
 
         </LinearLayout>
